@@ -70,5 +70,5 @@
  .am-pagination-select>li>a.off{color: #ccc;}
 
  /*登录*/
- .login-tit{margin-bottom: 2rem; text-align:center; color: #ff7c39; font-size: 30px; border-bottom:1px solid #ddd; line-height: 5rem;}
- .login-div{margin:0 1.5rem;}
+
+.login{ background: url(../i/login_bg_02.jpg) no-repeat;background-size: cover;}
