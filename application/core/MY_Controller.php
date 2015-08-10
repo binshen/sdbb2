@@ -51,10 +51,9 @@ class MY_Controller extends CI_Controller
 					}
 				}	
 	    	}
-			
-			
-			
 	    }
+	    $this->cismarty->assign('rel_name',$this->session->userdata('rel_name'));
+	    $this->cismarty->assign('admin_group',$this->session->userdata('admin_group'));
     }
     
     
