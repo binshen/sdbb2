@@ -1,0 +1,98 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>客服经理管理</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <link rel="stylesheet" href="/assets/css/amazeui.min.css">
+  <link rel="stylesheet" href="/assets/css/amazeui.switch.css">
+  <link rel="stylesheet" href="/assets/css/app.css">
+</head>
+<body>
+<div class="am-g">
+{{include file="header.html"}}
+    <div class="app-tit"><span>我要报备</span></div>
+    <div class="wybb">
+      <form method="post" action="{{site_url url='user/save_bb'}}" class="am-form" data-am-validator>
+      <fieldset>
+        <div class="am-form-group">
+            <label for="doc-select-1">选择项目 :</label>
+             <select id="doc-select-1" required name="k_project">
+             <option value="">-请选择项目-</option>
+                {{foreach from=$projects item=row}}
+					<option value="{{$row.id}}" {{if $project_id == $row.id}}selected='selected'{{/if}}>{{$row.project}}</option>
+				{{/foreach}}
+              </select>
+          </div>
+          <div class="am-form-group">
+            <label for="doc-select-2">客户来源 :</label>
+             <select id="doc-select-2" required  name="k_target">
+                <option value="">-请选择客户来源-</option>
+                <option value="网络">网络</option>
+				<option value="派单">派单</option>
+				<option value="朋友介绍">朋友介绍</option>
+				<option value="电销">电销</option>
+				<option value="其它">其它</option>
+              </select>
+          </div>
+          <div class="am-form-group">
+            <label class="am-form-tit">客户性别 :</label>
+            <input id="switch-offText" type="checkbox" checked data-on-text="先生" data-off-text="女士">
+            <input type="hidden" name="k_sex" value="先生">
+          </div>
+          <div class="am-form-group">
+            <label for="doc-vld-name">客户姓名 :</label>
+            <input type="text" id="doc-vld-name" name="k_name"  maxlength="4" placeholder="输入客户姓名" class="am-form-field" required/>
+          </div>
+          <div class="am-form-group">
+            <label for="doc-vld-tel">客户手机 :</label>
+            <input type="text" id="doc-vld-tel" maxlength="11" name="k_phone" placeholder="输入客户手机" pattern="^1\d{10}$" class="am-form-field" required/>
+          </div>
+          <div class="am-form-group">
+            <label for="doc-vld-ident">客户身份证 :</label>
+            <input type="text" id="doc-vld-ident"  placeholder="输入客户身份证" name="k_idno" class="am-form-field" />
+          </div>
+          <div class="am-form-group">
+            <label for="doc-vld-ident">备注 :</label>
+            <textarea name="k_remark"></textarea>
+          </div>
+          <button class="am-btn am-btn-secondary" type="submit">提交</button>
+        </fieldset>
+      </form>
+      <!-- 侧滑菜单 -->
+      <div class="amz-toolbar" id="amz-toolbar">
+      <!-- 菜单 -->
+      <!-- 左侧侧滑菜单 -->
+		{{include file="menu.html"}}
+    </div>
+    </div>
+</div>
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/amazeui.min.js"></script>
+<script src="/assets/js/amazeui.switch.js"></script>
+<script type="text/javascript">
+(function() {
+	$('#switch-offText').on('switchChange.bootstrapSwitch', function(event, state) {
+	  if(state){
+		  $("[name='k_sex']").val('先生');
+	  }else{
+		  $("[name='k_sex']").val('女士');
+	  }
+	});
+  $(function() {
+    $('input[type="checkbox"], input[type="radio"]').not('[data-switch-no-init]').bootstrapSwitch();
+    $('[data-switch-create-destroy]').on('click', function() {
+      var isSwitch = $createDestroy.data('bootstrap-switch');
+      $createDestroy.bootstrapSwitch((isSwitch ? 'destroy' : null));
+      return $(this).text((isSwitch ? '初始化' : '销毁'));
+    });
+  });
+}).call(this);
+</script>
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<link href="{$base_url}css/pc_fm.css" rel="stylesheet" type="text/css"/>
+<link href="{$base_url}css/pc_popup.css" rel="stylesheet" type="text/css"/>
+<link href="{$base_url}css/pc_common.css" rel="stylesheet" type="text/css"/>
+<script src="{$base_url}js/jquery-v1.10.2.min.js" type="text/javascript"></script>
+<script src="{$base_url}js/easydialog.min.js"></script>
+<link rel="stylesheet" href="{$base_url}css/easydialog.css"/>
+<title>门店经理-业务员列表</title>
+</head>
+<body>
+{include file="pc/head.html"}
+
+
+<div class="box_win w454" style="display:none;" id="edit_ywy">
+  <div class="bar3 bg"><a href="javascript:easyDialog.close();"><img src="{$base_url}images/blank.png"  /></a>修改密码</div>
+  <div class="bdr1" style="background-color:#fff;" >
+  <form method="post" action="{site_url url='md_manager/save_ywy'}" id="form_edit">
+      <p>姓名:<input name="rel_name" type="text" class="input1" placeholder="请输入姓名(*)" required/><input name='id' type="hidden" class="input1" /></p>
+      <p>手机:<input name="username" type="text" class="input1" placeholder="请输入手机(*)" required/></p>
+  <a class="qd2 bg"  href="javascript:save_ywy_edit();">确  定</a>
+    </form>
+</div>
+</div>
+
+
+
+<div class="w1000 bdr">
+  {include file="pc/menu.html"}
+  <div class="w800">
+    <h1>我的房猫><span>业务员列表</span></h1>
+    <p class="nm">{$rel_name}<span>({if $admin_group == '1'}管理员{/if}{if $admin_group == '2'}客服经理{/if}{if $admin_group == '3'}业务员{/if}{if $admin_group == '4'}外联经理{/if}{if $admin_group == '5'}门店经理{/if})</span></p>
+    <p class="zbb"><a href="{site_url url='md_manager_pc/add_ywy'}">新增业务员</a>总报备： <span>{$all_count.bb_count}</span> |  总带看： <span>{$all_count.dk_count}</span> |  总成交: <span>{$all_count.qy_count}</span> </p>
+    <div class="box1">
+      <h2>业务员列表</h2>
+      <table border="0" class="table1">
+        <tr >
+          <th scope="col">业务员姓名</th>
+          <th scope="col">电话号码</th>
+          <th scope="col">邀请码</th>
+          <th class="w150" scope="col" >操作</th>
+        </tr>
+        {foreach from=$data.res_list item=row key=k}
+        <tr {if $k is odd}class="grey_bg"{/if}>
+          <td>{$row.rel_name}</td>
+          <td>{$row.username}</td>
+          <td>{$row.yqm}</td>
+          <td><a href="javascript:edit_ywy('{$row.id}');"><img src="{$base_url}images/blank.png"  class="cz_img bg" style='background-position:-582px -62px'/></a></td>
+        </tr>
+        {/foreach}
+        
+      </table>
+    </div>
+   	{if $data.res_list}
+	<div class="page">
+		{if $data.pageNum lt $data.total_page}<a href="{site_url url='md_manager_pc/index'}/{$data.pageNum + 1}" class="pg3 bg">下一页</a>{/if}
+		{if $data.max_p lt $data.total_page}
+		<a href="{site_url url='md_manager_pc/index'}/{$data.total_page}" class="pg2 bg">{$data.total_page}</a>
+		{if $data.max_p + 1 lt $data.total_page}
+		<span>...</span>
+		{/if}
+		{/if}
+		{foreach from=$data.page_list item=row}
+		{if $row == $data.pageNum}
+		<a class="pg1 bg ">{$row}</a>
+		{else}
+		<a href="{site_url url='md_manager_pc/index'}/{$row}"  class="pg2 bg ">{$row}</a>
+		{/if}
+		{/foreach}
+		{if $data.min_p gt 1}
+		{if $data.min_p gt 2}
+		<span>...</span>
+		{/if}
+		<a href="{site_url url='md_manager_pc/index'}/1" class="pg2 bg">1</a>
+		{/if}
+		{if $data.pageNum gt 1}<a href="{site_url url='md_manager_pc/index'}/{$data.pageNum - 1}" class="pg3 bg">上一页</a>{/if}
+	</div>
+	{/if}
+  </div>
+  <div class="clr"></div>
+</div>
+{include file="pc/foot.html"}
+<script>
+function edit_ywy(id){
+	$.getJSON("{site_url url='md_manager/get_ywy'}/"+id,function(data){
+		$("[name='id']").val(data.id);
+		$("#edit_ywy [name='username']").val(data.username);
+		$("#edit_ywy [name='rel_name']").val(data.rel_name);
+		easyDialog.open({
+			container : 'edit_ywy',
+			fixed : false
+		});
+	});
+}
+
+function save_ywy_edit(){
+	if(!$("#edit_ywy [name='rel_name']").val() || $("#edit_ywy [name='rel_name']").val() =='姓名'){
+		alert('请输入姓名！');
+		return;
+	}
+	if(!$("#edit_ywy [name='username']").val() || $("#edit_ywy [name='username']").val() =='手机号码'){
+		alert('请输入手机号码！');
+		return;
+	}
+	{literal}var re = /^1\d{10}$/;{/literal}
+	if (!re.test($("#edit_ywy [name='username']").val())) {
+		alert('手机号码格式错误！');
+		return false;
+	}
+	
+	$("#form_edit").submit();
+}
+</script>
+
+<script>
+/* www.51-n.com 原创代码 qQ:229256237
+ * 检测浏览器是否支持 placeholder 属性
+ * 为不支持 placeholder 属性的浏览器写兼容代码
+ * 注意，需要 placeholder 的表单控件不要写value属性。
+ * 本代码只操作 input 控件，如果需要支持其他控件请自己修改代码
+ * 下面对 required 属性的操作同理。
+*/        
+var testElement=document.createElement('input');
+var placeholderSupported='placeholder' in testElement;
+if(!placeholderSupported){
+        var inputs=document.getElementsByTagName('input');
+        for(var n=0;n<inputs.length;n++){
+                var input=inputs[n];
+                var placeholder=input.placeholder?input.placeholder:input.getAttribute('placeholder');
+                //部分浏览器不支持直接操作自定义属性，用 getAttribute() 来获取自定义属性。
+                if(!placeholder) continue;
+                input.value=placeholder;
+                input.onfocus=function(){
+                        if(this.value==this.getAttribute('placeholder')){
+                                this.value='';
+                        }
+                };
+                input.onmouseover=function(){
+                        this.focus();
+                }
+                input.onblur=function(){
+                        if(this.value==''){
+                                this.value=this.getAttribute('placeholder');
+                        }
+                }
+        }
+}else{
+        var inputs=document.getElementsByTagName('input');                
+        for(var n=0;n<inputs.length;n++){
+                inputs[n].onmouseover=function(){
+                        this.focus();
+                }
+        }
+}
+/* 检测浏览器是否支持 required 属性
+ * 为不支持 required 属性的浏览器写兼容代码
+*/                
+var requiredSupported='required' in testElement&&!/Version\/[\d\.]+\s*Safari/i.test(navigator.userAgent);
+if(!requiredSupported){
+        document.getElementsByTagName('form')[0].onsubmit=function(e){
+                var inputs=document.getElementsByTagName('input');
+                for(var n=0;n<inputs.length;n++){
+                        var input=inputs[n];
+                        var placeholder=input.placeholder?input.placeholder:input.getAttribute('placeholder');                                        
+                        if(!placeholder) continue;
+                        if(!input.value||(input.value==placeholder)){
+                                alert('请填写'+placeholder);
+                                e=e||window.event;
+                                e.preventDefault&&e.preventDefault();
+                                e.returnValue=false;
+                                break;
+                        }
+                }
+        };
+}
+</script>
+</body>
+</html>

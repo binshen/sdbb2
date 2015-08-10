@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<link href="{$base_url}css/pc_home.css" rel="stylesheet" type="text/css"/>
+<script src="{$base_url}js/jquery-v1.10.2.min.js" type="text/javascript"></script>
+<title>房猫经纪人平台</title>
+</head>
+<body>
+<div class="yp3 bg">1</div>
+<div class="yp2 bg"></div>
+<div class="yp1">{if $user_info}<a href="javascript:show_user();">{$user_info.rel_name}</a>{else}<a href="{site_url url='login_pc'}">登陆</a>{/if}</div>
+<ul class="wd">
+  <li><iframe width="280" scrolling="no" height="25" frameborder="0" allowtransparency="true" src="http://i.tianqi.com/index.php?c=code&id=34&icon=1&num=3"></iframe></li>
+
+</ul>
+{if $user_info}
+<div class="wndw bg" style="display:none;" id="user">
+  <div class="wndw_r">
+    <P class="nm">{$user_info.rel_name}</P>
+    <a class="jjr bg">经纪人</a>
+    <P class="qq">{$user_info.phone}</P>
+    <P class="at">Account<span>-</span>Privacy</P>
+    <a href="{site_url url='admin_pc'}" class="ckzl">进入平台</a> </div>
+  <div class="wndw_l"><img src="{$base_url}uploadfiles/head/s2_{$pic}"/></div>
+  <div class="wndw_b">
+    <p>报备<span>{$all_count.bb_count}</span></p>
+    <p>带看<span>{$all_count.dk_count}</span></p>
+    <p>成交<span>{$all_count.qy_count}</span></p>
+  </div>
+</div>
+{/if}
+<div class="srh bg">
+  <input name="main_search" type="text" onfocus="showh();" onblur="hides();"/>
+  <div class="ahref" style="display:none;"><a href="#">房天下</a><a href="#">房多多</a><a href="#">昆山楼市</a><a href="#">好屋中国</a><a href="#">安居客</a><a href="#">房产信息网</a></div>
+  <div class="logo"><img src="{$base_url}images/logo_pc.png" /></div>
+  <div class="srh_btn bg"><a href="javascript:search_w();"><img src="{$base_url}images/blank.png" /></a></div>
+</div>
+<div class="dh bg" style="display:none;">
+  <div class="dh_l "><a href="#">导航</a><a href="#">工具</a><a href="#">银行</a><a href="#">资讯</a><a href="#">端口</a><a href="#">经纪</a><a href="#">办事易</a><a href="#"><img src="images/blank.png" /></a></div>
+  <div class="dh_r">
+    <div class="dh_r_t"><a href="#">我的导航</a><a href="#" class="line">推荐导航</a></div>
+    <div class="dh_r_rmwz">热门网址</div>
+    <div class="dh_r_logo"><a href="#"><img src="images/dh_logo/logo1.jpg"  /></a><a href="#"><img src="images/dh_logo/logo2.jpg"  /></a><a href="#"><img src="images/dh_logo/logo3.jpg"  /></a><a href="#"><img src="images/dh_logo/logo4.jpg"  /></a><a href="#"><img src="images/dh_logo/logo5.jpg"  /></a><a href="#"><img src="images/dh_logo/logo6.jpg"  /></a><a href="#"><img src="images/dh_logo/logo7.jpg"  /></a><a href="#"><img src="images/dh_logo/logo8.jpg"  /></a><a href="#"><img src="images/dh_logo/logo9.jpg"  /></a><a href="#"  class="bk"><img src="images/dh_logo/logo10.jpg"  /></a><a href="#"><img src="images/dh_logo/logo11.jpg"  /></a><a href="#"><img src="images/dh_logo/logo12.jpg"  /></a><a href="#"><img src="images/dh_logo/logo13.jpg"  /></a><a href="#"><img src="images/dh_logo/logo14.jpg"  /></a><a href="#"><img src="images/dh_logo/logo15.jpg"  /></a><a href="#"><img src="images/dh_logo/logo16.jpg"  /></a><a href="#"><img src="images/dh_logo/logo17.jpg"  /></a><a href="#"><img src="images/dh_logo/logo18.jpg"  /></a></div>
+  </div>
+  <p>©2014 funmall.com</p>
+</div>
+</body>
+<script>
+function show_user(){
+	$("#user").toggle(500);
+}
+
+function showh(){
+	$(".ahref").show();
+}
+
+function hides(){
+	$(".ahref").hide();
+}
+
+function search_w(){
+	url='http://www.baidu.com/s?wd=' + $("[name='main_search']").val();
+	window.open(url,'');
+}
+</script>
+</html>

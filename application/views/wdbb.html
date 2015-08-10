@@ -1,0 +1,334 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>客服经理管理</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="renderer" content="webkit">
+  <meta content="telephone=no" name="format-detection" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <link rel="stylesheet" href="/assets/css/amazeui.min.css">
+  <link rel="stylesheet" href="/assets/css/app.css">
+</head>
+<body>
+<div class="am-g">
+    {{include file="header.html"}}
+     <div class="app-tit">
+      <span class="mark">报备列表</span>
+      <span class="smark">共{{$data.total_rows}}组</span>
+    </div>
+    <section data-am-widget="accordion" class="am-accordion am-accordion-default"
+    data-am-accordion='{}'>
+    {{foreach from = $data.res_list item=row key=k}}
+      <dl class="am-accordion-item">
+        <dt class="am-accordion-title">
+          <div class="fl">
+            <span class="s-user-name"><i class="am-icon-user"></i>{{$row.name}}</span>
+            <span><i class="am-icon-calendar"></i>{{$row.cdate|date_format:"%Y-%m-%d"}}</span>
+          </div>
+          <div class="fr">
+          {{if $row.status == '1'}}<span><i class="am-icon-check-circle"></i>已报备</span>{{/if}}
+		  {{if $row.status == '2'}}<span><i class="am-icon-exclamation-circle"></i>将到期</span>{{/if}}
+		  {{if $row.status == '3'}}<span><i class="am-icon-check-circle am-icon-check1-circle"></i>已带看</span>{{/if}}
+		  {{if $row.status == '4'}}<span><i class="am-icon-exclamation-circle am-icon-exclamation1-circle"></i>将到期</span>{{/if}}
+		  {{if $row.status == '5'}}<span><i class="am-icon-check-circle am-icon-check2-circle"></i>已签约</span>{{/if}}
+		  {{if $row.status == '-2'}}<span class="overtime"><i class="am-icon-exclamation-circle am-icon-exclamation2-circle"></i>已过期</span>{{/if}}
+            <span><i class="am-icon-angle-right"></i></span>
+          </div>
+        </dt>
+        <dd class="am-accordion-bd am-collapse">
+          <!-- 规避 Collapase 处理有 padding 的折叠内容计算计算有误问题， 加一个容器 -->
+          <div class="am-accordion-content">
+          	 <p><i class="am-front-icon am-icon-phone"></i>电话：{{$row.phone}}<a href="tel:{{$row.phone}}" class="am-btn-call am-icon-phone"></a></p>
+             <p><i class="am-front-icon am-icon-clock-o"></i>创建时间：{{$row.cdate}}</p>
+             <p><i class="am-front-icon am-icon-times-circle-o"></i>带看时间：{{$row.ddate}}</p>
+             <p><i class="am-front-icon am-icon-institution"></i>所属项目：{{$row.project}}</p>
+             <p><i class="am-front-icon am-icon-globe"></i>客户来源：{{$row.target}}</p>
+             <p><i class="am-front-icon am-icon-venus-double"></i>客户性别:  {{$row.sex}}</p>
+             <p><i class="am-front-icon am-icon-indent"></i>身份证号： {{$row.idno}}</p>
+             <p><i class="am-front-icon am-icon-edit"></i>备注：{{$row.remark}}</p>
+             {{if $row.status == '-2'}}
+             {{else}}
+             <div class="con-state-div">
+				{{if $row.status == '1'}}<span class="con-cus-state con-cus-ybb"></span>{{/if}}
+				{{if $row.status == '2'}}<span class="con-cus-state con-cus-jdq1"></span>{{/if}}
+				{{if $row.status == '3'}}<span class="con-cus-state con-cus-ydk"></span>{{/if}}
+				{{if $row.status == '4'}}<span class="con-cus-state con-cus-jdq2"></span>{{/if}}
+				{{if $row.status == '5'}}<span class="con-cus-state con-cus-yqy"></span>{{/if}}
+                <p class="p-state"><span>已报备</span><span>即将到期</span><span>已带看</span><span>即将到期</span><span>已签约</span></p>
+             </div>
+             {{/if}}
+             <button type="button" class="am-btn am-btn-secondary" data-am-modal="{target: '#my-actions{{$row.id}}'}"><i class="am-icon-cog"></i>操作</button>
+			 <!-- 编辑 -->
+		     <div class="am-modal-actions" id="my-actions{{$row.id}}">
+		      <div class="am-modal-actions-group">
+		        <ul class="am-list">
+		          <li><a href="javascript:del_bb('{{$row.id}}');"><i class="am-icon-close"></i>删除</a></li>
+		          <li><a href="javascript:re_bz('{{$row.id}}');"><i class="am-icon-edit"></i>备注</a></li>
+		          <li><a href="javascript:other_bb('{{$row.id}}');"><i class="am-icon-arrows-h"></i>报备至其他项目</a></li>
+		          {{if $row.status == '-2'}}
+		          <li><a href="javascript:re_bb('{{$row.id}}');"><i class="am-icon-eraser"></i>重新报备</a></li>
+		          {{/if}}
+		        </ul>
+		      </div>
+		      <div class="am-modal-actions-group">
+		        <button class="am-btn am-btn-secondary am-btn-block" id="clear_action{{$row.id}}" data-am-modal-close>取消</button>
+		      </div>
+		    </div> 
+		    <!-- 编辑 -->
+		    <!-- 报备至其他项目 -->
+		    <div class="am-modal am-modal-prompt" tabindex="-1" id="my-prompt{{$row.id}}">
+			  <div class="am-modal-dialog">
+			    <div class="am-modal-hd">报备至其他项目</div>
+			    <div class="am-modal-bd">
+			    <div class="am-form-group">
+	              {{foreach from=$projects item=roww}}
+	              {{if $row.project_id != $roww.id}}
+			      <label class="am-checkbox">
+      				<input type="checkbox" name="rbb_project[]"  value="{{$roww.id}}" data-am-ucheck  > {{$roww.project}}
+			      </label>
+			      {{/if}}
+			      {{/foreach}}
+			      
+			    </div>
+			    </div>
+			    <div class="am-modal-footer">
+			      <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+			      <span class="am-modal-btn" data-am-modal-confirm>提交</span>
+			    </div>
+			  </div>
+			</div>
+		    <!-- 报备至其他项目 -->
+		    <!-- 修改备注 -->
+		    <div class="am-modal am-modal-prompt" tabindex="-1" id="my-remark{{$row.id}}">
+			  <div class="am-modal-dialog">
+			    <div class="am-modal-hd">修改备注</div>
+			    
+			    <textarea name="remark" id="c_remark_{{$row.id}}">{{$row.remark}}</textarea>
+				
+			    <div class="am-modal-footer">
+			      <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+			      <span class="am-modal-btn" data-am-modal-confirm>提交</span>
+			    </div>
+			  </div>
+			</div>
+		    <!-- 修改备注 -->
+          </div>
+        </dd>
+      </dl>
+      {{/foreach}}
+    </section>
+    <div class="amz-toolbar" id="amz-toolbar">
+      <!-- 添加新数据 -->
+      <a href="{{site_url url='user/wybb'}}" class="am-icon-btn am-icon-plus"></a>
+      <!-- 菜单 -->
+      <!-- 左侧侧滑菜单 -->
+      {{include file="menu.html"}}
+      <!-- <a href="" class="am-icon-btn am-icon-list am-active"></a> -->
+      <!-- 搜索 -->
+      <a href="javascript:void(0)" class="am-icon-btn am-icon-search" data-am-modal="{target: '#my-actions-search'}"></a>
+    </div>
+    
+    <!-- 分页 -->
+    {{if $data.total_page > 1}}
+    <ul data-am-widget="pagination" class="am-pagination am-pagination-select">
+      <li class="am-pagination-prev ">
+      
+      	{{if $data.pageNum lte 1}}
+		<a class="off">上一页</a>
+		{{else}}
+		<a href="javascript:get_search('{{$data.pageNum -1}}');">上一页</a>
+		{{/if}}
+      </li>
+      <li class="am-pagination-select">
+        <select onchange="get_search(this.value);">
+        {{section name=loop loop=$data.total_page}}
+          <option value="{{$smarty.section.loop.index + 1}}" class="" {{if $smarty.section.loop.index + 1 eq $data.pageNum}}selected='selected'{{/if}}>{{$smarty.section.loop.index + 1}}/{{$data.total_page}}</option>
+        {{/section}}
+        </select>
+      </li>
+      <li class="am-pagination-next ">
+      	{{if $data.pageNum gte $data.total_page}}
+		<a class="off">下一页</a>
+		{{else}}
+		<a href="javascript:get_search('{{$data.pageNum +1}}');">下一页</a>
+		{{/if}}
+      </li>
+    </ul>
+    {{/if}}
+	<!-- 分页 -->
+	
+    <!-- 搜索 -->
+     <div class="am-modal-actions" id="my-actions-search">
+      <div class="am-modal-actions-group">
+        <form action="{{site_url url='user/wdbb/1'}}" class="am-form" method="post">
+          <fieldset>
+            <div class="am-form-group">
+              <select id="doc-select-1"  name="project_id">
+                <option value="">——请选择报备项目——</option>
+                {{foreach from=$projects item=row}}
+			    <option value="{{$row.id}}" {{if $data.project_id eq $row.id}}selected='selected'{{/if}}>{{$row.project}}</option>
+			    {{/foreach}}
+              </select>      
+            </div>
+            <div class="am-form-group">
+              <select id="doc-select-2" name="status">
+                <option value="">——请选择报备状态——</option>
+                <option value="1" {{if $data.status eq '1'}}selected='selected'{{/if}}>已报备</option>
+		        <option value="2" {{if $data.status eq '2'}}selected='selected'{{/if}}>报备即将到期</option>
+		        <option value="3" {{if $data.status eq '3'}}selected='selected'{{/if}}>已带看</option>
+		        <option value="4" {{if $data.status eq '4'}}selected='selected'{{/if}}>带看即将到期</option>
+		        <option value="5" {{if $data.status eq '5'}}selected='selected'{{/if}}>已签约</option>
+		        <option value="-2" {{if $data.status eq '-2'}}selected='selected'{{/if}}>已过期</option>
+              </select>
+            </div>
+            <button class="am-btn am-icon-search" type="submit">搜索</button>
+          </fieldset>
+       </form>       
+      </div>
+      <div class="am-modal-actions-group">
+        <button class="am-btn am-btn-secondary am-btn-block" data-am-modal-close>取消</button>
+      </div>
+    </div> 
+    
+    
+<!-- 弹出层 -->
+<div class="am-modal am-modal-loading am-modal-no-btn" tabindex="-1" id="my-modal-loading">
+  <div class="am-modal-dialog">
+    <div class="am-modal-hd">操作成功...</div>
+    <div class="am-modal-bd">
+      <span class="am-icon-spinner am-icon-spin"></span>
+    </div>
+  </div>
+</div>
+<div class="am-modal am-modal-alert" tabindex="-1" id="my-alert">
+  <div class="am-modal-dialog">
+    <div class="am-modal-hd">警告</div>
+    <div class="am-modal-bd">
+      系统错误，请联系管理员
+    </div>
+    <div class="am-modal-footer">
+      <span class="am-modal-btn">确定</span>
+    </div>
+  </div>
+</div>
+<div class="am-modal am-modal-confirm" tabindex="-1" id="my-confirm-del">
+  <div class="am-modal-dialog">
+    <div class="am-modal-hd">提示</div>
+    <div class="am-modal-bd">
+      你，确定要删除这条记录吗？
+    </div>
+    <div class="am-modal-footer">
+      <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+      <span class="am-modal-btn" data-am-modal-confirm>确定</span>
+    </div>
+  </div>
+</div>
+<!-- 弹出层 -->
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/amazeui.min.js"></script>
+<script>
+function get_search(page){
+	$('form').attr('action',"{{site_url url='user/wdbb'}}"+"/" + page);
+	$("form").submit();
+}
+var callFn = function(){
+	get_search({{$data.pageNum}});
+};
+function del_bb(id){
+	$("#clear_action"+id).click();
+	$("#my-confirm-del").modal({
+		relatedTarget: this,
+		onConfirm:function(){
+			$.get("{{site_url url='user/del_bb'}}/"+id,function(data){
+				if(data == '1'){
+					$("#my-modal-loading").modal();
+					setTimeout(callFn,1200); 
+				}
+			});
+		}
+	});
+}
+
+//重新报备
+function re_bb(id){
+	$("#clear_action"+id).click();
+	$.get("{{site_url url='user/re_bb'}}/"+id,function(data){
+		if(data == '1'){
+			$("#my-modal-loading").modal();
+			setTimeout(callFn,1200); 
+		}
+	});
+}
+
+//修改备注
+function re_bz(id){
+	$("#clear_action"+id).click();
+	$("#my-remark"+id).modal({
+		relatedTarget: this,
+		onConfirm:function(){
+			remark = $("#c_remark_"+id).val();
+			$.post("{{site_url url='user/save_bz'}}",{id:id,remark:remark},function(data){
+				if(data == '1'){
+					$("#my-modal-loading").modal();
+					setTimeout(callFn,1200); 
+				}else{
+					$("#my-alert").modal();
+				}
+			});
+		}
+	});
+}
+
+//报备至其他项目
+function other_bb(id){
+	$("#clear_action"+id).click();
+	$('#my-prompt'+id).modal({
+      relatedTarget: this,
+      onConfirm:function(){
+   		var project_id = [];
+   		$("#my-prompt"+id).find("input[name='rbb_project[]']:checked").each(function (i, n) {
+   		    project_id.push(n.value);
+   		});
+   		$.post("{{site_url url='user/save_re_bb'}}",{id:id,project_id:project_id},function(data){
+   			if(data == '1'){
+   				$("#my-modal-loading").modal();
+   				setTimeout(callFn,1200); 
+   			}else{
+   				$("#my-alert").modal();
+   			}
+   		});
+      }
+    });
+}
+
+function save_bz(){
+	id = $("[name='r_id']").val();
+	remark = $("[name='remark']").val();
+	$.post("{site_url url='user/save_bz'}",{id:id,remark:remark},function(data){
+		if(data == '1'){
+			easyDialog.open({
+				container : {
+					content : '保存成功'
+				},
+				autoClose : 1000,
+				callback : callFn
+				
+			});
+		}else{
+			$("#my-alert").modal();
+		}
+	});
+}
+
+function save_re_bb(id){
+
+}
+
+
+</script>
+</body>
+</html>

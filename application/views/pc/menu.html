@@ -1,0 +1,29 @@
+<div class="w172_l">
+   <p>{$rel_name}</p>
+   <img class="tx" src="{$base_url}uploadfiles/head/s2_{$pic}" />
+   {if $admin_group == '1'}
+   <a href="{site_url url='admin_pc/index'}">项目管理</a>
+   <a href="{site_url url='admin_pc/kfjlgl'}">客服经理管理</a>
+   <a href="{site_url url='admin_pc/qdjlgl'}">渠道经理管理</a>
+   <a href="{site_url url='admin_pc/main_list'}">报备信息列表</a>
+   {/if}
+   {if $admin_group == '2'}
+   <a href="{site_url url='kf_manager_pc/index'}">审核管理</a>
+   {/if}
+   {if $admin_group == '3'}
+   <a href="{site_url url='user_pc/index'}">我的报备</a>
+   <a href="{site_url url='user_pc/wybb'}">我要报备</a>
+   {/if}
+   {if $admin_group == '4'}
+   <a href="{site_url url='wl_manager_pc/index'}">签约公司</a>
+   <a href="{site_url url='wl_manager_pc/huoyue'}">活跃度查询</a>
+   {/if}
+   {if $admin_group == '5'}
+	<a href="{site_url url='md_manager_pc/index'}">业务员</a>
+	<a href="{site_url url='md_manager_pc/huoyue'}">活跃度查询</a>
+	<a href="{site_url url='md_manager_pc/main_list'}">报备信息列表</a>
+	{/if}
+
+   <a href="{site_url url='login_pc/aqzx'}">个人中心</a>
+   <div class="ewm"><span>房猫手机移动端</span> <img src="{$base_url}images/ewm.jpg" /> <span>手机端快速便捷报备</span> </div>
+ </div>

@@ -1,0 +1,92 @@
+body{color:#333}
+.bg{background:url(../images/bg_fm.png) no-repeat}
+.w800{ width:785px; float:right; line-height:40px; padding:20px 15px 0 0; margin-bottom:15px}
+h1{font-size:18px; font-weight:normal}
+h1 span{ color:#ff8100}
+p.nm{ font-size:18px;color:#ff8100;}
+p.nm span{ font-size:14px;color:#333; margin-left:10px}
+p.zbb a{ float:right; width:137px; line-height:40px; background:url(../images/bg_fm.png) no-repeat -420px -54px; text-align:center; color:#FFF; margin:-10px 10px 0 0; font-size:18px}
+p.zbb span{color:#ff8100}
+.box1,.box2{ border:1px solid #f1f1f1; border-top:2px solid #ff8100; padding:10px 20px 30px; margin-top:5px}
+h2{font-size:18px; border-bottom:3px solid #8ab3df; display:inline;font-weight:normal; padding:10px 3px 9px}
+h5{font-size:18px; border-bottom:3px solid #8ab3df; font-weight:normal; padding:10px 3px 9px}
+h4{font-size:18px; font-weight:normal; padding:10px 3px 9px}
+.table1,.table2,.table3{ width:100%;border:0;text-align:center;border-collapse:collapse;margin-top:20px;line-height:16px;clear:both}
+.table1 th,.table2 th,.table3 th{background-color:#d3dae0; border-bottom:2px solid #bbbfc1;font-size:16px;height:40px}
+.table1 td{height:60px}
+.table2 td{height:40px}
+.table3 td{height:60px;font-size:12px; border-left:1px solid #CCC}
+.w60{ width:60px}
+.w100{ width:100px}
+.w150{ width:160px}
+.w210{ width:210px}
+.cz_img{ background-position:-582px -62px; height:29px; width:29px}
+.grey_bg{ background-color:#f0f0f0}
+.blue_txt{ color:#5486c4}
+.table2 a.bz{ width:73px; line-height:28px; text-align:center; background-position:-61px -520px; float:left; margin:0 3px}
+.table2 a.qrzt{ width:73px; line-height:28px; text-align:center; background-position:-61px -520px; margin:0 auto; display:block}
+.img_pm1,.img_pm2,.img_pm3{width:20px; height:25px;}
+.img_pm1{background-position:-171px -133px}
+.img_pm2{background-position:-199px -133px}
+.img_pm3{background-position:-229px -133px}
+.page{ height:32px; padding:40px 30px; clear:both}
+.page span{float:right; margin:0 8px; line-height:26px}
+.page a.pg1,.page a.pg2{ width:32px; line-height:32px; text-align:center;float:right; margin:0 2px}
+.page a.pg3{ width:62px; line-height:32px; text-align:center;float:right; margin:0 3px}
+.page a.pg1{background-position:0 -130px;color:#FFF}
+.page a.pg2{background-position:1px -164px;}
+.page a.pg3{background-position:0 -197px;}
+
+.box1 .xzxm{ width:431px; margin:0 0 0 10px; line-height:36px; color:#ef6b00; font-size:18px; float: left}
+.box1 .xzxm p,.box1 .xjgs p{ margin-bottom:18px; position:relative}
+.box1 .xzxm_r{ width:186px; float:right; line-height:27px;color:#ef6b00; padding:0px 20px 0 70px; background-position:-446px -196px; margin-top:20px}
+.box1 .xzxm_r p{ color:#333; margin-bottom:60px; font-size:12px}
+.box1 .xzxm a.tj,.box1 .xjgs a.tj{ width:149px; line-height:44px; color:#FFF; font-weight:bold; text-align:center; background-position:-420px -111px; display:block; margin:60px 140px; float: right}
+.box1 input,.box1 select,.box1 textarea{ border:1px solid #e0e0e0; width:317px;float:right;margin-bottom:18px; opacity:0.6; font-size:14px; padding-left:5px}
+.box1 input,.box1 select{height:35px; line-height:35px;background-position:0 -244px}
+.box1 textarea {height:151px;background-position:0 -283px}
+.xjgs{width:495px; margin:0 0 0 10px; line-height:36px; color:#ef6b00; font-size:20px; float: left}
+.xjgs span{float:right;color:#333; position:absolute; top:0; right:30px; width:40px}
+
+.aqzx{border-bottom:1px solid #e4e4e4;margin:50px 10px 50px 15px}
+.aqzx p{ line-height:30px; font-size:16px;}
+.xgtx{ text-align:center; width:98px; float:left; margin:0 40px 20px 0  }
+.xgtx img{ width:98px; height:99px}
+p.zhaq{ width:87px; line-height:30px; font-size:16px; color:#FFF; background-color:#999; text-align:center; margin-bottom:10px}
+p.rzsj{ background-position:-710px -117px; padding-left:50px; font-size:16px}
+p.rzsj span{ color:#216cdc; margin-left:46px; line-height:45px}
+p.ggmm{background-position:-708px -170px; padding-left:50px;font-size:16px}
+p.ggmm span{ margin:0 46px}
+p.ggmm a{ color:#ff8100}
+
+.txxg{ margin-left:20px}
+.txxg a.qxztp{ background-position:0 -486px; width:124px; line-height:24px; display:block;text-align:center; color:#FFF; margin:35px 0 20px 70px}
+.txxg img.tx{ margin:65px 0 0}
+.txxg_l{ width:70px; float:left; line-height:140px; height:400px}
+.txxg a{color:#ff8100;}
+.sc{ width:568px; height:50px; background-position:0 -658px; margin:0 0 10px 70px}
+
+.pm a{ float:left; font-size:16px; width:100px; text-align:center; margin:10px 5px; padding:5px}
+.pm a:hover{border-bottom:3px solid #ff6e02}
+.pm a.line{ border-bottom:3px solid #ff6e02}
+.pm span{ float:left;margin:15px 0}
+
+h3 .srh2{ width:226px; height:35px; background-position:-67px -197px; float:right; margin:10px}
+h3 .srh2 img{height:35px; width:35px; float:right}
+h3 .srh2 input{ border:0; width:160px; height:23px; line-height:23px; margin:7px 6px 0;opacity:0.4;}
+
+.box2 textarea{ border:0;width:702px; height:220px;opacity:0.6; font-size:14px; padding:10px;background-position:0 -1309px}
+.box2 a.fj{ padding-left:52px; line-height:37px;font-size:28px; background-position:-625px -867px; display:block; margin:20px 0}
+.box2 a.tj{ width:112px;line-height:48px;font-size:20px; background-position:-624px -728px; text-align:center;float: right; color:#FFF}
+.box2 a.qx{ width:111px;line-height:48px;font-size:20px; background-position:-624px -778px; text-align:center;float: right; margin:0 20px}
+.box2 p{font-size:24px;border-bottom:1px solid #d7d7d7; clear:both; line-height:60px}
+.box2 ul{ list-style:none; margin:10px 0}
+.box2 ul li{ font-size:18px; padding-left:40px; background:url(../images/bg_fm.png) no-repeat -625px -911px; line-height:45px}
+.box2 ul li a.sc{ width:68px;line-height:30px; height:30px;text-align:center; color:#FFF; float:right; background-position:-624px -831px; font-size:14px; margin:5px 20px 0 0}
+
+.w800 .sp p{ line-height:28px; text-indent:2em;}
+.w800 .sp img{ width:597px; height:409px; margin:20px 0 20px 90px; text-align:center;}
+.box1_sp,.box1_sp2{ width:145px; float:left; margin:20px 12px 0 0}
+.box1_sp img{ width:145px; height:80px;}
+.box1_sp p,.box1_sp2 p{ font-size:12px; line-height:14px; margin:5px 0}
+.box1_sp2 img{ width:139px; height:237px;}

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<link href="{$base_url}css/pc_fm.css" rel="stylesheet" type="text/css"/>
+<link href="{$base_url}css/pc_common.css" rel="stylesheet" type="text/css"/>
+<script src="{$base_url}js/jquery-v1.10.2.min.js" type="text/javascript"></script>
+<link rel="stylesheet" href="{$base_url}css/easydialog.css"/>
+<script src="{$base_url}js/easydialog.min.js"></script>
+<title>我要报备</title>
+</head>
+<body>
+{include file="pc/head.html"}
+<div class="w1000 bdr">
+  {include file="pc/menu.html"}
+  <div class="w800">
+    <p class="nm">{$rel_name}<span>({if $admin_group == '1'}管理员{/if}{if $admin_group == '2'}客服经理{/if}{if $admin_group == '3'}业务员{/if}{if $admin_group == '4'}外联经理{/if}{if $admin_group == '5'}门店经理{/if})</span></p>
+    <p class="zbb"><a href="{site_url url='user_pc/index'}">我的报备</a>已报备： <span>{$count.bb}</span> |  已带看： <span>{$count.dk}</span> |  已签约: <span>{$count.qy}</span> |  报备即将到期: <span>{$count.jjdq} </span>| 已过期: <span>{$count.dq}</span></p>
+    <div class="box1">
+      <h3>我要报备</h3>
+      <div class="xzxm_r bg">
+        <h3>超便捷</h3>
+        <p>只需输入购房者信息</p>
+        <h3>真服务</h3>
+        <p style="margin-bottom:40px;">诚及时为推荐购房者买到理想房子，让你顺利拿到佣金。</p>
+        <h3>高透明</h3>
+        <p>平台实时记录客户购房进度供您查询，买房过程的每一步都会短信及时通知。佣金活得全在掌握中。</p>
+      </div>
+      <form method="post" action="{site_url url='user_pc/save_bb'}">
+      <div class="xzxm">
+        <p>
+          <select class="bg" name="k_project" id="k_project" >
+            {foreach from=$projects item=row}
+				<option value="{$row.id}" {if $project_id == $row.id}selected='selected'{/if}>{$row.project}</option>
+			{/foreach}
+          </select>
+          选择项目： </p>
+        <p>
+          <select class="bg" name="k_target" id="k_target">
+            <option value="网络">网络</option>
+			<option value="派单">派单</option>
+			<option value="朋友介绍">朋友介绍</option>
+			<option value="电销">电销</option>
+			<option value="其它">其它</option>
+          </select>
+          客户来源： </p>
+        <p>
+          <select class="bg" name="k_sex" id="k_sex">
+            <option value="先生">先生</option>
+			<option value="女士">女士</option>
+          </select>
+          客户性别： </p>
+        <p>
+          <input class="bg" style=" width:430px" id="k_name" name="k_name" type="text" placeholder="请输入客户的姓名(*)"  required/>
+        </p>
+        <p>
+          <input class="bg" style=" width:430px" id="k_phone" name="k_phone" type="text" placeholder="请输入客户的手机(*)" required/>
+        </p>
+        <p>
+          <input class="bg" style=" width:430px" id="k_idno" name="k_idno" type="text" placeholder="请输入客户的身份证" required/>
+        </p>
+        <p>
+          <input class="bg" style=" width:430px" id="k_remark" name="k_remark" type="text" placeholder="备注"  required/>
+        </p>
+        <a href="javascript:;" class="tj bg"  onclick="return check_input();">提交</a> </div>
+        </form>
+      <div class="clr"></div>
+    </div>
+  </div>
+  <div class="clr"></div>
+</div>
+{include file="pc/foot.html"}
+
+<script>
+/* www.51-n.com 原创代码 qQ:229256237
+ * 检测浏览器是否支持 placeholder 属性
+ * 为不支持 placeholder 属性的浏览器写兼容代码
+ * 注意，需要 placeholder 的表单控件不要写value属性。
+ * 本代码只操作 input 控件，如果需要支持其他控件请自己修改代码
+ * 下面对 required 属性的操作同理。
+*/        
+var testElement=document.createElement('input');
+var placeholderSupported='placeholder' in testElement;
+if(!placeholderSupported){
+        var inputs=document.getElementsByTagName('input');
+        for(var n=0;n<inputs.length;n++){
+                var input=inputs[n];
+                var placeholder=input.placeholder?input.placeholder:input.getAttribute('placeholder');
+                //部分浏览器不支持直接操作自定义属性，用 getAttribute() 来获取自定义属性。
+                if(!placeholder) continue;
+                input.value=placeholder;
+                input.onfocus=function(){
+                        if(this.value==this.getAttribute('placeholder')){
+                                this.value='';
+                        }
+                };
+                input.onmouseover=function(){
+                        this.focus();
+                }
+                input.onblur=function(){
+                        if(this.value==''){
+                                this.value=this.getAttribute('placeholder');
+                        }
+                }
+        }
+}else{
+        var inputs=document.getElementsByTagName('input');                
+        for(var n=0;n<inputs.length;n++){
+                inputs[n].onmouseover=function(){
+                        this.focus();
+                }
+        }
+}
+/* 检测浏览器是否支持 required 属性
+ * 为不支持 required 属性的浏览器写兼容代码
+*/                
+var requiredSupported='required' in testElement&&!/Version\/[\d\.]+\s*Safari/i.test(navigator.userAgent);
+if(!requiredSupported){
+        document.getElementsByTagName('form')[0].onsubmit=function(e){
+                var inputs=document.getElementsByTagName('input');
+                for(var n=0;n<inputs.length;n++){
+                        var input=inputs[n];
+                        var placeholder=input.placeholder?input.placeholder:input.getAttribute('placeholder');                                        
+                        if(!placeholder) continue;
+                        if(!input.value||(input.value==placeholder)){
+                                alert('请填写'+placeholder);
+                                e=e||window.event;
+                                e.preventDefault&&e.preventDefault();
+                                e.returnValue=false;
+                                break;
+                        }
+                }
+        };
+}
+</script>
+
+<script>
+function check_input(){
+	if(!$("#k_name").val()){
+		easyDialog.open({
+			container : {
+				content : '客户姓名不能为空'
+			},
+			autoClose : 2000,
+			
+		});
+		return false;
+	}
+	if(!$("#k_phone").val()){
+		easyDialog.open({
+			container : {
+				content : '客户电话不能为空'
+			},
+			autoClose : 2000,
+			
+		});
+		return false;
+	}else{
+		{literal}var re = /^1\d{10}$/;{/literal}
+		if (!re.test($("#k_phone").val())) {
+			easyDialog.open({
+				container : {
+					content : '电话填写错误'
+				},
+				autoClose : 2000,
+				
+			});
+			return false;
+		} 
+	}
+
+	$("form").submit();
+
+}
+</script>
+
+
+</body>
+</html>

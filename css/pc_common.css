@@ -1,0 +1,29 @@
+*{margin:0px;padding:0px}
+html{height:100%;}
+body{font-family:"微软雅黑","新宋体",Arial;font-size:14px;line-height:1em}
+a{color: #333; text-decoration:none}
+a img{border:0}
+.clr{ clear:both}
+.hd{display:none}
+
+.w1000{ width:1000px; margin:0 auto; clear:both}
+.top{font-size:12px; line-height:30px;height:30px}
+.top span{ margin:0 4px;float:right}
+.top span.nm{ color:#ff8100}
+.top span.sjb{ padding-left:30px; background-position:-60px -132px }
+.logo{ width:195px; height:66px; background-position:0 -49px; margin:16px 0 0 15px; float:left}
+.srh{ width:738px;margin:25px 15px; float:right; line-height:45px; color:#FFF; font-size:16px; font-weight:bold}
+.srh span{ margin:0 0 0 50px}
+.srh input{ border:0; width:317px; height:31px; float:right; margin-top:7px}
+.srh img{ width:65px; height:45px; float:right}
+.bdr{ border:1px solid #ebebeb; background:url(../images/grew_l.jpg) repeat-y }
+.w172_l{width:172px;line-height:50px; text-align:center; font-size:16px; float:left}
+.w172_l p{ font-size:18px; line-height:70px}
+.w172_l a{width:152px;float:left;border-bottom:1px solid #dcdcdc ; margin-left:10px}
+.w172_l img.tx{ border:6px solid #FFF; width:98px; height:99px}
+.w172_l .ewm{ padding:150px 0 20px; clear:both}
+.w172_l .ewm img{width:96px; height:96px}
+.w172_l .ewm span{ font-size:14px; line-height:30px; display:block}
+
+
+.footer{ text-align:center;line-height:30px; font-size:16px; padding:40px 0}

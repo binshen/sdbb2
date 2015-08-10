@@ -1,0 +1,1 @@
+D:\xampp\php\php.exe -q D:/xampp/htdocs/sdbb/cron.php 
