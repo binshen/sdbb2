@@ -85,7 +85,7 @@
 
 /*user-index*/
 .admin-content-list{padding: 0;}
-.admin-content-list li{margin:0 auto 10px;padding:0 30px 10px;width:270px;border-bottom: 1px solid #ccc;list-style:none; overflow:hidden;zoom:1;}
-
-.am-txt-fl{ width: 70px; float: left;}
+.admin-content-list li{margin:0 auto 10px;padding:0 30px 10px;width:270px;border-bottom: 1px solid #ccc;list-style:none; overflow:hidden;zoom:1; font-size: 1rem;}
+.admin-content-list li:last-child{border:none;}
+.am-txt-fl{ width: 70px; float: left; text-align: center;}
 .am-txt-fr{margin:10px 0 20px 10px;padding-left:10px;border-left:1px solid #333; width: 130px; float: left;}
