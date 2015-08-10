@@ -17,12 +17,12 @@
 <div class="am-g" id="login">
     <div class="login-div">
         <span class="login-logo"></span>
-        <form method="post" class="am-form">
+        <form method="post" class="am-form" action="{{site_url url='login/check_login'}}">
             <div class="login-bd">
-                <div class="input-email input-div"><i class="am-input-icon am-icon-user"></i><input type="email" name="" id="email" value="" placeholder="请输入用户名"></div>
-                <div class="input-div"><i class="am-input-icon am-icon-key"></i><input type="password" name="" id="password" value="" placeholder="请入密码"></div>
+                <div class="input-email input-div"><i class="am-input-icon am-icon-user"></i><input type="text" name="name" id="email" value="" placeholder="请输入用户名" required></div>
+                <div class="input-div"><i class="am-input-icon am-icon-key"></i><input type="password" name="passwd" id="password" value="" placeholder="请输入密码" required></div>
             </div>
-            <input type="submit" name="" value="登 录" class="am-btn">
+            <input type="submit" value="登 录" class="am-btn">
       </form>
     </div>
     <p class="copyright">© 2015 funmall.com.cn</p>

@@ -34,7 +34,6 @@ class Login_model extends MY_Model
 		$rs = $this->db->select('count(1) num')->from($this->tables[0])
 			->where('username',$this->input->post('name'))
 			->where('passwd',sha1($this->input->post('passwd')))->get()->row();
-
 		if($rs->num > 0 && $this->session->userdata('openid')){
 			$this->db->where('openid',$this->session->userdata('openid'));
 			$this->db->update($this->tables[0],array('openid'=>''));
