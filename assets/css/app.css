@@ -70,5 +70,15 @@
  .am-pagination-select>li>a.off{color: #ccc;}
 
  /*登录*/
- .login-tit{margin-bottom: 2rem; text-align:center; color: #ff7c39; font-size: 30px; border-bottom:1px solid #ddd; line-height: 5rem;}
- .login-div{margin:0 1.5rem;}
+#login{ background: url(../i/login_bg_02.jpg) no-repeat;
+	background-size: cover; width: 100%; position: relative;}
+.login-logo{ display: block; width:156px; height: 46px; background: url(../i/login_logo.png) no-repeat;background-size: cover; margin:0 auto;margin: 8rem auto 70px;}
+
+.am-form{margin:0 30px;}
+.login-bd{ position:relative; margin-bottom: 50px; width: 100%; background: url(../i/login_input_bg.png) no-repeat;background-size:100% 100%; }
+#email,#password{padding:1.5rem 0.5rem;border:none; font-size: 2rem; color: #000; width:85%; background: none; color: #fff; }
+.am-form .am-btn{ width: 250px; height: 45px; display: block;margin:0 auto; background: #e15616; color: #fff; font-size: 18px; border-radius: 10px;} 
+.input-div{padding:0 10px;overflow: hidden;zoom:1;}
+.input-div .am-input-icon{margin-top: 0.5rem;width: 10%; float: left;font-size: 3rem; color: #fff;}
+
+.copyright{ text-align: center; position:absolute; bottom: 3rem; color: #fff; font-size: 2rem; width: 100%;}
