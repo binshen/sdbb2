@@ -19,19 +19,6 @@ class MY_Controller extends CI_Controller
         //初始数据
         $this->cismarty->assign('base_url',base_url());//url路径
 		ini_set('date.timezone','Asia/Shanghai');
-		if($this->session->userdata('username')){
-			$pic = $this->sysconfig_model->get_pic();
-			if($pic){
-				$this->cismarty->assign('pic',$pic);
-			}else{
-				$this->cismarty->assign('pic','auto.jpg');
-			}
-			
-		}else{
-			$this->cismarty->assign('pic','');
-		}
-		//$this->session->sess_destroy();die();
-		//var_dump($this->session->all_userdata());die;
 	    if ( strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') !== false ) {
 	    	if(!$this->session->userdata('openid')){
 	    		$appid="wx84455ea5b029beb2";
@@ -97,43 +84,7 @@ class MY_Controller extends CI_Controller
     	return $subs;
     }
     
-	/**
-     * 获取页码列表
-     * 例如<上一页>...56789<下一页>
-     * @param int $total 总页数
-     * @param int $current 当前页
-     * @param int $page_list_size 显示页码个数
-     * @return array 显示页码的数组
-     **/
-    public function get_page_list($total,$current,$page_list_size = '7')
-    {
-	    $page= array();
-		if($total<$page_list_size){
-			for($i=1;$i<=$total;$i++){
-				$page[]=$i;
-			}
-		}else{
-			if($current <= ceil($page_list_size/2)){
-			//当前页小于居中页码，则正常打印
-				for($i=1;$i<=$page_list_size;$i++){
-					$page[]=$i;
-				}
-				
-			}else if($current > ($total - ceil($page_list_size/2))){
-			//最后几页正常打印
-				for($i=0;$i<$page_list_size;$i++){
-					$page[]=$total-$i;
-				}
-				$page = array_reverse($page);
-			}else{
-				for($i=$current-floor($page_list_size/2);$i<=$current+floor($page_list_size/2);$i++){
-					$page[]=$i;
-				}
-			}
-		}
-		return array_reverse($page);
-    }
-    
+	
 	/**
 	 * 提示信息
 	 * @param varchar $message 提示信息
@@ -141,38 +92,39 @@ class MY_Controller extends CI_Controller
 	 * @param int $type 提示类型，1是自动关闭的提示框，2是错误提示框
 	 * @return array 显示页码的数组
 	 **/
-	public function show_message($message,$url=null,$type){
+	public function show_message($message,$url=null,$type=1){
 		if($url){
 			$js = "location.href='".$url."';";
 		}else{
 			$js = "history.back();";
 		}
-
+	
 		if($type=='1'){
-			echo "<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
-				<html xmlns='http://www.w3.org/1999/xhtml'>
+			echo "<html class='no-js'>
 				<head>
-				<meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
-				<meta name='viewport' content='width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no' />
-				<title>".$message."</title>
-				<script src='".base_url()."js/jquery-v1.10.2.min.js'></script>
-				<link rel='stylesheet' href='".base_url()."css/easydialog.css'>
+				  <meta charset='utf-8'>
+				  <title>提示信息</title>
+				  <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'>
+				  <link rel='stylesheet' href='/assets/css/amazeui.min.css'>
+				  <script src='/assets/js/jquery.min.js'></script>
+				  <script src='/assets/js/amazeui.min.js'></script>
 				</head>
 				<body>
-				<script src='".base_url()."js/easydialog.min.js'></script>
+				<div class='am-modal am-modal-loading am-modal-no-btn' tabindex='-1' id='my-modal-loading'>
+				  <div class='am-modal-dialog'>
+				    <div class='am-modal-hd'>".$message."...</div>
+				    <div class='am-modal-bd'>
+				      <span class='am-icon-spinner am-icon-spin'></span>
+				    </div>
+				  </div>
+				</div>
+
 				<script>
 				var callFn = function(){
 				  ".$js."
 				};
-				easyDialog.open({
-					container : {
-						content : '".$message."'
-					},
-					autoClose : 2000,
-					callback : callFn
-					
-				});
-				
+				$('#my-modal-loading').modal();
+				setTimeout(callFn,1200); 
 				</script>
 				</body>
 				</html>";

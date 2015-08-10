@@ -39,7 +39,8 @@ class User extends MY_Controller {
     public function index()
     {
     	$this->wybb();
-    	$this->cismarty->display('user_center.html');
+    	//$this->show_message('操作成功！！');
+    	//$this->cismarty->display('user_center.html');
     }
     
     public function wybb($project_id=''){

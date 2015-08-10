@@ -15,7 +15,6 @@ class Login_model extends MY_Model
 {
 	protected $tables = array(
 			'admin'
-
     );
 	
     public function __construct ()
@@ -27,7 +26,6 @@ class Login_model extends MY_Model
     {
         parent::__destruct();
     }
-    
 	
 	/**
      * 用户登陆
@@ -38,6 +36,9 @@ class Login_model extends MY_Model
 			->where('passwd',sha1($this->input->post('passwd')))->get()->row();
 
 		if($rs->num > 0 && $this->session->userdata('openid')){
+			$this->db->where('openid',$this->session->userdata('openid'));
+			$this->db->update($this->tables[0],array('openid'=>''));
+			
 			$this->db->where('username',$this->input->post('name'));
 			$this->db->where('passwd',sha1($this->input->post('passwd')));
 			$this->db->update($this->tables[0],array('openid'=>$this->session->userdata('openid')));

@@ -61,33 +61,6 @@ class Login extends MY_Controller {
 	}
 	
 	/**
-     * 用户登陆
-     * @param $id
-     */
-	public function check_login_pc(){
-		$rs = $this->login_model->check_login();
-		if($rs > 0){
-			//获取用户信息
-			
-			$data = $this->login_model->get_user_info($this->input->post('name'));
-			$member_info['userid'] = $data['id'];
-			$member_info['username'] = $data['username'];
-			$member_info['rel_name'] = $data['rel_name'];
-			$member_info['admin_group'] = $data['admin_group'];
-			$member_info['phone'] = $data['phone'];
-			$member_info['passwd'] = $data['passwd'];
-			$member_info['admin_group'] = $data['admin_group'];
-			$member_info['manager_id'] = $data['manager_id'];
-			$member_info['yqm'] = $data['yqm'];
-			$this->session->set_userdata($member_info); //记录session
-			redirect('pc');
-		}else{
-			$this->cismarty->assign('err','用户名或密码不正确！');
-			$this->cismarty->display('pc_login.html');
-		}
-	}
-    
-	/**
      * 修改密码
      */
 	public function change_pwd(){
@@ -104,10 +77,6 @@ class Login extends MY_Controller {
 		}
 	}
 	
-	public function aqzx(){
-		$this->cismarty->display('aqzx.html');
-	}
-	
     /**
      * 退出登录
      */
@@ -115,14 +84,5 @@ class Login extends MY_Controller {
         $this->session->sess_destroy();
         $this->show_message('安全退出成功',site_url('login'),'1');
     }
-    
-    /**
-     * 退出登录
-     */
-    public function pc_logout(){
-        $this->session->sess_destroy();
-        redirect(site_url('pc'));
-    }
-
     
 }
