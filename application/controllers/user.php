@@ -14,9 +14,6 @@ class User extends MY_Controller {
     public function __construct()
     {
         parent::__construct();
-        if(!$this->session->userdata('username')){
-        	redirect('login');
-        }
         $this->load->model('user_model');
         $this->cismarty->assign('admin_group',$this->session->userdata('admin_group'));
 		if($this->session->userdata('admin_group') === '1')
@@ -27,10 +24,7 @@ class User extends MY_Controller {
         	redirect('wl_manager');//外联经理
         if($this->session->userdata('admin_group') === '5')
         	redirect('md_manager');//门店经理
-        	
-        	
 		$this->cismarty->assign('rel_name',$this->session->userdata('rel_name'));
-		
 		$count = $this->user_model->get_bb_count();
 		$this->cismarty->assign('count',$count);
 		
@@ -38,8 +32,6 @@ class User extends MY_Controller {
     
     public function index()
     {
-    	//$this->wybb();
-    	//$this->show_message('操作成功！！');
     	$this->cismarty->display('user_index.html');
     }
     
