@@ -1,9 +1,11 @@
     <div class="app-head">
       <a href="" class="logo"></a>
-      <span class="wel-txt">{{$rel_name}}</span>
-      {{if $admin_group == 3}}<a class="am-badge am-badge-primary am-round">业务员</a>{{/if}}
-	  {{if $admin_group == 2}}<a class="am-badge am-badge-secondary am-round">客服经理</a>{{/if}}
-	  {{if $admin_group == 4}}<a class="am-badge am-badge-success am-round">外联经理</a>{{/if}}
-	  {{if $admin_group == 5}}<a class="am-badge am-badge-warning am-round">门店经理</a>{{/if}}
-	  {{if $admin_group == 1}}<a class="am-badge am-badge-danger am-round">管理员</a>{{/if}}
+      <div class="user-position">
+	      <span class="wel-txt">{{$rel_name}}</span>
+	      {{if $admin_group == 3}}<a class="am-badge am-badge-primary am-round">业务员</a>{{/if}}
+		  {{if $admin_group == 2}}<a class="am-badge am-badge-secondary am-round">客服经理</a>{{/if}}
+		  {{if $admin_group == 4}}<a class="am-badge am-badge-success am-round">外联经理</a>{{/if}}
+		  {{if $admin_group == 5}}<a class="am-badge am-badge-warning am-round">门店经理</a>{{/if}}
+		  {{if $admin_group == 1}}<a class="am-badge am-badge-danger am-round">管理员</a>{{/if}}
+	  </div>
     </div>
