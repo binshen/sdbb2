@@ -78,6 +78,10 @@
 .am-form{margin:0 30px;}
 .login-bd{ position:relative; margin-bottom: 50px; width: 100%; background: url(../i/login_input_bg.png) no-repeat;background-size:100% 100%; }
 #email,#password{padding:1.5rem 0.5rem;border:none; font-size: 2rem; color: #000; width:85%; background: none; color: #fff; }
+/*
+.input-div input:-webkit-autofill,.input-div input:-webkit-autofill{ background-color:rgb(255,255,255)!important;}*/
+
+
 .am-form .am-btn{ width: 250px; height: 45px; display: block;margin:0 auto; background: #e15616; color: #fff; font-size: 18px; border-radius: 10px;} 
 .input-div{padding:0 10px;overflow: hidden;zoom:1;}
 .input-div .am-input-icon{margin-top: 0.5rem;width: 10%; float: left;font-size: 3rem; color: #fff;}
@@ -89,4 +93,9 @@
 .admin-content-list li{margin:0 auto 10px;padding:0 30px 10px;width:270px;border-bottom: 1px solid #ccc;list-style:none; overflow:hidden;zoom:1; font-size: 1rem;}
 .admin-content-list li:last-child{border:none;}
 .am-txt-fl{ width: 70px; float: left; text-align: center;}
-.am-txt-fr{margin:10px 0 20px 10px;padding-left:10px;border-left:1px solid #333; width: 130px; float: left;}
+.am-txt-fr{margin:10px 0 20px 10px;padding-left:10px;border-left:1px solid #666; width: 130px; float: left; color: #666;}
+.am-txt-fr em{padding:0 5px; font-size: 1.4rem; font-style: normal;}
+.am-txt-fr .green{}
+/*活跃度查询*/
+.am-tab-nav {display: flex;}
+.am-tab-nav li{list-style: none; float: left; flex:1;-webkit-box-flex:1;}
