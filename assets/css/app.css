@@ -90,12 +90,12 @@
 
 /*user-index*/
 .admin-content-list{padding: 0;}
-.admin-content-list li{margin:0 auto 10px;padding:0 30px 10px;width:270px;border-bottom: 1px solid #ccc;list-style:none; overflow:hidden;zoom:1; font-size: 1rem;}
+.admin-content-list li{margin:0 auto 20px;padding:0 10px 20px;width:300px;border-bottom: 1px solid #ccc;list-style:none; overflow:hidden;zoom:1; font-size: 1.72rem;}
 .admin-content-list li:last-child{border:none;}
-.am-txt-fl{ width: 70px; float: left; text-align: center;}
-.am-txt-fr{margin:10px 0 20px 10px;padding-left:10px;border-left:1px solid #666; width: 130px; float: left; color: #666;}
-.am-txt-fr em{padding:0 5px; font-size: 1.4rem; font-style: normal;}
+.am-txt-fl{ width: 100px; float: left; text-align: center;}
+.am-txt-fr{margin:10px 0 20px 10px;padding-left:20px;border-left:1px solid #666; width: 160px; float: left; color: #666;}
+.am-txt-fr em{padding:0 5px;  font-style: normal;}
 .am-txt-fr .green{}
 /*活跃度查询*/
-.am-tab-nav {display: flex;}
+.am-tab-nav {display: flex;padding:0em;}
 .am-tab-nav li{list-style: none; float: left; flex:1;-webkit-box-flex:1;}
