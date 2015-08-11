@@ -14,8 +14,12 @@ class User extends MY_Controller {
     public function __construct()
     {
         parent::__construct();
+        if($this->session->userdata('username')){
+        	$this->cismarty->assign('rel_name',$this->session->userdata('rel_name'));
+        }else{
+        	redirect('login');
+        }
         $this->load->model('user_model');
-        $this->cismarty->assign('admin_group',$this->session->userdata('admin_group'));
 		if($this->session->userdata('admin_group') === '1')
         	redirect('admin');//管理员
         if($this->session->userdata('admin_group') === '2')
@@ -24,7 +28,6 @@ class User extends MY_Controller {
         	redirect('wl_manager');//外联经理
         if($this->session->userdata('admin_group') === '5')
         	redirect('md_manager');//门店经理
-		$this->cismarty->assign('rel_name',$this->session->userdata('rel_name'));
 		$count = $this->user_model->get_bb_count();
 		$this->cismarty->assign('count',$count);
 		
@@ -32,6 +35,8 @@ class User extends MY_Controller {
     
     public function index()
     {
+    	$data = $this->user_model->get_bb_count();
+    	$this->cismarty->assign('data',$data);
     	$this->cismarty->display('user_index.html');
     }
     
@@ -86,13 +91,13 @@ class User extends MY_Controller {
     	echo $rs;
     }
     
-    public function get_bz($id){
+/*    public function get_bz($id){
     	if($this->session->userdata('admin_group') != '3'){
     		$this->show_message('权限不足','','1');
     	}
     	$rs = $this->user_model->get_bz($id);
     	echo $rs;
-    }
+    }*/
     
     public function save_bz(){
     	if($this->session->userdata('admin_group') != '3'){

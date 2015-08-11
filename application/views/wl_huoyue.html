@@ -19,45 +19,31 @@
     <div class="app-tit"><span class="mark">活跃度查询</span></div>
     <div class="wl-hy">
       <ul class="am-tab-nav">
-        <li class="am-active">
-          <a href="">报备排名</a>
+        <li {{if $data.type == 1}}class="am-active"{{/if}}>
+          <a href="{{site_url url='wl_manager/huoyue/1'}}">报备排名</a>
         </li>
-        <li class="">
-          <a href="">带看排名</a>
+        <li {{if $data.type == 2}}class="am-active"{{/if}}>
+          <a href="{{site_url url='wl_manager/huoyue/2'}}">带看排名</a>
         </li>
-        <li class="">
-          <a href="">成交排名</a>
+        <li {{if $data.type == 3}}class="am-active"{{/if}}>
+          <a href="{{site_url url='wl_manager/huoyue/3'}}">成交排名</a>
         </li>
       </ul>
       <ul class="am-ul-rank">
+      {{foreach from=$data.res_list item=row key=k}}
         <li>
-            <span class="r-house"><i class="am-icon-bookmark"><em>1</em></i>德衡房产（昆山花园）</span>
-            <span><i class="am-icon-calendar-o"></i>总分:0（成交0分） </span>
-            <span><i class="am-icon-file-text"></i>公司邀请码：106</span>
-            <span><i class="am-icon-user"></i>对接经理：刘建明（老板）</span>
-            <span><i class="am-icon-phone"></i>联系手机：15850352913</span>
+            {{if $data.pageNum == 1}}{{if $k lte 2}}<span class="r-house"><i class="am-icon-bookmark"><em>{{$k+1}}</em>{{/if}}{{/if}}</i>{{$row.company_name}}</span>
+            <span><i class="am-icon-calendar-o"></i>
+            {{if $data.type == 1}}报备数量:{{$row.s_bb_count}}{{/if}}
+            {{if $data.type == 2}}带看数量:{{$row.s_dk_count}}{{/if}}
+            {{if $data.type == 3}}成交数量:{{$row.s_qy_count}}{{/if}}
+            
+            组 </span>
+            <span><i class="am-icon-file-text"></i>公司邀请码：{{$row.yqm}}</span>
+            <span><i class="am-icon-user"></i>对接经理：{{$row.rel_name}}</span>
+            <span><i class="am-icon-phone"></i>联系手机：{{$row.username}}</span>
         </li>
-        <li>
-            <span class="r-house"><i class="am-icon-bookmark"><em>2</em></i>德衡房产（昆山花园）</span>
-            <span><i class="am-icon-calendar-o"></i>总分:0（成交0分） </span>
-            <span><i class="am-icon-file-text"></i>公司邀请码：106</span>
-            <span><i class="am-icon-user"></i>对接经理：刘建明（老板）</span>
-            <span><i class="am-icon-phone"></i>联系手机：15850352913</span>
-        </li>
-        <li>
-            <span class="r-house"><i class="am-icon-bookmark"><em>3</em></i>德衡房产（昆山花园）</span>
-            <span><i class="am-icon-calendar-o"></i>总分:0（成交0分） </span>
-            <span><i class="am-icon-file-text"></i>公司邀请码：106</span>
-            <span><i class="am-icon-user"></i>对接经理：刘建明（老板）</span>
-            <span><i class="am-icon-phone"></i>联系手机：15850352913</span>
-        </li>
-        <li>
-            <span class="r-house">德衡房产（昆山花园）</span>
-            <span><i class="am-icon-calendar-o"></i>总分:0（成交0分） </span>
-            <span><i class="am-icon-file-text"></i>公司邀请码：106</span>
-            <span><i class="am-icon-user"></i>对接经理：刘建明（老板）</span>
-            <span><i class="am-icon-phone"></i>联系手机：15850352913</span>
-        </li>
+      {{/foreach}}
       </ul>
        <!-- 分页 -->
     {{if $data.total_page > 1}}
@@ -97,5 +83,10 @@
 </div>
 <script src="/assets/js/jquery.min.js"></script>
 <script src="/assets/js/amazeui.min.js"></script>
+<script>
+function get_search(page){
+	location.href = "{{site_url url='wl_manager/huoyue'}}/{{$data.type}}/"+page;
+}
+</script>
 </body>
 </html>

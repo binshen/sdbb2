@@ -21,10 +21,11 @@
     </div>
     <section data-am-widget="accordion" class="am-accordion am-accordion-default"
     data-am-accordion='{}'>
+    {{foreach from=$list item=row}}
       <dl class="am-accordion-item">
         <dt class="am-accordion-title">
           <div class="fl">
-            <span><i class="am-icon-users"></i>顺达春晖路</span>
+            <span><i class="am-icon-users"></i>{{$row.company_name}}</span>
           </div>
           <div class="fr">
             <span><i class="am-icon-angle-down"></i></span>
@@ -33,246 +34,64 @@
         <dd class="am-accordion-bd am-collapse">
           <!-- 规避 Collapase 处理有 padding 的折叠内容计算计算有误问题， 加一个容器 -->
           <div class="am-accordion-content">
-             <p>联系人：张海波（店东）</p>
-             <p>联系人手机：15862684838</p>
-             <p>公司地址：</p>
-             <p>公司固话</p>
-             <p>公司账户</p>
-             <p>公司规模：</p>
+             <p>联系人：{{$row.rel_name}}</p>
+             <p>联系人手机：{{$row.phone}}</p>
+             <p>公司邀请码：{{$row.yqm}}</p>
+             <p>公司地址：{{$row.address}}</p>
+             <p>公司固话：{{$row.tel}}</p>
+             <p>公司账户：{{$row.zhanghu}}</p>
+             <p>公司规模：{{$row.guimo}}</p>
           </div>
+          <button type="button" class="am-btn am-btn-secondary" data-am-modal="{target: '#my-popup-edit-{{$row.id}}'}"><i class="am-icon-cog"></i>编辑</button>
         </dd>
       </dl>
-      <dl class="am-accordion-item">
-        <dt class="am-accordion-title">
-          <div class="fl">
-            <span><i class="am-icon-users"></i>顺达春晖路</span>
-          </div>
-          <div class="fr">
-            <span><i class="am-icon-angle-down"></i></span>
-          </div>
-        </dt>
-        <dd class="am-accordion-bd am-collapse">
-          <!-- 规避 Collapase 处理有 padding 的折叠内容计算计算有误问题， 加一个容器 -->
-          <div class="am-accordion-content">
-             <p>联系人：张海波（店东）</p>
-             <p>联系人手机：15862684838</p>
-             <p>公司地址：</p>
-             <p>公司固话</p>
-             <p>公司账户</p>
-             <p>公司规模：</p>
-          </div>
-        </dd>
-      </dl>
-      <dl class="am-accordion-item">
-        <dt class="am-accordion-title">
-          <div class="fl">
-            <span><i class="am-icon-users"></i>顺达春晖路</span>
-          </div>
-          <div class="fr">
-            <span><i class="am-icon-angle-down"></i></span>
-          </div>
-        </dt>
-        <dd class="am-accordion-bd am-collapse">
-          <!-- 规避 Collapase 处理有 padding 的折叠内容计算计算有误问题， 加一个容器 -->
-          <div class="am-accordion-content">
-             <p>联系人：张海波（店东）</p>
-             <p>联系人手机：15862684838</p>
-             <p>公司地址：</p>
-             <p>公司固话</p>
-             <p>公司账户</p>
-             <p>公司规模：</p>
-          </div>
-        </dd>
-      </dl>
-      <dl class="am-accordion-item">
-        <dt class="am-accordion-title">
-          <div class="fl">
-            <span><i class="am-icon-users"></i>顺达春晖路</span>
-          </div>
-          <div class="fr">
-            <span><i class="am-icon-angle-down"></i></span>
-          </div>
-        </dt>
-        <dd class="am-accordion-bd am-collapse">
-          <!-- 规避 Collapase 处理有 padding 的折叠内容计算计算有误问题， 加一个容器 -->
-          <div class="am-accordion-content">
-             <p>联系人：张海波（店东）</p>
-             <p>联系人手机：15862684838</p>
-             <p>公司地址：</p>
-             <p>公司固话</p>
-             <p>公司账户</p>
-             <p>公司规模：</p>
-          </div>
-        </dd>
-      </dl>
-      <dl class="am-accordion-item">
-        <dt class="am-accordion-title">
-          <div class="fl">
-            <span><i class="am-icon-users"></i>顺达春晖路</span>
-          </div>
-          <div class="fr">
-            <span><i class="am-icon-angle-down"></i></span>
-          </div>
-        </dt>
-        <dd class="am-accordion-bd am-collapse">
-          <!-- 规避 Collapase 处理有 padding 的折叠内容计算计算有误问题， 加一个容器 -->
-          <div class="am-accordion-content">
-             <p>联系人：张海波（店东）</p>
-             <p>联系人手机：15862684838</p>
-             <p>公司地址：</p>
-             <p>公司固话</p>
-             <p>公司账户</p>
-             <p>公司规模：</p>
-          </div>
-        </dd>
-      </dl>
-      <dl class="am-accordion-item">
-        <dt class="am-accordion-title">
-          <div class="fl">
-            <span><i class="am-icon-users"></i>顺达春晖路</span>
-          </div>
-          <div class="fr">
-            <span><i class="am-icon-angle-down"></i></span>
-          </div>
-        </dt>
-        <dd class="am-accordion-bd am-collapse">
-          <!-- 规避 Collapase 处理有 padding 的折叠内容计算计算有误问题， 加一个容器 -->
-          <div class="am-accordion-content">
-             <p>联系人：张海波（店东）</p>
-             <p>联系人手机：15862684838</p>
-             <p>公司地址：</p>
-             <p>公司固话</p>
-             <p>公司账户</p>
-             <p>公司规模：</p>
-          </div>
-        </dd>
-      </dl>
-      <dl class="am-accordion-item">
-        <dt class="am-accordion-title">
-          <div class="fl">
-            <span><i class="am-icon-users"></i>顺达春晖路</span>
-          </div>
-          <div class="fr">
-            <span><i class="am-icon-angle-down"></i></span>
-          </div>
-        </dt>
-        <dd class="am-accordion-bd am-collapse">
-          <!-- 规避 Collapase 处理有 padding 的折叠内容计算计算有误问题， 加一个容器 -->
-          <div class="am-accordion-content">
-             <p>联系人：张海波（店东）</p>
-             <p>联系人手机：15862684838</p>
-             <p>公司地址：</p>
-             <p>公司固话</p>
-             <p>公司账户</p>
-             <p>公司规模：</p>
-          </div>
-        </dd>
-      </dl>
-      <dl class="am-accordion-item">
-        <dt class="am-accordion-title">
-          <div class="fl">
-            <span><i class="am-icon-users"></i>顺达春晖路</span>
-          </div>
-          <div class="fr">
-            <span><i class="am-icon-angle-down"></i></span>
-          </div>
-        </dt>
-        <dd class="am-accordion-bd am-collapse">
-          <!-- 规避 Collapase 处理有 padding 的折叠内容计算计算有误问题， 加一个容器 -->
-          <div class="am-accordion-content">
-             <p>联系人：张海波（店东）</p>
-             <p>联系人手机：15862684838</p>
-             <p>公司地址：</p>
-             <p>公司固话</p>
-             <p>公司账户</p>
-             <p>公司规模：</p>
-          </div>
-        </dd>
-      </dl>
-      <dl class="am-accordion-item">
-        <dt class="am-accordion-title">
-          <div class="fl">
-            <span><i class="am-icon-users"></i>顺达春晖路</span>
-          </div>
-          <div class="fr">
-            <span><i class="am-icon-angle-down"></i></span>
-          </div>
-        </dt>
-        <dd class="am-accordion-bd am-collapse">
-          <!-- 规避 Collapase 处理有 padding 的折叠内容计算计算有误问题， 加一个容器 -->
-          <div class="am-accordion-content">
-             <p>联系人：张海波（店东）</p>
-             <p>联系人手机：15862684838</p>
-             <p>公司地址：</p>
-             <p>公司固话</p>
-             <p>公司账户</p>
-             <p>公司规模：</p>
-          </div>
-        </dd>
-      </dl>
-      <dl class="am-accordion-item">
-        <dt class="am-accordion-title">
-          <div class="fl">
-            <span><i class="am-icon-users"></i>顺达春晖路</span>
-          </div>
-          <div class="fr">
-            <span><i class="am-icon-angle-down"></i></span>
-          </div>
-        </dt>
-        <dd class="am-accordion-bd am-collapse">
-          <!-- 规避 Collapase 处理有 padding 的折叠内容计算计算有误问题， 加一个容器 -->
-          <div class="am-accordion-content">
-             <p>联系人：张海波（店东）</p>
-             <p>联系人手机：15862684838</p>
-             <p>公司地址：</p>
-             <p>公司固话</p>
-             <p>公司账户</p>
-             <p>公司规模：</p>
-          </div>
-        </dd>
-      </dl>
-      <dl class="am-accordion-item">
-        <dt class="am-accordion-title">
-          <div class="fl">
-            <span><i class="am-icon-users"></i>顺达春晖路</span>
-          </div>
-          <div class="fr">
-            <span><i class="am-icon-angle-down"></i></span>
-          </div>
-        </dt>
-        <dd class="am-accordion-bd am-collapse">
-          <!-- 规避 Collapase 处理有 padding 的折叠内容计算计算有误问题， 加一个容器 -->
-          <div class="am-accordion-content">
-             <p>联系人：张海波（店东）</p>
-             <p>联系人手机：15862684838</p>
-             <p>公司地址：</p>
-             <p>公司固话</p>
-             <p>公司账户</p>
-             <p>公司规模：</p>
-          </div>
-        </dd>
-      </dl>
-      <dl class="am-accordion-item">
-        <dt class="am-accordion-title">
-          <div class="fl">
-            <span><i class="am-icon-users"></i>顺达春晖路</span>
-          </div>
-          <div class="fr">
-            <span><i class="am-icon-angle-down"></i></span>
-          </div>
-        </dt>
-        <dd class="am-accordion-bd am-collapse">
-          <!-- 规避 Collapase 处理有 padding 的折叠内容计算计算有误问题， 加一个容器 -->
-          <div class="am-accordion-content">
-             <p>联系人：张海波（店东）</p>
-             <p>联系人手机：15862684838</p>
-             <p>公司地址：</p>
-             <p>公司固话</p>
-             <p>公司账户</p>
-             <p>公司规模：</p>
-          </div>
-        </dd>
-      </dl>
+      
+      <div class="am-popup" id="my-popup-edit-{{$row.id}}">
+      <div class="am-popup-inner">
+        <div class="am-popup-hd">
+          <h4 class="am-popup-title">新增公司</h4>
+          <span data-am-modal-close class="am-close">&times;</span>
+        </div>
+        <div class="am-popup-bd">
+          <form method="post" action="{{site_url url='wl_manager/save_company'}}" class="am-form" data-am-validator>
+            <fieldset>
+              <div class="am-form-group">
+                <label for="doc-vld-name">公司名称：</label>
+                <input type="hidden" name="id" value="{{$row.id}}"/>
+                <input type="text" id="doc-vld-name" name="company_name" value="{{$row.company_name}}" placeholder="输入公司名称" class="am-form-field" required/>
+              </div>
+              <div class="am-form-group">
+                <label for="doc-vld-name">公司对接经理：</label>
+                <input type="text" id="doc-vld-name" name="rel_name" value="{{$row.rel_name}}" placeholder="输入公司对接经理" class="am-form-field" required/>
+              </div>
+              <div class="am-form-group">
+                <label for="doc-vld-name">手机号码：</label>
+                <input type="number" id="doc-vld-name" name="username" value="{{$row.username}}" placeholder="输入手机号码" class="am-form-field" pattern="^1\d{10}$" required/>
+              </div>
+              <div class="am-form-group">
+                <label for="doc-vld-name">公司地址：</label>
+                <input type="text" id="doc-vld-name" name="address" value="{{$row.address}}" placeholder="输入公司地址" class="am-form-field" />
+              </div>
+              <div class="am-form-group">
+                <label for="doc-vld-name">联系固话：</label>
+                <input type="text" id="doc-vld-name" name="tel" value="{{$row.tel}}" placeholder="输入联系固话" class="am-form-field" />
+              </div>
+              <div class="am-form-group">
+                <label for="doc-vld-name">公司账户：</label>
+                <input type="text" id="doc-vld-name" name="zhanghu" value="{{$row.zhanghu}}" placeholder="输入公司账户" class="am-form-field" />
+              </div>
+              <div class="am-form-group">
+                <label for="doc-vld-name">公司规模：</label>
+                <input type="text" id="doc-vld-name" name="guimo" value="{{$row.guimo}}" placeholder="输入公司规模" class="am-form-field" />
+              </div>
+              <button class="am-btn" type="submit">提交</button>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+  </div>
+      
+    {{/foreach}}
     </section>
     <div class="amz-toolbar" id="amz-toolbar">
       <!-- 菜单 -->
@@ -287,35 +106,35 @@
           <span data-am-modal-close class="am-close">&times;</span>
         </div>
         <div class="am-popup-bd">
-          <form action="" class="am-form">
+          <form method="post" action="{{site_url url='wl_manager/save_company'}}" class="am-form" data-am-validator>
             <fieldset>
               <div class="am-form-group">
                 <label for="doc-vld-name">公司名称：</label>
-                <input type="text" id="doc-vld-name" minlength="3" placeholder="输入公司名称" class="am-form-field" required/>
+                <input type="text" id="doc-vld-name" name="company_name" placeholder="输入公司名称" class="am-form-field" required/>
               </div>
               <div class="am-form-group">
                 <label for="doc-vld-name">公司对接经理：</label>
-                <input type="text" id="doc-vld-name" minlength="3" placeholder="输入公司对接经理" class="am-form-field" required/>
+                <input type="text" id="doc-vld-name" name="rel_name" placeholder="输入公司对接经理" class="am-form-field" required/>
               </div>
               <div class="am-form-group">
                 <label for="doc-vld-name">手机号码：</label>
-                <input type="number" id="doc-vld-name" minlength="3" placeholder="输入手机号码" class="am-form-field" required/>
+                <input type="number" id="doc-vld-name" name="username" placeholder="输入手机号码" class="am-form-field" pattern="^1\d{10}$" required/>
               </div>
               <div class="am-form-group">
                 <label for="doc-vld-name">公司地址：</label>
-                <input type="text" id="doc-vld-name" minlength="3" placeholder="输入公司地址" class="am-form-field" required/>
+                <input type="text" id="doc-vld-name" name="address" placeholder="输入公司地址" class="am-form-field" />
               </div>
               <div class="am-form-group">
                 <label for="doc-vld-name">联系固话：</label>
-                <input type="text" id="doc-vld-name" minlength="3" placeholder="输入联系固话" class="am-form-field" required/>
+                <input type="text" id="doc-vld-name" name="tel" placeholder="输入联系固话" class="am-form-field" />
               </div>
               <div class="am-form-group">
                 <label for="doc-vld-name">公司账户：</label>
-                <input type="text" id="doc-vld-name" minlength="3" placeholder="输入公司账户" class="am-form-field" required/>
+                <input type="text" id="doc-vld-name" name="zhanghu" placeholder="输入公司账户" class="am-form-field" />
               </div>
               <div class="am-form-group">
                 <label for="doc-vld-name">公司规模：</label>
-                <input type="text" id="doc-vld-name" minlength="3" placeholder="输入公司规模" class="am-form-field" required/>
+                <input type="text" id="doc-vld-name" name="guimo" placeholder="输入公司规模" class="am-form-field" />
               </div>
               <button class="am-btn" type="submit">提交</button>
             </fieldset>

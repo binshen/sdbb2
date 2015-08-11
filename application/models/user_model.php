@@ -133,35 +133,53 @@ class User_model extends MY_Model
     }
 	
 	public function del_bb($id){
+		$this->db->trans_start();//--------开始事务
 		$this->db->where('yqm',$this->session->userdata('yqm'));
 		$this->db->where('id',$id);
-		$rs = $this->db->update($this->tables[0],array('status'=>-1,'deldate'=>date('Y-m-d H:i:s',time())));
-		if($rs)
-			return 1;
-		else
+		$this->db->update($this->tables[0],array('status'=>-1,'deldate'=>date('Y-m-d H:i:s',time())));
+		
+		$this->db->where('yqm',$this->session->userdata('yqm'));
+		$this->db->set('jifen', 'jifen+1', FALSE);
+		$this->db->set('bb_count', 'bb_count+1', FALSE);
+		$this->db->update($this->tables[2]);
+			
+		$this->db->trans_complete();//------结束事务
+		if ($this->db->trans_status() === FALSE) {
 			return -1;
+		} else {
+			return 1;
+		}
+
 	}
 	
 	public function re_bb($id){
+		$this->db->trans_start();//--------开始事务
 		$data = $this->db->select()->from($this->tables[0])->where('id',$id)->where('yqm',$this->session->userdata('yqm'))->get()->row_array();
 		$data['cdate'] = date('Y-m-d H:i:s',time());
 		$data['status']= 1;
 		unset($data['id']);
 		unset($data['ddate']);
 		unset($data['deldate']);
-		$rs = $this->db->insert($this->tables[0],$data);
+		$this->db->insert($this->tables[0],$data);
+		
+		$this->db->where('yqm',$this->session->userdata('yqm'));
+		$this->db->set('jifen', 'jifen+1', FALSE);
+		$this->db->set('bb_count', 'bb_count+1', FALSE);
+		$this->db->update($this->tables[2]);
 /*		$this->db->where('id',$id);
 		$this->db->update($this->tables[0],array('status'=>'-2'));*/
-		if($rs)
-			return 1;
-		else
+		$this->db->trans_complete();//------结束事务
+		if ($this->db->trans_status() === FALSE) {
 			return -1;
+		} else {
+			return 1;
+		}
 	}
 	
-	public function get_bz($id){
+/*	public function get_bz($id){
 		$rs = $this->db->select('remark')->from($this->tables[0])->where('id',$id)->get()->row();
 		return $rs->remark;
-	}
+	}*/
 	
 	public function save_bz(){
 		$this->db->where('id',$this->input->post('id'));
@@ -174,19 +192,76 @@ class User_model extends MY_Model
 	}
 	
 	public function get_bb_count(){
-		$rs_a = $this->db->select('count(1) num')->from($this->tables[0])->where('status','1')->where('yqm',$this->session->userdata('yqm'))->get()->row();
-		$rs_b = $this->db->select('count(1) num')->from($this->tables[0])->where('status','3')->where('yqm',$this->session->userdata('yqm'))->get()->row();
-		$rs_c = $this->db->select('count(1) num')->from($this->tables[0])->where('status','5')->where('yqm',$this->session->userdata('yqm'))->get()->row();
-		$rs_d = $this->db->select('count(1) num')->from($this->tables[0])->where('status','2')->where('yqm',$this->session->userdata('yqm'))->get()->row();
-		$rs_e = $this->db->select('count(1) num')->from($this->tables[0])->where('status','-2')->where('yqm',$this->session->userdata('yqm'))->get()->row();
-		
-		$data = array(
-			'bb'=>$rs_a->num,
-			'dk'=>$rs_b->num,
-			'qy'=>$rs_c->num,
-			'jjdq'=>$rs_d->num,
-			'dq'=>$rs_e->num
-		);
+		$yqm = $this->session->userdata('yqm');
+		if( $this->session->userdata('admin_group') == 4){//外联经理
+			$where = "t.yqm in (select yqm from admin where manager_id in (select id from admin where manager_id = {$this->session->userdata('userid')}))";
+		}else if($this->session->userdata('admin_group') == 3){//业务员
+			$where = "t.yqm = '{$yqm}'";
+		}
+		$sql = "SELECT
+					*
+				FROM
+					(
+						SELECT
+							count(t.id) AS zbb,
+							count(a.id) AS wbb,
+							count(b.id) AS mbb
+						FROM
+							main_list t
+						LEFT JOIN main_list a ON t.id = a.id
+						AND a.cdate >= date_add(NOW(), INTERVAL - 7 DAY)
+						LEFT JOIN main_list b ON t.id = b.id
+						AND b.cdate >= date_add(NOW(), INTERVAL - 30 DAY)
+						WHERE
+							{$where}
+						AND t. STATUS != - 1
+					) a,
+					(
+						SELECT
+							count(t.id) AS zdk,
+							count(a.id) AS wdk,
+							count(b.id) AS mdk
+						FROM
+							main_list t
+						LEFT JOIN main_list a ON t.id = a.id
+						AND a.ddate >= date_add(NOW(), INTERVAL - 7 DAY)
+						LEFT JOIN main_list b ON t.id = b.id
+						AND b.ddate >= date_add(NOW(), INTERVAL - 30 DAY)
+						WHERE
+							{$where}
+					) b,
+					(
+						SELECT
+							count(t.id) AS zcj,
+							count(a.id) AS wcj,
+							count(b.id) AS mcj
+						FROM
+							main_list t
+						LEFT JOIN main_list a ON t.id = a.id
+						AND a.cjdate >= date_add(NOW(), INTERVAL - 7 DAY)
+						LEFT JOIN main_list b ON t.id = b.id
+						AND b.cjdate >= date_add(NOW(), INTERVAL - 30 DAY)
+						WHERE
+							{$where}
+						AND t. STATUS = 5
+					) c,
+					(
+						SELECT
+							count(t.id) AS zdq,
+							count(a.id) AS ddq,
+							count(b.id) AS qdq
+						FROM
+							main_list t
+						LEFT JOIN main_list a ON t.id = a.id
+						AND a.status = 2
+						LEFT JOIN main_list b ON t.id = b.id
+						AND b.status = 4
+						WHERE
+							t.yqm = {$where}
+						AND (t. STATUS = 2 OR t. STATUS = 4)
+					) d";
+		$query = $this->db->query($sql);
+		$data = $query->row_array();
 		return $data;
 	}
 	
@@ -222,6 +297,11 @@ class User_model extends MY_Model
 			$data['project_id'] = $v;
 			$this->db->insert($this->tables[0],$data);
 		}
+		$count = count($this->input->post('project_id'));
+		$this->db->where('yqm',$this->session->userdata('yqm'));
+		$this->db->set('jifen', 'jifen+'.$count, FALSE);
+		$this->db->set('bb_count', 'bb_count+'.$count, FALSE);
+		$this->db->update($this->tables[2]);
 		
         $this->db->trans_complete();//------结束事务
         if ($this->db->trans_status() === FALSE) {
@@ -346,7 +426,7 @@ class User_model extends MY_Model
 		
 		$this->db->where('id',$id);
 		$this->db->where_in('status',array('3','4'));
-		$this->db->update($this->tables[0],array('status'=>'5'));
+		$this->db->update($this->tables[0],array('status'=>'5','cjdate'=>date('Y-m-d H:i:s',time())));
 		
 		if($rs){
 	    	$this->db->where('yqm',$rs->yqm);

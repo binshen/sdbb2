@@ -16,70 +16,79 @@
 <body>
 <div class="am-g">
     {{include file="header.html"}}
+    <form method="post" action="{{site_url url='user/wdbb'}}">
+    <input type="hidden" name="status" />
     <ul class="admin-content-list">
       <li>
         <div class="am-txt-fl">
-          <a href="" class="am-text-success">
+          <a href="javascript:get_search('');" class="am-text-success">
             <span class="am-icon-btn am-icon-file-text"></span>
             <br />
             总报备<br />
-            23组
+            {{$data.zbb}}组
           </a>
         </div>
         <div class="am-txt-fr">
-          一周报备<em class="am-text-success">1</em>组<br />
-          一月报备<em class="am-text-success">3</em>组
+          一周报备<em class="am-text-success">{{$data.wbb}}</em>组<br />
+          一月报备<em class="am-text-success">{{$data.mbb}}</em>组
         </div>
       </li>
       <li>
         <div class="am-txt-fl">
-          <a href="" class="am-text-warning">
+          <a href="javascript:get_search('3');" class="am-text-warning">
             <span class="am-icon-btn am-icon-slideshare"></span>
             <br />
             总带看<br />
-            23组
+            {{$data.zdk}}组
           </a>
         </div>
         <div class="am-txt-fr">
-          一周报备<em class="am-text-warning">1</em>组<br />
-          一月报备<em class="am-text-warning">3</em>组
+          一周带看<em class="am-text-warning">{{$data.wdk}}</em>组<br />
+          一月带看<em class="am-text-warning">{{$data.mdk}}</em>组
         </div>
       </li>
       <li>
         <div class="am-txt-fl">
-          <a href="" class="am-text-danger">
+          <a href="javascript:get_search('5');" class="am-text-danger">
             <span class="am-icon-btn am-icon-check-circle"></span>
             <br />
             总成交<br />
-            23组
+            {{$data.zcj}}组
           </a>
         </div>
         <div class="am-txt-fr">
-          一周报备<em class="am-text-danger">1</em>组<br />
-          一月报备<em class="am-text-danger">3</em>组
+          一周成交<em class="am-text-danger">{{$data.wcj}}</em>组<br />
+          一月成交<em class="am-text-danger">{{$data.mcj}}</em>组
         </div>
       </li>
       <li>
         <div class="am-txt-fl">
-          <a href="" class="am-text-secondary">
+          <a href="javascript:get_search('2');" class="am-text-secondary">
             <span class="am-icon-btn am-icon-exclamation-circle"></span>
             <br />
             即将到期<br />
-            23组
+            {{$data.zdq}}组
           </a>
         </div>
         <div class="am-txt-fr">
-          一周报备<em class="am-text-secondary">1</em>组<br />
-          一月报备<em class="am-text-secondary">3</em>组
+          带看将到期<em class="am-text-secondary">{{$data.ddq}}</em>组<br />
+          签约将到期<em class="am-text-secondary">{{$data.qdq}}</em>组
         </div>
       </li>
     </ul>
+    </form>
      <div class="amz-toolbar" id="amz-toolbar">
       <!-- 左侧侧滑菜单 -->
       {{include file="menu.html"}}
     </div>
 </div>
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/amazeui.min.js"></script>
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/amazeui.min.js"></script>
+<script>
+function get_search(status){
+	$("[name='status']").val(status);
+	$("form").submit();
+}
+</script>
 </body>
 </html>

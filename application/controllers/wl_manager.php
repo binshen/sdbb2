@@ -28,16 +28,15 @@ class Wl_manager extends MY_Controller {
         }
 		$projects = $this->sysconfig_model->get_projects();
         $this->cismarty->assign('projects',$projects);
-        $this->cismarty->assign('flag','d');
-        $this->cismarty->assign('rel_name',$this->session->userdata('rel_name'));
     }
     
     //默认首页
     public function index()
     {
-    	$data = $this->user_model->get_wl_data();
-    	$this->cismarty->assign('all_count',$data);
-    	$this->cismarty->display('wl_manager.html');
+    	$data = $this->user_model->get_bb_count();
+    	$this->cismarty->assign('data',$data);
+    	
+    	$this->cismarty->display('user_index.html');
     }
     
     public function qy_company(){
@@ -62,7 +61,7 @@ class Wl_manager extends MY_Controller {
     	echo json_encode($data);
     }
     
-    public function huoyue($type){
+    public function huoyue($type=1){
     	$data = $this->user_model->wl_huoyue($type);
     	$this->cismarty->assign('data',$data);
     	$this->cismarty->display('wl_huoyue.html');
