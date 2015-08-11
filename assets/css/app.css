@@ -26,7 +26,7 @@
 .overtime{color: #f00;}
 .am-accordion-default .am-accordion-title .am-icon-check1-circle{color: #b79afd;}
 .am-accordion-default .am-accordion-title .am-icon-check2-circle{color: #2dd278;}
-.am-accordion-default .am-accordion-title .am-icon-angle-right{color: #3bb4f2;}
+.am-accordion-default .am-accordion-title .am-icon-angle-down{color: #3bb4f2;}
 
 .am-accordion-default .am-active .am-accordion-title,.am-accordion-default .am-accordion-title:hover{ color: #161716;}
 .am-accordion-content{overflow: hidden;zoom:1;}
