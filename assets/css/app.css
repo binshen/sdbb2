@@ -97,5 +97,16 @@
 .am-txt-fr em{padding:0 5px;  font-style: normal;}
 .am-txt-fr .green{}
 /*活跃度查询*/
-.am-tab-nav {display: flex;padding:0em;}
-.am-tab-nav li{list-style: none; float: left; flex:1;-webkit-box-flex:1;}
+.am-tab-nav {margin:1rem 1rem;display: flex;padding:0em;}
+.am-tab-nav li{padding:0.5rem 0;list-style: none; float: left; flex:1;-webkit-box-flex:1; text-align: center; }
+.am-tab-nav li a{color: #3bb4f2;}
+.am-tab-nav .am-active{ background: #3bb4f2;}
+.am-tab-nav .am-active a{color: #fff;}
+
+.am-ul-rank{padding:0rem;margin: 0 1rem;}
+.am-ul-rank li{margin-bottom:1rem;padding:0.5rem 1rem; background: #eee;list-style: none; font-size: 1.2rem;}
+.am-ul-rank li span{display: block;}
+.am-ul-rank li span i{padding-right:0.2rem;}
+.am-ul-rank li .r-house{margin-bottom: 0.3rem;font-size: 1.4rem;}
+.am-icon-bookmark{ position:relative;font-size: 3rem; color: #f46262; margin-top: -25px; margin-right: 3px;}
+.am-icon-bookmark em{ font-size: 1.4rem; position: absolute;top:0;left: -1px; line-height: 40px; color: #fff; display:inline-block; width: 24px; text-align: center;}

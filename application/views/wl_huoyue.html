@@ -1,0 +1,101 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>活跃度查询</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <link rel="stylesheet" href="/assets/css/amazeui.min.css">
+  <link rel="stylesheet" href="/assets/css/amazeui.switch.css">
+  <link rel="stylesheet" href="/assets/css/app.css">
+</head>
+<body>
+<div class="am-g">
+    {{include file="header.html"}}
+    <div class="app-tit"><span class="mark">活跃度查询</span></div>
+    <div class="wl-hy">
+      <ul class="am-tab-nav">
+        <li class="am-active">
+          <a href="">报备排名</a>
+        </li>
+        <li class="">
+          <a href="">带看排名</a>
+        </li>
+        <li class="">
+          <a href="">成交排名</a>
+        </li>
+      </ul>
+      <ul class="am-ul-rank">
+        <li>
+            <span class="r-house"><i class="am-icon-bookmark"><em>1</em></i>德衡房产（昆山花园）</span>
+            <span><i class="am-icon-calendar-o"></i>总分:0（成交0分） </span>
+            <span><i class="am-icon-file-text"></i>公司邀请码：106</span>
+            <span><i class="am-icon-user"></i>对接经理：刘建明（老板）</span>
+            <span><i class="am-icon-phone"></i>联系手机：15850352913</span>
+        </li>
+        <li>
+            <span class="r-house"><i class="am-icon-bookmark"><em>2</em></i>德衡房产（昆山花园）</span>
+            <span><i class="am-icon-calendar-o"></i>总分:0（成交0分） </span>
+            <span><i class="am-icon-file-text"></i>公司邀请码：106</span>
+            <span><i class="am-icon-user"></i>对接经理：刘建明（老板）</span>
+            <span><i class="am-icon-phone"></i>联系手机：15850352913</span>
+        </li>
+        <li>
+            <span class="r-house"><i class="am-icon-bookmark"><em>3</em></i>德衡房产（昆山花园）</span>
+            <span><i class="am-icon-calendar-o"></i>总分:0（成交0分） </span>
+            <span><i class="am-icon-file-text"></i>公司邀请码：106</span>
+            <span><i class="am-icon-user"></i>对接经理：刘建明（老板）</span>
+            <span><i class="am-icon-phone"></i>联系手机：15850352913</span>
+        </li>
+        <li>
+            <span class="r-house">德衡房产（昆山花园）</span>
+            <span><i class="am-icon-calendar-o"></i>总分:0（成交0分） </span>
+            <span><i class="am-icon-file-text"></i>公司邀请码：106</span>
+            <span><i class="am-icon-user"></i>对接经理：刘建明（老板）</span>
+            <span><i class="am-icon-phone"></i>联系手机：15850352913</span>
+        </li>
+      </ul>
+       <!-- 分页 -->
+    {{if $data.total_page > 1}}
+    <ul data-am-widget="pagination" class="am-pagination am-pagination-select">
+      <li class="am-pagination-prev ">
+      
+        {{if $data.pageNum lte 1}}
+    <a class="off">上一页</a>
+    {{else}}
+    <a href="javascript:get_search('{{$data.pageNum -1}}');">上一页</a>
+    {{/if}}
+      </li>
+      <li class="am-pagination-select">
+        <select onchange="get_search(this.value);">
+        {{section name=loop loop=$data.total_page}}
+          <option value="{{$smarty.section.loop.index + 1}}" class="" {{if $smarty.section.loop.index + 1 eq $data.pageNum}}selected='selected'{{/if}}>{{$smarty.section.loop.index + 1}}/{{$data.total_page}}</option>
+        {{/section}}
+        </select>
+      </li>
+      <li class="am-pagination-next ">
+        {{if $data.pageNum gte $data.total_page}}
+    <a class="off">下一页</a>
+    {{else}}
+    <a href="javascript:get_search('{{$data.pageNum +1}}');">下一页</a>
+    {{/if}}
+      </li>
+    </ul>
+    {{/if}}
+  <!-- 分页 -->
+      <!-- 侧滑菜单 -->
+      <div class="amz-toolbar" id="amz-toolbar">
+        <!-- 菜单 -->
+        <!-- 左侧侧滑菜单 -->
+  		  {{include file="menu.html"}}
+      </div>
+    </div>
+</div>
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/amazeui.min.js"></script>
+</body>
+</html>
