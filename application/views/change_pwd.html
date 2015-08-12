@@ -12,27 +12,29 @@
   <link rel="stylesheet" href="/assets/css/amazeui.min.css">
   <link rel="stylesheet" href="/assets/css/amazeui.switch.css">
   <link rel="stylesheet" href="/assets/css/app.css">
+  <script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/amazeui.min.js"></script>
 </head>
 <body>
 <div class="am-g">
      {{include file="header.html"}}
     <div class="app-tit"><span class="mark">修改密码</span></div>
     <div class="safe-center">
-      <form action="" class="am-form" data-am-validator>
+      <form action="{{site_url url='login/save_change_pwd'}}" class="am-form" data-am-validator method="post">
       <fieldset>
         <div class="am-form-group">
           <label for="doc-vld-name-2">旧密码：</label>
-          <input type="text" id="doc-vld-name-2" minlength="3" placeholder="输入旧密码" required/>
+          <input type="password" id="doc-vld-name-2"  name="passwd"  placeholder="输入旧密码" required/>
         </div>
         <div class="am-form-group">
-          <label for="doc-vld-email-2">新密码：</label>
-          <input type="email" id="doc-vld-email-2"  placeholder="输入新密码" required/>
+          <label for="doc-vld-pwd-1">新密码：</label>
+          <input type="password" id="doc-vld-pwd-1" name="new_passwd" minlength="6" placeholder="输入新密码(至少6位)" required/>
         </div>
         <div class="am-form-group">
-          <label for="doc-vld-url-2">再次确认密码：</label>
-          <input type="url" id="doc-vld-url-2" placeholder="再次确认新密码：" required/>
+          <label for="doc-vld-pwd-2">再次确认密码：</label>
+          <input type="password" id="doc-vld-pwd-2" placeholder="再次确认新密码" required/>
         </div>
-        <button class="am-btn" type="submit">提交</button>
+        <button class="am-btn am-btn-secondary" type="submit">提交</button>
       </fieldset>
     </form>
 </div>
