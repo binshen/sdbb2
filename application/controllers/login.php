@@ -63,7 +63,7 @@ class Login extends MY_Controller {
 	/**
      * 修改密码
      */
-	public function change_pwd(){
+	public function save_change_pwd(){
 		if(sha1($this->input->post('passwd')) != $this->session->userdata('passwd')){
 			$this->show_message('原密码输入错误','','1');
 		}else{
@@ -75,6 +75,10 @@ class Login extends MY_Controller {
 				$this->show_message('密码修改失败','','1');
 			}
 		}
+	}
+	
+	public function change_pwd(){
+		$this->cismarty->display('change_pwd.html');
 	}
 	
     /**
