@@ -17,7 +17,7 @@
 <div class="am-g">
     {{include file="header.html"}}
      <div class="app-tit">
-      <span class="mark">渠道经理签约公司列表</span>
+      <span class="mark">签约公司列表</span>
     </div>
     <section data-am-widget="accordion" class="am-accordion am-accordion-default"
     data-am-accordion='{}'>
@@ -41,15 +41,16 @@
              <p>公司固话：{{$row.tel}}</p>
              <p>公司账户：{{$row.zhanghu}}</p>
              <p>公司规模：{{$row.guimo}}</p>
+             <button type="button" class="am-btn am-btn-secondary" data-am-modal="{target: '#my-popup-edit-{{$row.id}}'}"><i class="am-icon-cog"></i>编辑</button>
           </div>
-          <button type="button" class="am-btn am-btn-secondary" data-am-modal="{target: '#my-popup-edit-{{$row.id}}'}"><i class="am-icon-cog"></i>编辑</button>
+          
         </dd>
       </dl>
       
       <div class="am-popup" id="my-popup-edit-{{$row.id}}">
       <div class="am-popup-inner">
         <div class="am-popup-hd">
-          <h4 class="am-popup-title">新增公司</h4>
+          <h4 class="am-popup-title">编辑公司</h4>
           <span data-am-modal-close class="am-close">&times;</span>
         </div>
         <div class="am-popup-bd">

@@ -36,9 +36,10 @@ class Kf_manager extends MY_Controller {
     
     public function index()
     {
-    	$data = $this->user_model->get_kf_data();
-    	$this->cismarty->assign('all_count',$data);
-    	$this->cismarty->display('kf_manager.html');
+    	$this->m_list_bb();
+    	//$data = $this->user_model->get_kf_data();
+    	//$this->cismarty->assign('all_count',$data);
+    	//$this->cismarty->display('kf_manager.html');
     }
     
     public function m_list_bb(){
