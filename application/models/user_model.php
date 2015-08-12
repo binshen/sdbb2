@@ -597,16 +597,13 @@ class User_model extends MY_Model
     	$this->db->from($this->tables[2]);
     	$this->db->where('manager_id',$userid);
     	$this->db->limit($per_page, ($pageNum - 1) * $per_page );
-    	if($type == '1'){//综合排名
-    		$this->db->order_by('(bb_count+dk_count*50+qy_count*500)','desc');
-    	}
-    	if($type == '2'){//报备排名
+    	if($type == '1'){//报备排名
     		$this->db->order_by('bb_count','desc');
     	}
-    	if($type == '3'){//带看排名
+    	if($type == '2'){//带看排名
     		$this->db->order_by('dk_count','desc');
     	}
-    	if($type == '4'){//成交排名
+    	if($type == '3'){//成交排名
     		$this->db->order_by('qy_count','desc');
     	}
     	
@@ -654,16 +651,13 @@ class User_model extends MY_Model
     	}
     	$this->db->group_by('a.manager_id');
     	$this->db->limit($per_page, ($pageNum - 1) * $per_page );
-    	if($type == '1'){//综合排名
-    		$this->db->order_by('(sum(a.bb_count)+sum(a.dk_count)*50+sum(a.qy_count)*500)','desc');
-    	}
-    	if($type == '2'){//报备排名
+    	if($type == '1'){//报备排名
     		$this->db->order_by('sum(a.bb_count)','desc');
     	}
-    	if($type == '3'){//带看排名
+    	if($type == '2'){//带看排名
     		$this->db->order_by('sum(a.dk_count)*50','desc');
     	}
-    	if($type == '4'){//成交排名
+    	if($type == '5'){//成交排名
     		$this->db->order_by('sum(a.qy_count)*500','desc');
     	}
     	

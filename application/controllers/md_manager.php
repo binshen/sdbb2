@@ -68,7 +68,7 @@ class Md_manager extends MY_Controller {
     	$this->cismarty->display('list_ywy.html');
     }
     
-    public function huoyue($type){
+    public function huoyue($type=1){
     	$data = $this->user_model->md_huoyue($type);
     	$this->cismarty->assign('data',$data);
     	$this->cismarty->display('md_huoyue.html');
@@ -84,7 +84,7 @@ class Md_manager extends MY_Controller {
     	$projects = $this->sysconfig_model->get_projects();
     	$this->cismarty->assign('projects',$projects);
     	$this->cismarty->assign('project_id',$project_id);
-    	$this->cismarty->display('md_wybb.html');
+    	$this->cismarty->display('wybb.html');
     }
     
     public function save_bb(){
@@ -101,7 +101,7 @@ class Md_manager extends MY_Controller {
     	$this->cismarty->assign('projects',$projects);
     	$data = $this->user_model->list_wdbb();
     	$this->cismarty->assign('data',$data);
-    	$this->cismarty->display('md_wdbb.html');
+    	$this->cismarty->display('wdbb.html');
     }
     
     public function del_bb($id){
