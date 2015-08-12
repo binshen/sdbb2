@@ -57,9 +57,9 @@
 #my-actions-search{ background: #333;  }
 #my-actions-search fieldset{margin-bottom: 0;padding-bottom: 0;}
 #my-actions-search fieldset select{}
-#my-actions-search fieldset .am-form-group{width: 70%;float: left;}
+#my-actions-search fieldset .am-form-group{width: 100%; overflow: hidden; zoom:1;}
 #my-actions-search .am-modal-actions-group .am-list>li{padding: 3rem; border:none;}
-#my-actions-search .am-icon-search{margin-top:-20px;float: right; background: #ff7c39; color: #fff; border-radius: 5px;}
+#my-actions-search .am-icon-search{background: #ff7c39; color: #fff; border-radius: 5px;}
 
 /*我要报备表单样式*/
 .wybb{margin-top: 1rem;}
@@ -115,6 +115,3 @@
 
 .am-g .am-u-sm-6{ color: #fff; margin:0rem;padding: 0rem;}
 .am-g .am-u-sm-6 .am-form-field{width:90%;}
-.am-form-fl{ width: 70%; float: left;}
-#my-actions-search fieldset .am-form-fl .am-form-group{width: 100%;float: left;}
-#my-actions-search .am-form-fr{margin-top:70px; width: 25%;}
