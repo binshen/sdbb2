@@ -21,6 +21,7 @@
     </div>
     <section data-am-widget="accordion" class="am-accordion am-accordion-default"
     data-am-accordion='{}'>
+    {{foreach from = $data.res_list item=row key=k}}
       <dl class="am-accordion-item">
         <dt class="am-accordion-title">
           <div class="fl">
@@ -28,7 +29,9 @@
             <span><i class="am-icon-calendar"></i>2015-08-06</span>
           </div>
           <div class="fr">
-            <span class="overtime"><i class="am-icon-exclamation-circle am-icon-exclamation2-circle"></i>已过期</span>
+            {{if $row.status == '1' or $row.status == '2'}}<span><i class="am-icon-check-circle"></i>已报备</span>{{/if}}
+            {{if $row.status == '3' or $row.status == '4'}}<span><i class="am-icon-check-circle am-icon-check1-circle"></i>已带看</span>{{/if}}
+            {{if $row.status == '5'}}<span><i class="am-icon-check-circle am-icon-check2-circle"></i>已签约</span>{{/if}}
             <span><i class="am-icon-angle-right"></i></span>
           </div>
         </dt>
@@ -51,335 +54,7 @@
           </div>
         </dd>
       </dl>
-      <dl class="am-accordion-item">
-        <dt class="am-accordion-title">
-          <div class="fl">
-            <span style="width:80px; float:left;"><i class="am-icon-user"></i>业务员员</span>
-            <span><i class="am-icon-calendar"></i>2015-08-06</span>
-          </div>
-          <div class="fr">
-            <span><i class="am-icon-exclamation-circle"></i>将到期</span>
-            <span><i class="am-icon-angle-right"></i></span>
-          </div>
-        </dt>
-        <dd class="am-accordion-bd am-collapse">
-          <!-- 规避 Collapase 处理有 padding 的折叠内容计算计算有误问题， 加一个容器 -->
-          <div class="am-accordion-content">
-             <p>· 创建时间：2015-08-05   00：00：00</p>
-             <p>· 带看时间：</p>
-             <p>· 客户来源：网络</p>
-             <p>· 客户性别:  先生</p>
-             <p>· 身份证号： 2121212122</p>
-             <p>· 备注：1212121</p>
-             <div class="con-state-div">
-                <span class="con-cus-state con-cus-jdq1"></span>
-                <p class="p-state"><span>已报备</span><span>即将到期</span><span>已带看</span><span>即将到期</span><span>已签约</span></p>
-             </div>
-             <button type="button" class="am-btn am-btn-secondary" data-am-modal="{target: '#my-actions'}"><i class="am-icon-slideshare"></i>确认带看</button>
-          </div>
-        </dd>
-      </dl>
-      <dl class="am-accordion-item">
-        <dt class="am-accordion-title">
-          <div class="fl">
-            <span><i class="am-icon-user"></i>业务员</span>
-            <span><i class="am-icon-calendar"></i>2015-08-06</span>
-          </div>
-          <div class="fr">
-            <span><i class="am-icon-check-circle am-icon-check1-circle"></i>已带看</span>
-            <span><i class="am-icon-angle-right"></i></span>
-          </div>
-        </dt>
-        <dd class="am-accordion-bd am-collapse">
-          <!-- 规避 Collapase 处理有 padding 的折叠内容计算计算有误问题， 加一个容器 -->
-          <div class="am-accordion-content">
-             <p>创建时间：2015-08-05   00：00：00</p>
-             <p>带看时间：</p>
-             <p>客户来源：网络</p>
-             <p>客户性别:  先生</p>
-             <p>身份证号： 2121212122</p>
-             <p>备注：1212121</p>
-             <div class="con-state-div">
-                <span class="con-cus-state con-cus-ydk"></span>
-                <p class="p-state"><span>已报备</span><span>即将到期</span><span>已带看</span><span>即将到期</span><span>已签约</span></p>
-             </div>
-             <button type="button" class="am-btn am-btn-secondary" data-am-modal="{target: '#my-actions'}"><i class="am-icon-cog"></i>确认签约</button>
-          </div>
-        </dd>
-      </dl>
-      <dl class="am-accordion-item">
-        <dt class="am-accordion-title">
-          <div class="fl">
-            <span><i class="am-icon-user"></i>业务员</span>
-            <span><i class="am-icon-calendar"></i>2015-08-06</span>
-          </div>
-          <div class="fr">
-            <span><i class="am-icon-exclamation-circle am-icon-exclamation1-circle"></i>即将到期</span>
-            <span><i class="am-icon-angle-right"></i></span>
-          </div>
-        </dt>
-        <dd class="am-accordion-bd am-collapse">
-          <!-- 规避 Collapase 处理有 padding 的折叠内容计算计算有误问题， 加一个容器 -->
-          <div class="am-accordion-content">
-             <p>创建时间：2015-08-05   00：00：00</p>
-             <p>带看时间：</p>
-             <p>客户来源：网络</p>
-             <p>客户性别:  先生</p>
-             <p>身份证号： 2121212122</p>
-             <p>备注：1212121</p>
-             <div class="con-state-div">
-                <span class="con-cus-state con-cus-jdq2"></span>
-                <p class="p-state"><span>已报备</span><span>即将到期</span><span>已带看</span><span>即将到期</span><span>已签约</span></p>
-             </div>
-             <button type="button" class="am-btn am-btn-secondary" data-am-modal="{target: '#my-actions'}"><i class="am-icon-cog"></i>确认签约</button>
-          </div>
-        </dd>
-      </dl>
-      <dl class="am-accordion-item">
-        <dt class="am-accordion-title">
-          <div class="fl">
-            <span><i class="am-icon-user"></i>业务员</span>
-            <span><i class="am-icon-calendar"></i>2015-08-06</span>
-          </div>
-          <div class="fr">
-            <span><i class="am-icon-check-circle am-icon-check2-circle"></i>已签约</span>
-            <span><i class="am-icon-angle-right"></i></span>
-          </div>
-        </dt>
-        <dd class="am-accordion-bd am-collapse">
-          <!-- 规避 Collapase 处理有 padding 的折叠内容计算计算有误问题， 加一个容器 -->
-          <div class="am-accordion-content">
-             <p>创建时间：2015-08-05   00：00：00</p>
-             <p>带看时间：</p>
-             <p>客户来源：网络</p>
-             <p>客户性别:  先生</p>
-             <p>身份证号： 2121212122</p>
-             <p>备注：1212121</p>
-             <div class="con-state-div">
-                <span class="con-cus-state con-cus-yqy"></span>
-                <p class="p-state"><span>已报备</span><span>即将到期</span><span>已带看</span><span>即将到期</span><span>已签约</span></p>
-             </div>
-             <button type="button" class="am-btn am-btn-secondary" data-am-modal="{target: '#my-actions'}"><i class="am-icon-cog"></i>确认签约</button>
-          </div>
-        </dd>
-      </dl>
-      <dl class="am-accordion-item">
-        <dt class="am-accordion-title">
-          <div class="fl">
-            <span><i class="am-icon-user"></i>业务员</span>
-            <span><i class="am-icon-calendar"></i>2015-08-06</span>
-          </div>
-          <div class="fr">
-            <span><i class="am-icon-check-circle"></i>已报备</span>
-            <span><i class="am-icon-angle-right"></i></span>
-          </div>
-        </dt>
-        <dd class="am-accordion-bd am-collapse">
-          <!-- 规避 Collapase 处理有 padding 的折叠内容计算计算有误问题， 加一个容器 -->
-          <div class="am-accordion-content">
-             <p>创建时间：2015-08-05   00：00：00</p>
-             <p>带看时间：</p>
-             <p>客户来源：网络</p>
-             <p>客户性别:  先生</p>
-             <p>身份证号： 2121212122</p>
-             <p>备注：1212121</p>
-             <div class="con-state-div">
-                <span class="con-cus-state con-cus-ybb"></span>
-                <p class="p-state"><span>已报备</span><span>即将到期</span><span>已带看</span><span>即将到期</span><span>已签约</span></p>
-             </div>
-             <button type="button" class="am-btn am-btn-secondary" data-am-modal="{target: '#my-actions'}"><i class="am-icon-cog"></i>确认签约</button>
-          </div>
-        </dd>
-      </dl>
-      <dl class="am-accordion-item">
-        <dt class="am-accordion-title">
-          <div class="fl">
-            <span><i class="am-icon-user"></i>业务员</span>
-            <span><i class="am-icon-calendar"></i>2015-08-06</span>
-          </div>
-          <div class="fr">
-            <span><i class="am-icon-check-circle"></i>已报备</span>
-            <span><i class="am-icon-angle-right"></i></span>
-          </div>
-        </dt>
-        <dd class="am-accordion-bd am-collapse">
-          <!-- 规避 Collapase 处理有 padding 的折叠内容计算计算有误问题， 加一个容器 -->
-          <div class="am-accordion-content">
-             <p>创建时间：2015-08-05   00：00：00</p>
-             <p>带看时间：</p>
-             <p>客户来源：网络</p>
-             <p>客户性别:  先生</p>
-             <p>身份证号： 2121212122</p>
-             <p>备注：1212121</p>
-             <div class="con-state-div">
-                <span class="con-cus-state con-cus-ybb"></span>
-                <p class="p-state"><span>已报备</span><span>即将到期</span><span>已带看</span><span>即将到期</span><span>已签约</span></p>
-             </div>
-             <button type="button" class="am-btn am-btn-secondary" data-am-modal="{target: '#my-actions'}"><i class="am-icon-cog"></i>确认签约</button>
-          </div>
-        </dd>
-      </dl>
-      <dl class="am-accordion-item">
-        <dt class="am-accordion-title">
-          <div class="fl">
-            <span><i class="am-icon-user"></i>业务员</span>
-            <span><i class="am-icon-calendar"></i>2015-08-06</span>
-          </div>
-          <div class="fr">
-            <span><i class="am-icon-check-circle"></i>已报备</span>
-            <span><i class="am-icon-angle-right"></i></span>
-          </div>
-        </dt>
-        <dd class="am-accordion-bd am-collapse">
-          <!-- 规避 Collapase 处理有 padding 的折叠内容计算计算有误问题， 加一个容器 -->
-          <div class="am-accordion-content">
-             <p>创建时间：2015-08-05   00：00：00</p>
-             <p>带看时间：</p>
-             <p>客户来源：网络</p>
-             <p>客户性别:  先生</p>
-             <p>身份证号： 2121212122</p>
-             <p>备注：1212121</p>
-             <div class="con-state-div">
-                <span class="con-cus-state con-cus-ybb"></span>
-                <p class="p-state"><span>已报备</span><span>即将到期</span><span>已带看</span><span>即将到期</span><span>已签约</span></p>
-             </div>
-             <button type="button" class="am-btn am-btn-secondary" data-am-modal="{target: '#my-actions'}"><i class="am-icon-cog"></i>确认签约</button>
-          </div>
-        </dd>
-      </dl>
-      <dl class="am-accordion-item">
-        <dt class="am-accordion-title">
-          <div class="fl">
-            <span><i class="am-icon-user"></i>业务员</span>
-            <span><i class="am-icon-calendar"></i>2015-08-06</span>
-          </div>
-          <div class="fr">
-            <span><i class="am-icon-check-circle"></i>已报备</span>
-            <span><i class="am-icon-angle-right"></i></span>
-          </div>
-        </dt>
-        <dd class="am-accordion-bd am-collapse">
-          <!-- 规避 Collapase 处理有 padding 的折叠内容计算计算有误问题， 加一个容器 -->
-          <div class="am-accordion-content">
-             <p>创建时间：2015-08-05   00：00：00</p>
-             <p>带看时间：</p>
-             <p>客户来源：网络</p>
-             <p>客户性别:  先生</p>
-             <p>身份证号： 2121212122</p>
-             <p>备注：1212121</p>
-             <div class="con-state-div">
-                <span class="con-cus-state con-cus-ybb"></span>
-                <p class="p-state"><span>已报备</span><span>即将到期</span><span>已带看</span><span>即将到期</span><span>已签约</span></p>
-             </div>
-             <button type="button" class="am-btn am-btn-secondary" data-am-modal="{target: '#my-actions'}"><i class="am-icon-cog"></i>确认签约</button>
-
-          </div>
-        </dd>
-      </dl>
-      <dl class="am-accordion-item">
-        <dt class="am-accordion-title">
-          <div class="fl">
-            <span><i class="am-icon-user"></i>业务员</span>
-            <span><i class="am-icon-calendar"></i>2015-08-06</span>
-          </div>
-          <div class="fr">
-            <span><i class="am-icon-check-circle"></i>已报备</span>
-            <span><i class="am-icon-angle-right"></i></span>
-          </div>
-        </dt>
-        <dd class="am-accordion-bd am-collapse">
-          <!-- 规避 Collapase 处理有 padding 的折叠内容计算计算有误问题， 加一个容器 -->
-          <div class="am-accordion-content">
-             <p>创建时间：2015-08-05   00：00：00</p>
-             <p>带看时间：</p>
-             <p>客户来源：网络</p>
-             <p>客户性别:  先生</p>
-             <p>身份证号： 2121212122</p>
-             <p>备注：1212121</p>
-             <div class="con-cus-state con-cus-ybb"></div>
-             <button type="button" class="am-btn am-btn-secondary" data-am-modal="{target: '#my-actions'}"><i class="am-icon-cog"></i>确认签约</button>
-
-          </div>
-        </dd>
-      </dl>
-      <dl class="am-accordion-item">
-        <dt class="am-accordion-title">
-          <div class="fl">
-            <span><i class="am-icon-user"></i>业务员</span>
-            <span><i class="am-icon-calendar"></i>2015-08-06</span>
-          </div>
-          <div class="fr">
-            <span><i class="am-icon-check-circle"></i>已报备</span>
-            <span><i class="am-icon-angle-right"></i></span>
-          </div>
-        </dt>
-        <dd class="am-accordion-bd am-collapse">
-          <!-- 规避 Collapase 处理有 padding 的折叠内容计算计算有误问题， 加一个容器 -->
-          <div class="am-accordion-content">
-             <p>创建时间：2015-08-05   00：00：00</p>
-             <p>带看时间：</p>
-             <p>客户来源：网络</p>
-             <p>客户性别:  先生</p>
-             <p>身份证号： 2121212122</p>
-             <p>备注：1212121</p>
-             <div class="con-cus-state con-cus-ybb"></div>
-             <button type="button" class="am-btn am-btn-secondary" data-am-modal="{target: '#my-actions'}"><i class="am-icon-cog"></i>确认签约</button>
-
-          </div>
-        </dd>
-      </dl>
-      <dl class="am-accordion-item">
-        <dt class="am-accordion-title">
-          <div class="fl">
-            <span><i class="am-icon-user"></i>业务员</span>
-            <span><i class="am-icon-calendar"></i>2015-08-06</span>
-          </div>
-          <div class="fr">
-            <span><i class="am-icon-check-circle"></i>已报备</span>
-            <span><i class="am-icon-angle-right"></i></span>
-          </div>
-        </dt>
-        <dd class="am-accordion-bd am-collapse">
-          <!-- 规避 Collapase 处理有 padding 的折叠内容计算计算有误问题， 加一个容器 -->
-          <div class="am-accordion-content">
-             <p>创建时间：2015-08-05   00：00：00</p>
-             <p>带看时间：</p>
-             <p>客户来源：网络</p>
-             <p>客户性别:  先生</p>
-             <p>身份证号： 2121212122</p>
-             <p>备注：1212121</p>
-             <div class="con-cus-state con-cus-ybb"></div>
-             <button type="button" class="am-btn am-btn-secondary" data-am-modal="{target: '#my-actions'}"><i class="am-icon-cog"></i>确认签约</button>
-
-          </div>
-        </dd>
-      </dl>
-      <dl class="am-accordion-item">
-        <dt class="am-accordion-title">
-          <div class="fl">
-            <span><i class="am-icon-user"></i>业务员</span>
-            <span><i class="am-icon-calendar"></i>2015-08-06</span>
-          </div>
-          <div class="fr">
-            <span><i class="am-icon-check-circle"></i>已报备</span>
-            <span><i class="am-icon-angle-right"></i></span>
-          </div>
-        </dt>
-        <dd class="am-accordion-bd am-collapse">
-          <!-- 规避 Collapase 处理有 padding 的折叠内容计算计算有误问题， 加一个容器 -->
-          <div class="am-accordion-content">
-             <p>创建时间：2015-08-05   00：00：00</p>
-             <p>带看时间：</p>
-             <p>客户来源：网络</p>
-             <p>客户性别:  先生</p>
-             <p>身份证号： 2121212122</p>
-             <p>备注：1212121</p>
-             <div class="con-cus-state con-cus-ybb"></div>
-             <button type="button" class="am-btn am-btn-secondary" data-am-modal="{target: '#my-actions'}"><i class="am-icon-cog"></i>确认签约</button>
-          </div>
-        </dd>
-      </dl>
-
+      {{/foreach}}
     </section>
     <div class="amz-toolbar" id="amz-toolbar">
       <!-- 菜单 -->
@@ -431,10 +106,10 @@
               </div>
                <div class="am-form-group">
                 <div class="am-u-sm-6">
-                  <input type="text" class="am-form-field" placeholder="选择开始日期" id="my-start-2" readonly/>
+                  <input type="text" class="am-form-field" placeholder="选择开始日期" id="my-start-2"/>
                 </div>
                 <div class="am-u-sm-6">
-                  <input type="text" class="am-form-field" placeholder="选择结束日期" id="my-end-2" readonly/>
+                  <input type="text" class="am-form-field" placeholder="选择结束日期" id="my-end-2"/>
                 </div>
               </div>
               <div class="am-form-group">
@@ -446,12 +121,12 @@
        </form>       
       </div>
       <div class="am-modal-actions-group">
-        <button class="am-btn am-btn-secondary am-btn-block" data-am-modal-close>取消</button>
+        <button class="am-btn am-btn-secondary am-btn-block" id="aaaaa" data-am-modal-close>取消</button>
       </div>
     </div> 
     
 <script src="/assets/js/jquery.min.js"></script>
-<script src="/assets/js/amazeui.min.js"></script>
+<script src="/assets/js/amazeui.js"></script>
 <script type="text/javascript">
 //开始日期-结束日期
   $(function() {
@@ -459,11 +134,7 @@
     var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
     var $myStart2 = $('#my-start-2');
 
-    var checkin = $myStart2.datepicker({
-      onRender: function(date) {
-        //return date.valueOf() < now.valueOf() ? 'am-disabled' : '';
-      }
-    }).on('changeDate.datepicker.amui', function(ev) {
+    var checkin = $myStart2.datepicker().on('changeDate.datepicker.amui', function(ev) {
         if (ev.date.valueOf() > checkout.date.valueOf()) {
           var newDate = new Date(ev.date)
           newDate.setDate(newDate.getDate() + 1);
@@ -472,12 +143,7 @@
         checkin.close();
         $('#my-end-2')[0].focus();
     }).data('amui.datepicker');
-
-    var checkout = $('#my-end-2').datepicker({
-      onRender: function(date) {
-       // return date.valueOf() <= checkin.date.valueOf() ? 'am-disabled' : '';
-      }
-    }).on('changeDate.datepicker.amui', function(ev) {
+    var checkout = $('#my-end-2').datepicker().on('changeDate.datepicker.amui', function(ev) {
       checkout.close();
     }).data('amui.datepicker');
 
