@@ -83,7 +83,7 @@
 .input-div input:-webkit-autofill,.input-div input:-webkit-autofill{ background-color:rgb(255,255,255)!important;}*/
 
 
-.am-form .am-btn{ width: 250px; height: 45px; display: block;margin:0 auto; background: #e15616; color: #fff; font-size: 18px; border-radius: 10px;} 
+.am-form .am-btn{ width: 100%;  display: block;margin:0 auto; background: #e15616; color: #fff; font-size: 18px; } 
 .input-div{padding:0 10px;overflow: hidden;zoom:1;}
 .input-div .am-input-icon{margin-top: 0.5rem;width: 10%; float: left;font-size: 3rem; color: #fff;}
 
@@ -119,5 +119,6 @@
 .safe-center .am-form-group{margin-bottom: 2.5rem;}
 
 
+.am-bfzqt .am-checkbox .am-icon-unchecked,.am-bfzqt .am-checkbox .am-icon-checked{left:4.5rem;}
 
 
