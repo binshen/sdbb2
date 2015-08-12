@@ -46,6 +46,12 @@
              <p><i class="am-front-icon am-icon-venus-double"></i>性别： {{$row.sex}}</p>
              <p><i class="am-front-icon am-icon-institution"></i>项目：{{$row.project}}</p>
              <p><i class="am-front-icon am-icon-edit"></i>备注：{{$row.remark}}</p>
+             <div class="con-state-div">
+				{{if $row.status == '1' or $row.status == '2'}}<span class="con-cus-state con-cus-ybb"></span>{{/if}}
+				{{if $row.status == '3' or $row.status == '3'}}<span class="con-cus-state con-cus-ydk"></span>{{/if}}
+				{{if $row.status == '5'}}<span class="con-cus-state con-cus-yqy"></span>{{/if}}
+                <p class="p-state"><span>已报备</span><span>即将到期</span><span>已带看</span><span>即将到期</span><span>已签约</span></p>
+             </div>
              {{if $row.status == '1' or $row.status == '2'}}<a href="javascript:confirm_dk('{{$row.id}}');" class="am-btn am-btn-secondary" ><i class="am-icon-slideshare"></i>确认带看</a>{{/if}}
              {{if $row.status == '3' or $row.status == '4'}}<a href="javascript:confirm_qy('{{$row.id}}');" type="button" class="am-btn am-btn-secondary"><i class="am-icon-check-circle"></i>确认签约</a>{{/if}}
           </div>
