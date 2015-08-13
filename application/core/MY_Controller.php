@@ -19,7 +19,8 @@ class MY_Controller extends CI_Controller
         //初始数据
         $this->cismarty->assign('base_url',base_url());//url路径
 		ini_set('date.timezone','Asia/Shanghai');
-	    if ( strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') !== false ) {
+		$this->session->sess_destroy();die;
+//	    if ( strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') !== false ) {
 	    	if(!$this->session->userdata('openid')){
 	    		$appid="wx84455ea5b029beb2";
 				$secret="c9df7b05ce5aec516f9893079d246dd4";
@@ -51,7 +52,7 @@ class MY_Controller extends CI_Controller
 					}
 				}	
 	    	}
-	    }
+//	    }
 	    $this->cismarty->assign('rel_name',$this->session->userdata('rel_name'));
 	    $this->cismarty->assign('admin_group',$this->session->userdata('admin_group'));
     }
