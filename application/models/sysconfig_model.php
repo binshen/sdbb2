@@ -425,6 +425,7 @@ class Sysconfig_model extends MY_Model
 		 $member_info = $this->db->select()->from($this->tables[1])->where('openid',$openid)->get()->row_array();
 		 if($member_info){
 		 	$this->session->set_userdata($member_info);
+		 	$this->session->set_userdata('userid',$member_info['id']);
 		 	return 1;
 		 }else{
 		 	return -1;

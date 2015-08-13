@@ -379,7 +379,6 @@ class User_model extends MY_Model
 		foreach($rs as $k=>$v){
 			$project_arr[]=$v['project_id'];
 		}
-		
         $per_page=10;//每页显示多少调数据
         $this->db->select('count(1) num');
     	$this->db->from($this->tables[0]);
@@ -913,15 +912,6 @@ class User_model extends MY_Model
     	} else {
     		return 1;
     	}
-    }
-    
-    function get_kfjl($id){
-    	$data = $this->db->select('id,username,rel_name')->from($this->tables[2])->where('id',$id)->get()->row_array();
-    	$list = $this->db->select('project_id')->from($this->tables[3])->where('manager_id',$id)->get()->result_array();
-    	foreach($list as $k=>$v){
-    		$data['list'][] = $v['project_id'];
-    	}
-    	return $data;
     }
     
     
