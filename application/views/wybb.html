@@ -18,7 +18,8 @@
 {{include file="header.html"}}
     <div class="app-tit"><span>我要报备</span></div>
     <div class="wybb">
-      <form method="post" action="{{site_url url='user/save_bb'}}" class="am-form" data-am-validator>
+      <form method="post" {{if $admin_group == 5}}action="{{site_url url='md_manager/save_bb'}}"{{else}}action="{{site_url url='user/save_bb'}}"{{/if}} class="am-form" data-am-validator>
+      
       <fieldset>
         <div class="am-form-group">
             <label for="doc-select-1">选择项目 :</label>

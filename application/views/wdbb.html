@@ -123,7 +123,7 @@
     </section>
     <div class="amz-toolbar" id="amz-toolbar">
       <!-- 添加新数据 -->
-      <a href="{{site_url url='user/wybb'}}" class="am-icon-btn am-icon-plus"></a>
+      <a href="{{if $admin_group == 5}}{{site_url url='md_manager/wybb'}}{{else}}{{site_url url='user/wybb'}}{{/if}}" class="am-icon-btn am-icon-plus"></a>
       <!-- 菜单 -->
       <!-- 左侧侧滑菜单 -->
       {{include file="menu.html"}}
@@ -164,7 +164,7 @@
     <!-- 搜索 -->
      <div class="am-modal-actions" id="my-actions-search">
       <div class="am-modal-actions-group">
-        <form action="{{site_url url='user/wdbb/1'}}" class="am-form" method="post">
+        <form action="{{if $admin_group == 5}}{{site_url url='md_manager/wdbb/1'}}{{else}}{{site_url url='user/wdbb/1'}}{{/if}}" class="am-form" method="post">
           <fieldset>
             <div class="am-form-group">
               <select id="doc-select-1"  name="project_id">
@@ -232,7 +232,7 @@
 <script src="/assets/js/amazeui.min.js"></script>
 <script>
 function get_search(page){
-	$('form').attr('action',"{{site_url url='user/wdbb'}}"+"/" + page);
+	$('form').attr('action',"{{if $admin_group == 5}}{{site_url url='md_manager/wdbb'}}{{else}}{{site_url url='user/wdbb'}}{{/if}}"+"/" + page);
 	$("form").submit();
 }
 var callFn = function(){
@@ -243,7 +243,7 @@ function del_bb(id){
 	$("#my-confirm-del").modal({
 		relatedTarget: this,
 		onConfirm:function(){
-			$.get("{{site_url url='user/del_bb'}}/"+id,function(data){
+			$.get("{{if $admin_group == 5}}{{site_url url='md_manager/del_bb'}}{{else}}{{site_url url='user/del_bb'}}{{/if}}/"+id,function(data){
 				if(data == '1'){
 					$("#my-modal-loading").modal();
 					setTimeout(callFn,1200); 
@@ -256,7 +256,7 @@ function del_bb(id){
 //重新报备
 function re_bb(id){
 	$("#clear_action"+id).click();
-	$.get("{{site_url url='user/re_bb'}}/"+id,function(data){
+	$.get("{{if $admin_group == 5}}{{site_url url='md_manager/re_bb'}}{{else}}{{site_url url='user/re_bb'}}{{/if}}/"+id,function(data){
 		if(data == '1'){
 			$("#my-modal-loading").modal();
 			setTimeout(callFn,1200); 
@@ -271,7 +271,7 @@ function re_bz(id){
 		relatedTarget: this,
 		onConfirm:function(){
 			remark = $("#c_remark_"+id).val();
-			$.post("{{site_url url='user/save_bz'}}",{id:id,remark:remark},function(data){
+			$.post("{{if $admin_group == 5}}{{site_url url='md_manager/save_bz'}}{{else}}{{site_url url='user/save_bz'}}{{/if}}",{id:id,remark:remark},function(data){
 				if(data == '1'){
 					$("#my-modal-loading").modal();
 					setTimeout(callFn,1200); 
@@ -293,7 +293,7 @@ function other_bb(id){
    		$("#my-prompt"+id).find("input[name='rbb_project[]']:checked").each(function (i, n) {
    		    project_id.push(n.value);
    		});
-   		$.post("{{site_url url='user/save_re_bb'}}",{id:id,project_id:project_id},function(data){
+   		$.post("{{if $admin_group == 5}}{{site_url url='md_manager/save_re_bb'}}{{else}}{{site_url url='user/save_re_bb'}}{{/if}}",{id:id,project_id:project_id},function(data){
    			if(data == '1'){
    				$("#my-modal-loading").modal();
    				setTimeout(callFn,1200); 

@@ -6,18 +6,42 @@
     	<li class="">
           <a href="{{site_url url='user'}}" class="">个人中心</a>
         </li>
+        {{if $admin_group == 3}}
         <li class="">
-          <a href="{{site_url url='user/wdbb'}}" class="">我的报备</a>
+          <a href="{{site_url url='user/wdbb'}}" class="">我的报备</a><!-- 业务员 -->
         </li>
         <li class="">
-          <a href="{{site_url url='user/wybb'}}" class="">我要报备</a>
+          <a href="{{site_url url='user/wybb'}}" class="">我要报备</a><!-- 业务员 -->
+        </li>
+        {{/if}}
+        
+        {{if $admin_group == 5}}
+        <li class="">
+          <a href="{{site_url url='md_manager/wdbb'}}" class="">我的报备</a><!-- 门店 -->
         </li>
         <li class="">
-          <a href="{{site_url url='wl_manager/huoyue'}}" class="">报备排名</a>
+          <a href="{{site_url url='md_manager/wybb'}}" class="">我要报备</a><!-- 门店 -->
         </li>
         <li class="">
-          <a href="{{site_url url='wl_manager/qy_company'}}" class="">签约公司</a>
+          <a href="{{site_url url='md_manager/list_ywy'}}" class="">业务员管理</a><!-- 门店 -->
         </li>
+        <li class="">
+          <a href="{{site_url url='md_manager/huoyue'}}" class="">报备排名</a><!-- 门店 -->
+        </li>
+        {{/if}}
+        {{if $admin_group == 4}}
+        <li class="">
+          <a href="{{site_url url='wl_manager/huoyue'}}" class="">报备排名</a><!-- 渠道 -->
+        </li>
+        <li class="">
+          <a href="{{site_url url='wl_manager/qy_company'}}" class="">签约公司</a><!-- 渠道 -->
+        </li>
+        {{/if}}
+        {{if $admin_group == 2}}
+        <li class="">
+          <a href="{{site_url url='kf_manager/m_list_bb'}}" class="">审核管理</a><!-- 客服 -->
+        </li>
+        {{/if}}
         
         <li class="">
           <a href="{{site_url url='login/change_pwd'}}" class="">修改密码</a>
