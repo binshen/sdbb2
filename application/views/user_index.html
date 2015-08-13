@@ -16,7 +16,7 @@
 <body>
 <div class="am-g">
     {{include file="header.html"}}
-    <form method="post" action="{{if $admin_group == 5}}{{site_url url='md_manager/admin_bb_list'}}{{else if $admin_group == 1}}{{site_url url='admin/admin_bb_list'}}{{else}}{{/if}}">
+    <form method="post" action="{{if $admin_group == 5}}{{site_url url='md_manager/admin_bb_list'}}{{else if $admin_group == 1}}{{site_url url='admin/admin_bb_list'}}{{else}}{{site_url url='user/wdbb'}}{{/if}}">
     <input type="hidden" name="status" />
     <ul class="admin-content-list">
       <li>
