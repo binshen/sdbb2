@@ -99,7 +99,7 @@
 .am-txt-fr .green{}
 /*活跃度查询*/
 .am-tab-nav {margin:1rem 1rem;display: box;display:-webkit-box;display:-moz-box;padding:0em; overflow: hidden;zoom:1; width: 94%;}
-.am-tab-nav li{padding:0.5rem 0;list-style: none; float: left; box-flex:1;-webkit-box-flex:1; -moz-box-flex:1; text-align: center; display: block; }
+.am-tab-nav li{padding:0.5rem 0;list-style: none; box-flex:1;-webkit-box-flex:1; -moz-box-flex:1; text-align: center;  }
 .am-tab-nav li a{color: #3bb4f2;}
 .am-tab-nav .am-active{ background: #3bb4f2;}
 .am-tab-nav .am-active a{color: #fff;}
@@ -123,6 +123,4 @@
 
 .am-bfzqt .am-checkbox .am-icon-unchecked,.am-bfzqt .am-checkbox .am-icon-checked{left:4.5rem;}
 
-.am-menu-offcanvas1 .am-menu-sub{padding:0;}
-.am-menu-nav .am-in li{ width: 100%;padding:0rem 2rem; border-bottom:2px solid rgba(0,0,0,.3)}
-.am-menu-nav .am-in li:last-child{border-bottom: none;}
+.am-nav-header { color: #777;background: #404040;text-shadow: 0 1px 0 rgba(0,0,0,.5); font-weight: 400; font-size: 75%; margin-top: 0; margin-bottom: 0;}
