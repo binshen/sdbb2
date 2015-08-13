@@ -32,15 +32,14 @@
       <ul class="am-ul-rank">
       {{foreach from=$data.res_list item=row key=k}}
         <li>
-            {{if $data.pageNum == 1}}{{if $k lte 2}}<span class="r-house"><i class="am-icon-bookmark"><em>{{$k+1}}</em>{{/if}}{{/if}}</i>{{$row.company_name}}</span>
+            {{if $data.pageNum == 1}}{{if $k lte 2}}<span class="r-house"><i class="am-icon-bookmark"><em>{{$k+1}}</em>{{/if}}{{/if}}</i>{{$row.rel_name}}</span>
             <span><i class="am-icon-calendar-o"></i>
             {{if $data.type == 1}}报备数量:<em class="orange">{{$row.bb_count}}</em>{{/if}}
             {{if $data.type == 2}}带看数量:<em class="orange">{{$row.dk_count}}</em>{{/if}}
             {{if $data.type == 3}}成交数量:<em class="orange">{{$row.qy_count}}</em>{{/if}}
             
             组 </span>
-            <span><i class="am-icon-file-text"></i>公司邀请码：{{$row.yqm}}</span>
-            <span><i class="am-icon-user"></i>对接经理：{{$row.rel_name}}</span>
+            <span><i class="am-icon-file-text"></i>邀请码：{{$row.yqm}}</span>
             <span><i class="am-icon-phone"></i>联系手机：{{$row.username}}</span>
         </li>
       {{/foreach}}
