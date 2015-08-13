@@ -28,6 +28,9 @@
         <li class="">
           <a href="{{site_url url='md_manager/huoyue'}}" class="">报备排名</a><!-- 门店 -->
         </li>
+        <li class="">
+          <a href="{{site_url url='md_manager/admin_bb_list'}}" class="">报备总列表</a><!-- 门店 -->
+        </li>
         {{/if}}
         {{if $admin_group == 4}}
         <li class="">
@@ -40,6 +43,20 @@
         {{if $admin_group == 2}}
         <li class="">
           <a href="{{site_url url='kf_manager/m_list_bb'}}" class="">审核管理</a><!-- 客服 -->
+        </li>
+        {{/if}}
+        {{if $admin_group == 1}}
+        <li class="">
+          <a href="{{site_url url='admin/kfjlgl'}}" class="">客服经理管理</a><!-- 管理员 -->
+        </li>
+        <li class="">
+          <a href="{{site_url url='admin/admin_bb_list'}}" class="">报备总列表</a><!-- 管理员 -->
+        </li>
+        <li class="">
+          <a href="{{site_url url='admin/qdjlgl'}}" class="">渠道经理管理</a><!-- 管理员 -->
+        </li>
+        <li class="">
+          <a href="{{site_url url='admin/projects'}}" class="">项目管理</a><!-- 管理员 -->
         </li>
         {{/if}}
         

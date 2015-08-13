@@ -1,0 +1,126 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>客服经理管理</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="renderer" content="webkit">
+  <meta content="telephone=no" name="format-detection" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <link rel="stylesheet" href="/assets/css/amazeui.min.css">
+  <link rel="stylesheet" href="/assets/css/app.css">
+</head>
+<body>
+<div class="am-g">
+    {{include file="header.html"}}
+     <div class="app-tit">
+      <span class="mark">客服经理列表</span>
+    </div>
+    <section data-am-widget="accordion" class="am-accordion am-accordion-default"
+    data-am-accordion='{}'>
+    {{foreach from=$data item=row}}
+      <dl class="am-accordion-item">
+        <dt class="am-accordion-title">
+          <div class="fl">
+            <span><i class="am-icon-users"></i>{{$row.rel_name}}</span>
+            <span><i class="am-icon-phone"></i>{{$row.username}}</span>
+          </div>
+          <div class="fr">
+            <span><i class="am-icon-angle-down"></i></span>
+          </div>
+        </dt>
+        <dd class="am-accordion-bd am-collapse">
+          <!-- 规避 Collapase 处理有 padding 的折叠内容计算计算有误问题， 加一个容器 -->
+          <div class="am-accordion-content">
+             	{{foreach from=$row.project item=roww}}
+				<p><i class="am-front-icon am-icon-tag"></i>{{$roww.project_name}}</p>
+				{{/foreach}}
+             <button type="button" class="am-btn am-btn-secondary" data-am-modal="{target: '#my-popup-edit-{{$row.id}}'}"><i class="am-icon-cog"></i>编辑</button>
+          </div>
+        </dd>
+      </dl>
+	 <div class="am-popup" id="my-popup-edit-{{$row.id}}">
+      <div class="am-popup-inner">
+        <div class="am-popup-hd">
+          <h4 class="am-popup-title">修改客服经理</h4>
+          <span data-am-modal-close class="am-close">&times;</span>
+        </div>
+        <div class="am-popup-bd">
+          <form method="post" action="{{site_url url='admin/save_kfjl'}}" class="am-form" data-am-validator>
+            <fieldset>
+              <div class="am-form-group">
+                <label for="doc-vld-name">客服经理：</label>
+                <input type="text" id="doc-vld-name" name="rel_name"  placeholder="输入业务员" value="{{$row.rel_name}}" class="am-form-field" required/>
+                <input type="hidden" name="id" value="{{$row.id}}">
+              </div>
+              <div class="am-form-group">
+                <label for="doc-vld-name">手机号码：</label>
+                <input type="text" id="doc-vld-name" name="username" placeholder="输入手机号码" value="{{$row.username}}" pattern="^1\d{10}$" class="am-form-field" required/>
+              </div>
+              <div class="am-form-group">
+                <label for="doc-vld-name">所属项目：</label>
+                	{{foreach from=$projects item=item}}
+					<label class="am-checkbox">
+					
+      				<input type="checkbox" name="project_id[]" value="{{$item.id}}" {{foreach from=$row.project item=itemm}}{{if $item.id == $itemm.project_id}}checked='checked'{{/if}}{{/foreach}} data-am-ucheck required> {{$item.project}}
+      				
+			        </label>
+					{{/foreach}}
+              </div>
+              <button class="am-btn" type="submit">提交</button>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+  	</div>
+    {{/foreach}}
+    </section>
+    <div class="amz-toolbar" id="amz-toolbar">
+      <!-- 菜单 -->
+      <a href="javascript:void(0)" class="am-icon-btn am-icon-plus" data-am-modal="{target: '#my-popup-add'}"></a>
+      <!-- 左侧侧滑菜单 -->
+      {{include file="menu.html"}}
+    </div>
+    <div class="am-popup" id="my-popup-add">
+      <div class="am-popup-inner">
+        <div class="am-popup-hd">
+          <h4 class="am-popup-title">新增客服经理</h4>
+          <span data-am-modal-close class="am-close">&times;</span>
+        </div>
+        <div class="am-popup-bd">
+          <form method="post" action="{{site_url url='admin/save_kfjl'}}" class="am-form" data-am-validator>
+            <fieldset>
+              <div class="am-form-group">
+                <label for="doc-vld-name">客服经理：</label>
+                <input type="text" id="doc-vld-name" name="rel_name"  placeholder="输入业务员" class="am-form-field" required/>
+              </div>
+              <div class="am-form-group">
+                <label for="doc-vld-name">手机号码：</label>
+                <input type="text" id="doc-vld-name" name="username" placeholder="输入手机号码" pattern="^1\d{10}$" class="am-form-field" required/>
+              </div>
+              <div class="am-form-group">
+                <label for="doc-vld-name">所属项目：</label>
+                	{{foreach from=$projects item=row}}
+					<label class="am-checkbox">
+      				<input type="checkbox" name="project_id[]"  value="{{$row.id}}" data-am-ucheck required> {{$row.project}}
+			        </label>
+					{{/foreach}}
+              </div>
+              <button class="am-btn" type="submit">提交</button>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </div>
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/amazeui.min.js"></script>
+<script>
+function get_search(page){
+	location.href = "{{site_url url='md_manager/list_ywy'}}/"+page;
+}
+</script>
+</body>
+</html>

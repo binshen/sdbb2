@@ -197,69 +197,132 @@ class User_model extends MY_Model
 			$where = "t.yqm in (select yqm from admin where manager_id in (select id from admin where manager_id = {$this->session->userdata('userid')}))";
 		}else if($this->session->userdata('admin_group') == 3){//业务员
 			$where = "t.yqm = '{$yqm}'";
+		}else if($this->session->userdata('admin_group') == 5){//门店经理
+			$where = "t.yqm in (select yqm from admin where manager_id  = {$this->session->userdata('userid')} or id = {$this->session->userdata('userid')})";
 		}
-		$sql = "SELECT
-					*
-				FROM
-					(
-						SELECT
-							count(t.id) AS zbb,
-							count(a.id) AS wbb,
-							count(b.id) AS mbb
-						FROM
-							main_list t
-						LEFT JOIN main_list a ON t.id = a.id
-						AND a.cdate >= date_add(NOW(), INTERVAL - 7 DAY)
-						LEFT JOIN main_list b ON t.id = b.id
-						AND b.cdate >= date_add(NOW(), INTERVAL - 30 DAY)
-						WHERE
-							{$where}
-						AND t. STATUS != - 1
-					) a,
-					(
-						SELECT
-							count(t.id) AS zdk,
-							count(a.id) AS wdk,
-							count(b.id) AS mdk
-						FROM
-							main_list t
-						LEFT JOIN main_list a ON t.id = a.id
-						AND a.ddate >= date_add(NOW(), INTERVAL - 7 DAY)
-						LEFT JOIN main_list b ON t.id = b.id
-						AND b.ddate >= date_add(NOW(), INTERVAL - 30 DAY)
-						WHERE
-							{$where}
-					) b,
-					(
-						SELECT
-							count(t.id) AS zcj,
-							count(a.id) AS wcj,
-							count(b.id) AS mcj
-						FROM
-							main_list t
-						LEFT JOIN main_list a ON t.id = a.id
-						AND a.cjdate >= date_add(NOW(), INTERVAL - 7 DAY)
-						LEFT JOIN main_list b ON t.id = b.id
-						AND b.cjdate >= date_add(NOW(), INTERVAL - 30 DAY)
-						WHERE
-							{$where}
-						AND t. STATUS = 5
-					) c,
-					(
-						SELECT
-							count(t.id) AS zdq,
-							count(a.id) AS ddq,
-							count(b.id) AS qdq
-						FROM
-							main_list t
-						LEFT JOIN main_list a ON t.id = a.id
-						AND a.status = 2
-						LEFT JOIN main_list b ON t.id = b.id
-						AND b.status = 4
-						WHERE
-							t.yqm = {$where}
-						AND (t. STATUS = 2 OR t. STATUS = 4)
-					) d";
+		if($this->session->userdata('admin_group') == 1){
+			$sql = "SELECT
+			*
+			FROM
+			(
+			SELECT
+			count(t.id) AS zbb,
+			count(a.id) AS wbb,
+			count(b.id) AS mbb
+			FROM
+			main_list t
+			LEFT JOIN main_list a ON t.id = a.id
+			AND a.cdate >= date_add(NOW(), INTERVAL - 7 DAY)
+			LEFT JOIN main_list b ON t.id = b.id
+			AND b.cdate >= date_add(NOW(), INTERVAL - 30 DAY)
+			WHERE
+			t. STATUS != - 1
+			) a,
+			(
+			SELECT
+			count(t.id) AS zdk,
+			count(a.id) AS wdk,
+			count(b.id) AS mdk
+			FROM
+			main_list t
+			LEFT JOIN main_list a ON t.id = a.id
+			AND a.ddate >= date_add(NOW(), INTERVAL - 7 DAY)
+			LEFT JOIN main_list b ON t.id = b.id
+			AND b.ddate >= date_add(NOW(), INTERVAL - 30 DAY)
+			where t. STATUS = 3
+			) b,
+			(
+			SELECT
+			count(t.id) AS zcj,
+			count(a.id) AS wcj,
+			count(b.id) AS mcj
+			FROM
+			main_list t
+			LEFT JOIN main_list a ON t.id = a.id
+			AND a.cjdate >= date_add(NOW(), INTERVAL - 7 DAY)
+			LEFT JOIN main_list b ON t.id = b.id
+			AND b.cjdate >= date_add(NOW(), INTERVAL - 30 DAY)
+			WHERE t. STATUS = 5
+			) c,
+			(
+			SELECT
+			count(t.id) AS zdq,
+			count(a.id) AS ddq,
+			count(b.id) AS qdq
+			FROM
+			main_list t
+			LEFT JOIN main_list a ON t.id = a.id
+			AND a.status = 2
+			LEFT JOIN main_list b ON t.id = b.id
+			AND b.status = 4
+			WHERE (t. STATUS = 2 OR t. STATUS = 4)
+			) d";
+		}else{
+			$sql = "SELECT
+			*
+			FROM
+			(
+			SELECT
+			count(t.id) AS zbb,
+			count(a.id) AS wbb,
+			count(b.id) AS mbb
+			FROM
+			main_list t
+			LEFT JOIN main_list a ON t.id = a.id
+			AND a.cdate >= date_add(NOW(), INTERVAL - 7 DAY)
+			LEFT JOIN main_list b ON t.id = b.id
+			AND b.cdate >= date_add(NOW(), INTERVAL - 30 DAY)
+			WHERE
+			{$where}
+			AND t. STATUS != - 1
+			) a,
+			(
+			SELECT
+			count(t.id) AS zdk,
+			count(a.id) AS wdk,
+			count(b.id) AS mdk
+			FROM
+			main_list t
+			LEFT JOIN main_list a ON t.id = a.id
+			AND a.ddate >= date_add(NOW(), INTERVAL - 7 DAY)
+			LEFT JOIN main_list b ON t.id = b.id
+			AND b.ddate >= date_add(NOW(), INTERVAL - 30 DAY)
+			WHERE
+			{$where}
+			AND t. STATUS = 3
+			) b,
+			(
+			SELECT
+			count(t.id) AS zcj,
+			count(a.id) AS wcj,
+			count(b.id) AS mcj
+			FROM
+			main_list t
+			LEFT JOIN main_list a ON t.id = a.id
+			AND a.cjdate >= date_add(NOW(), INTERVAL - 7 DAY)
+			LEFT JOIN main_list b ON t.id = b.id
+			AND b.cjdate >= date_add(NOW(), INTERVAL - 30 DAY)
+			WHERE
+			{$where}
+			AND t. STATUS = 5
+			) c,
+			(
+			SELECT
+			count(t.id) AS zdq,
+			count(a.id) AS ddq,
+			count(b.id) AS qdq
+			FROM
+			main_list t
+			LEFT JOIN main_list a ON t.id = a.id
+			AND a.status = 2
+			LEFT JOIN main_list b ON t.id = b.id
+			AND b.status = 4
+			WHERE
+			t.yqm = {$where}
+			AND (t. STATUS = 2 OR t. STATUS = 4)
+			) d";
+		}
+		
 		$query = $this->db->query($sql);
 		$data = $query->row_array();
 		return $data;
@@ -711,6 +774,191 @@ class User_model extends MY_Model
     		$this->db->where('manager_id','a');
     	$data = $this->db->get()->row_array();
     	return $data;
+    }
+    
+    public function admin_bb_list(){
+    	$per_page=10;//每页显示多少调数据
+    	$this->db->select('count(1) num');
+    	$this->db->from("{$this->tables[0]} a");
+    	if($this->session->userdata('admin_group') == 1){
+    		$where = '(1=1)';
+    	}else{
+    		$where="(a.yqm in (select yqm from admin where manager_id = {$this->session->userdata('userid')} or id = {$this->session->userdata('userid')}))";
+    	}
+    	$this->db->where($where);
+    	
+    	
+    	$this->db->where_in('status',array(1,2,3,4,5,-2));
+    	if($this->input->post('status')){
+    		$this->db->where('status',$this->input->post('status'));
+    	}
+    	
+    	if($this->input->post('project_id')){
+    		$this->db->where('project_id',$this->input->post('project_id'));
+    	}
+    	
+    	$rs_total = $this->db->get()->row();
+    	//总记录数
+    	$total_rows = $rs_total->num;
+    	$total_page = ceil($total_rows/$per_page); //总页数
+    	$pageNum=$this->uri->segment(3)?$this->uri->segment(3):1;//当前页
+    	
+    	if($pageNum > $total_page & $total_rows > 0 || $pageNum <1){
+    		echo "<meta http-equiv='Content-Type' content='text/html; charset=utf-8'><script>alert('页码错误');history.back();</script>";
+    		exit();
+    	}
+    	$data['total_rows'] = $total_rows;
+    	$data['total_page'] = $total_page;
+    	$data['pageNum'] = $pageNum;
+    	
+    	$data['status']='';
+    	$data['project_id']='';
+    	
+    	//list
+    	$this->db->select("a.*,project project,c.rel_name");
+    	$this->db->from("{$this->tables[0]} a");
+    	$this->db->join("{$this->tables[1]} b","a.project_id =b.id","left");
+    	$this->db->join("{$this->tables[2]} c","a.yqm =c.yqm","left");
+    	$this->db->where($where);
+    	$this->db->where_in('status',array(1,2,3,4,5,-2));
+    	if($this->input->post('status')){
+    		$this->db->where('status',$this->input->post('status'));
+    		$data['status'] = $this->input->post('status');
+    	}
+    	 
+    	if($this->input->post('project_id')){
+    		$this->db->where('project_id',$this->input->post('project_id'));
+    		$data['project_id'] = $this->input->post('project_id');
+    	}
+    	
+    	$this->db->limit($per_page, ($pageNum - 1) * $per_page );
+    	$this->db->order_by('cdate','desc');
+    	$data['res_list'] = $this->db->get()->result_array();
+    	
+    	return $data;
+    }
+    
+    //管理员功能相关////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //列出经理
+    public function list_managers(){
+    	$data = $this->db->select('a.id,a.username,a.rel_name,project_id,project')->from("{$this->tables[2]} a")->join("{$this->tables[3]} b","a.id=b.manager_id","left")
+    	->join("{$this->tables[1]} c","b.project_id=c.id")
+    	->where('admin_group','2')->get()->result_array();
+    	$data_n = array();
+    	foreach($data as $k=>$v){
+    		if(isset($data_n[$v['id']])){
+    			$data_n[$v['id']]['project'][] = array('project_id'=>$v['project_id'],'project_name'=>$v['project']);
+    		}else{
+    			$data_n[$v['id']]['id'] = $v['id'];
+    			$data_n[$v['id']]['username'] = $v['username'];
+    			$data_n[$v['id']]['rel_name'] = $v['rel_name'];
+    			$data_n[$v['id']]['project'][] = array('project_id'=>$v['project_id'],'project_name'=>$v['project']);
+    		}
+    
+    	}
+    	return $data_n;
+    }
+    
+    
+    
+    //删除经理
+    public function del_m(){
+    	$this->db->trans_start();
+    	$this->db->where('id',$this->input->post('m_id'));
+    	$this->db->delete($this->tables[2]);
+    	$this->db->where('manager_id',$this->input->post('m_id'));
+    	$this->db->delete($this->tables[3]);
+    	$this->db->trans_complete();
+    	if ($this->db->trans_status() === FALSE) {
+    		return -1;
+    	} else {
+    		return 1;
+    	}
+    }
+    
+    //保存经理
+    public function save_kfjl(){
+    	$this->db->trans_start();
+    	$project_id = $this->input->post('project_id');
+    
+    	if($this->input->post('id')){
+    		$this->db->where('manager_id',$this->input->post('id'));
+    		$this->db->delete($this->tables[3]);
+    		foreach($project_id as $v){
+    			$this->db->insert($this->tables[3],array('manager_id'=>$this->input->post('id'),'project_id'=>$v));
+    		}
+    	}else{//新增
+    		$rsb = $this->db->select('count(username) username')->from($this->tables[2])->where('username',$this->input->post('username'))->get()->row();
+    		if($rsb->username)
+    			return -1;
+    		$data = array(
+    				'username'=>$this->input->post('username'),
+    				'passwd'=>sha1('888888'),
+    				'rel_name'=>$this->input->post('rel_name'),
+    				'admin_group'=>'2',
+    				'phone'=>$this->input->post('username'),
+    				'manager_id'=>'0',
+    				'cdate'=>date('Y-m-d H:i:s',time())
+    		);
+    		$rs = $this->db->insert($this->tables[2],$data);
+    		$id = $this->db->insert_id();
+    		foreach($project_id as $v){
+    			$this->db->insert($this->tables[3],array('manager_id'=>$id,'project_id'=>$v));
+    		}
+    	}
+    
+    	$this->db->trans_complete();
+    	if ($this->db->trans_status() === FALSE) {
+    		return -99;
+    	} else {
+    		return 1;
+    	}
+    }
+    
+    function get_kfjl($id){
+    	$data = $this->db->select('id,username,rel_name')->from($this->tables[2])->where('id',$id)->get()->row_array();
+    	$list = $this->db->select('project_id')->from($this->tables[3])->where('manager_id',$id)->get()->result_array();
+    	foreach($list as $k=>$v){
+    		$data['list'][] = $v['project_id'];
+    	}
+    	return $data;
+    }
+    
+    
+    //列出渠道经理
+    public function list_qdjl(){
+    	$data = $this->db->select('id,rel_name,username')->from($this->tables[2])->where('admin_group','4')->get()->result_array();
+    	return $data;
+    }
+    
+    //保存渠道经理
+    public function save_qdjl(){
+    	$this->db->trans_start();
+    	if($this->input->post('id')){
+    		$this->db->where('id',$this->input->post('id'));
+    		$this->db->update($this->tables[2],array('username'=>$this->input->post('username'),'phone'=>$this->input->post('username'),'rel_name'=>$this->input->post('rel_name')));
+    	}else{//新增
+    		$rsb = $this->db->select('count(username) username')->from($this->tables[2])->where('username',$this->input->post('username'))->get()->row();
+    		if($rsb->username)
+    			return -1;
+    		$data = array(
+    				'username'=>$this->input->post('username'),
+    				'passwd'=>sha1('888888'),
+    				'rel_name'=>$this->input->post('rel_name'),
+    				'admin_group'=>'4',
+    				'phone'=>$this->input->post('username'),
+    				'manager_id'=>'0',
+    				'cdate'=>date('Y-m-d H:i:s',time())
+    		);
+    		$rs = $this->db->insert($this->tables[2],$data);
+    	}
+    
+    	$this->db->trans_complete();
+    	if ($this->db->trans_status() === FALSE) {
+    		return -99;
+    	} else {
+    		return 1;
+    	}
     }
 	
 

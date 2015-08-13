@@ -25,32 +25,27 @@ class Admin extends MY_Controller {
 	        if($this->session->userdata('admin_group') === '5')
 	        	redirect('md_manager');//门店经理
         }
-        $this->load->model('admin_model');
+        $this->load->model('user_model');
 		$projects = $this->sysconfig_model->get_projects();
         $this->cismarty->assign('projects',$projects);
-        $this->cismarty->assign('flag','d');
     }
     
     //默认首页
     public function index()
     {
-        $data = $this->admin_model->get_admin_data();
-    	$this->cismarty->assign('all_count',$data);
-    	$this->cismarty->display('admin.html');
+    	$data = $this->user_model->get_bb_count();
+    	$this->cismarty->assign('data',$data);
+    	$this->cismarty->display('user_index.html');
     }
     
     public function kfjlgl(){
-    	$data = $this->admin_model->list_managers();
+    	$data = $this->user_model->list_managers();
     	$this->cismarty->assign('data',$data);
     	$this->cismarty->display('kfjlgl.html');
     }
     
-    public function add_kfjl(){
-    	$this->cismarty->display('kfjlgl.html');
-    }
-    
     public function save_kfjl(){
-    	$rs = $this->admin_model->save_kfjl();
+    	$rs = $this->user_model->save_kfjl();
     	if($rs == '1'){
     		$this->show_message('保存成功！',site_url('admin/kfjlgl'),'1');
     	}
@@ -62,24 +57,15 @@ class Admin extends MY_Controller {
     	}
     }
     
-    function get_kfjl($id){
-    	$data = $this->admin_model->get_kfjl($id);
-    	echo json_encode($data);
-    }
-    
     
     public function qdjlgl(){
-    	$data = $this->admin_model->list_qdjl();
+    	$data = $this->user_model->list_qdjl();
     	$this->cismarty->assign('data',$data);
     	$this->cismarty->display('qdjlgl.html');
     }
     
-    public function add_qdjl(){
-    	$this->cismarty->display('kfjlgl.html');
-    }
-    
     public function save_qdjl(){
-    	$rs = $this->admin_model->save_qdjl();
+    	$rs = $this->user_model->save_qdjl();
     	if($rs == '1'){
     		$this->show_message('保存成功！',site_url('admin/qdjlgl'),'1');
     	}
@@ -91,21 +77,16 @@ class Admin extends MY_Controller {
     	}
     }
     
-    
-    function get_qdjl($id){
-    	$data = $this->admin_model->get_qdjl($id);
-    	echo json_encode($data);
-    }
-    
     public function projects(){
     	$this->cismarty->display('projects.html');
     }
     
-    
-    public function main_list(){
-    	$data = $this->sysconfig_model->main_list();
+    public function admin_bb_list(){
+    	$projects = $this->sysconfig_model->get_projects();
+    	$this->cismarty->assign('projects',$projects);
+    	$data = $this->user_model->admin_bb_list();
     	$this->cismarty->assign('data',$data);
-    	$this->cismarty->display('main_list.html');
+    	$this->cismarty->display('admin_bb_list.html');
     }
     
     

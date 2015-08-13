@@ -1,0 +1,51 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>业务员管理</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="renderer" content="webkit">
+  <meta content="telephone=no" name="format-detection" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <link rel="stylesheet" href="/assets/css/amazeui.min.css">
+  <link rel="stylesheet" href="/assets/css/app.css">
+</head>
+<body>
+<div class="am-g">
+    {{include file="header.html"}}
+     <div class="app-tit">
+      <span class="mark">项目列表</span>
+    </div>
+    <section data-am-widget="accordion" class="am-accordion am-accordion-default"
+    data-am-accordion='{}'>
+    {{foreach from=$projects item=row key=k}}
+      <dl class="am-accordion-item">
+        <dt class="am-accordion-title">
+          <div class="fl">
+            <span><i class="am-icon-tag"></i>{{$row.project}}</span>
+          </div>
+          <div class="fr">
+            <span><i class="am-icon-angle-down"></i></span>
+          </div>
+        </dt>
+        <dd class="am-accordion-bd am-collapse">
+          <!-- 规避 Collapase 处理有 padding 的折叠内容计算计算有误问题， 加一个容器 -->
+          <div class="am-accordion-content">
+            <p>报备有效期：  {{$row.bb_valid}} 天</p>
+			<p>带看效期：  {{$row.qy_valid}} 天</p>
+			<p>佣金： {{$row.remark}}</p>
+          </div>
+        </dd>
+      </dl>
+    {{/foreach}}
+    </section>
+    <div class="amz-toolbar" id="amz-toolbar">
+      {{include file="menu.html"}}
+    </div>
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/amazeui.min.js"></script>
+</body>
+</html>

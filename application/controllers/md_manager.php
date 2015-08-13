@@ -28,16 +28,15 @@ class Md_manager extends MY_Controller {
         }
 		$projects = $this->sysconfig_model->get_projects();
         $this->cismarty->assign('projects',$projects);
-        $this->cismarty->assign('flag','d');
         $this->cismarty->assign('rel_name',$this->session->userdata('rel_name'));
     }
     
     //默认首页
     public function index()
     {
-    	$data = $this->user_model->get_md_data();
-    	$this->cismarty->assign('all_count',$data);
-    	$this->cismarty->display('md_manager.html');
+    	$data = $this->user_model->get_bb_count();
+    	$this->cismarty->assign('data',$data);
+    	$this->cismarty->display('user_index.html');
     }
     
 //    public function qy_company(){
@@ -46,6 +45,15 @@ class Md_manager extends MY_Controller {
 //    	$this->cismarty->display('md_company.html');
 //    }
 //    
+
+    public function admin_bb_list(){
+    	$projects = $this->sysconfig_model->get_projects();
+    	$this->cismarty->assign('projects',$projects);
+    	$data = $this->user_model->admin_bb_list();
+    	$this->cismarty->assign('data',$data);
+    	$this->cismarty->display('admin_bb_list.html');
+    }
+    
     public function save_ywy(){
     	$rs = $this->user_model->save_ywy();
     	if($rs == '1'){
@@ -72,12 +80,6 @@ class Md_manager extends MY_Controller {
     	$data = $this->user_model->md_huoyue($type);
     	$this->cismarty->assign('data',$data);
     	$this->cismarty->display('md_huoyue.html');
-    }
-    
-    public function main_list(){
-    	$data = $this->sysconfig_model->main_list();
-    	$this->cismarty->assign('data',$data);
-    	$this->cismarty->display('main_list.html');
     }
     
     public function wybb($project_id=''){
