@@ -34,9 +34,9 @@
         <li>
             {{if $data.pageNum == 1}}{{if $k lte 2}}<span class="r-house"><i class="am-icon-bookmark"><em>{{$k+1}}</em>{{/if}}{{/if}}</i>{{$row.company_name}}</span>
             <span><i class="am-icon-calendar-o"></i>
-            {{if $data.type == 1}}报备数量:{{$row.bb_count}}{{/if}}
-            {{if $data.type == 2}}带看数量:{{$row.dk_count}}{{/if}}
-            {{if $data.type == 3}}成交数量:{{$row.qy_count}}{{/if}}
+            {{if $data.type == 1}}报备数量:<em class="orange">{{$row.bb_count}}</em>{{/if}}
+            {{if $data.type == 2}}带看数量:<em class="orange">{{$row.dk_count}}</em>{{/if}}
+            {{if $data.type == 3}}成交数量:<em class="orange">{{$row.qy_count}}</em>{{/if}}
             
             组 </span>
             <span><i class="am-icon-file-text"></i>公司邀请码：{{$row.yqm}}</span>
