@@ -39,6 +39,8 @@
           <!-- 规避 Collapase 处理有 padding 的折叠内容计算计算有误问题， 加一个容器 -->
           <div class="am-accordion-content">
              <p><i class="am-front-icon am-icon-phone"></i>电话：{{$row.phone}}<a href="tel:{{$row.phone}}" class="am-btn-call am-icon-phone"></a></p>
+             <p><i class="am-front-icon am-icon-user-secret"></i>业务员：{{$row.rel_name}}</p>
+             <p><i class="am-front-icon am-icon-ra"></i>所属门店：{{if $row.company_name}}{{$row.company_name}}{{else}}{{$row.cname}}{{/if}}</p>
              <p><i class="am-front-icon am-icon-clock-o"></i>创建时间：{{$row.cdate}}</p>
              <p><i class="am-front-icon am-icon-times-circle-o"></i>带看时间：{{$row.ddate}}</p>
              <p><i class="am-front-icon am-icon-globe"></i>客户来源：{{$row.target}}</p>
