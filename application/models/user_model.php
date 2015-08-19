@@ -421,10 +421,11 @@ class User_model extends MY_Model
         $data['project_id']='';
         
         //list
-        $this->db->select("a.*,b.project,c.rel_name rel_name");
+        $this->db->select("a.*,b.project,c.rel_name rel_name,d.company_name cname");
     	$this->db->from("{$this->tables[0]} a");
     	$this->db->join("{$this->tables[1]} b","a.project_id = b.id","left");
     	$this->db->join("{$this->tables[2]} c","a.yqm = c.yqm","left");
+    	$this->db->join("{$this->tables[2]} d","c.manager_id = d.id","left");
     	$this->db->where_in('project_id',$project_arr);
     	$this->db->where_in('status',array(1,2,3,4,5));
     	if($this->input->post('status')){
