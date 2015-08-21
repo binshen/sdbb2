@@ -44,6 +44,9 @@ class User_model extends MY_Model
 			else 
 				return -99;
 		}else{//新增
+			if(!$this->input->post('k_name')){
+				return -99;
+			}
 			$rs = $this->db->select('count(1) num,yqm')->from($this->tables[0])->where('phone',$this->input->post('k_phone'))
 			->where('project_id',$this->input->post('k_project'))->get()->row();
 			$data = array(
