@@ -1,3 +1,3 @@
 <?php
-	file_get_contents("http://bb.51haopan.com/set_time");
+	file_get_contents("http://bb2.ksls.com.cn/set_time");
 ?>
