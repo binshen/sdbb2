@@ -9,7 +9,7 @@
  * @author		yaobin<645894453@qq.com>
  *
  */
-class Set_time extends MY_Controller {
+class Set_time extends CI_Controller {
     
     public function __construct()
     {
