@@ -14,10 +14,10 @@
 .app-tit .smark{padding-right:1rem;float: right; color: #333; font-size: 14px;}
 .am-accordion-default{margin:0.5rem;}
 .am-accordion-default .am-accordion-title{padding:0.5rem 0rem;}
-.am-accordion-default .am-accordion-title{font-size: 1.6rem; overflow: hidden; zoom:1;}
-.am-accordion-default .am-accordion-title span{  margin:0 0.5rem;}
-.am-accordion-default .am-accordion-title .fl{float: left; width: 67%; }
-.am-accordion-default .am-accordion-title .fr{float: right;}
+.am-accordion-default .am-accordion-title{font-size: 1.6rem; overflow: hidden; zoom:1; width: 100%;}
+.am-accordion-default .am-accordion-title span{  margin:0 0.2rem;}
+.am-accordion-default .am-accordion-title .fl{float: left; width: 75%; }
+.am-accordion-default .am-accordion-title .fr{float: right; width: 25%;}
 .am-accordion-default .am-accordion-title i{margin-right:0.2rem;}
 .am-accordion-default .am-accordion-title .am-icon-check-circle{color: #ff7c39;}
 .am-accordion-default .am-accordion-title .am-icon-exclamation-circle{color: #ff6583;}
