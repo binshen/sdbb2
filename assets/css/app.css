@@ -126,6 +126,6 @@
 
 .am-nav-header { color: #777;background: #404040;text-shadow: 0 1px 0 rgba(0,0,0,.5); font-weight: 400; font-size: 75%; margin-top: 0; margin-bottom: 0;}
 
-.am-accordion-item .s-user-name{white-space: nowrap; width:40%; overflow:hidden; -o-text-overflow: ellipsis;text-overflow:ellipsis;}
+.am-accordion-item .s-user-name{white-space: nowrap; width:45%; overflow:hidden; -o-text-overflow: ellipsis;text-overflow:ellipsis;}
 
 .am-btn-cancel{margin-right:10px; background: #c00;border-color: #c00;padding:.5em;}
