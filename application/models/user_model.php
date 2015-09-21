@@ -954,6 +954,48 @@ class User_model extends MY_Model
     		return 1;
     	}
     }
+    
+    public function reset_status($id){
+    	$this->db->trans_start();//--------开始事务
+    	
+    	$rs = $this->db->select('yqm,status')->from($this->tables[0])->where('id',$id)->get()->row();
+    	
+    	if($rs->status == '5'){
+    		$status = 3;
+    		$data = array(
+    				'status'=>$status,
+    				'cjdate'=>null
+    		);
+    	}else{
+    		$status = 1;
+    		$data = array(
+    				'status'=>$status,
+    				'ddate'=>null
+    		);
+    	}
+    	
+    	$this->db->where('id',$id);
+    	$this->db->update($this->tables[0],$data);
+    	
+    	if($status == 3){
+    		$this->db->where('yqm',$rs->yqm);
+    		$this->db->set('jifen', 'jifen-500', FALSE);
+    		$this->db->set('qy_count', 'qy_count-1', FALSE);
+    		$this->db->update($this->tables[2]);
+    	}else{
+    		$this->db->where('yqm',$rs->yqm);
+    		$this->db->set('jifen', 'jifen-50', FALSE);
+    		$this->db->set('dk_count', 'dk_count-1', FALSE);
+    		$this->db->update($this->tables[2]);
+    	}
+    	
+    	$this->db->trans_complete();//------结束事务
+    	if ($this->db->trans_status() === FALSE) {
+    		return -1;
+    	} else {
+    		return 1;
+    	}
+    }
 	
 
 	
