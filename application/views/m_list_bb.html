@@ -25,7 +25,7 @@
       <dl class="am-accordion-item">
         <dt class="am-accordion-title">
           <div class="fl">
-            <span class="s-user-name"><i class="am-icon-user"></i>{{$row.name}}</span>
+            <span class="s-user-name"><i class="am-icon-ra"></i>{{if $row.company_name}}{{$row.company_name}}{{else}}{{$row.cname}}{{/if}}</span>
             <span><i class="am-icon-calendar"></i>{{$row.cdate|date_format:"%Y-%m-%d"}}</span>
           </div>
           <div class="fr">
@@ -40,7 +40,7 @@
           <div class="am-accordion-content">
              <p><i class="am-front-icon am-icon-phone"></i>电话：{{$row.phone}}<a href="tel:{{$row.phone}}" class="am-btn-call am-icon-phone"></a></p>
              <p><i class="am-front-icon am-icon-user-secret"></i>业务员：{{$row.rel_name}}</p>
-             <p><i class="am-front-icon am-icon-ra"></i>所属门店：{{if $row.company_name}}{{$row.company_name}}{{else}}{{$row.cname}}{{/if}}</p>
+             <p><i class="am-front-icon am-icon-user"></i>客户：{{$row.name}}</p>
              <p><i class="am-front-icon am-icon-clock-o"></i>创建时间：{{$row.cdate}}</p>
              <p><i class="am-front-icon am-icon-times-circle-o"></i>带看时间：{{$row.ddate}}</p>
              <p><i class="am-front-icon am-icon-globe"></i>客户来源：{{$row.target}}</p>
