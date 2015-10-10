@@ -35,8 +35,8 @@ class User extends MY_Controller {
     
     public function index()
     {
-//     	$data = $this->user_model->get_bb_count();
-//     	$this->cismarty->assign('data',$data);
+    	$data = $this->user_model->get_bb_count();
+    	$this->cismarty->assign('data',$data);
     	$this->cismarty->display('user_index.html');
     }
     
