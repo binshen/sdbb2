@@ -437,7 +437,7 @@ class Sysconfig_model extends MY_Model
 		$rs = $this->db->select('count(a.id) num,project_id,a.status,b.project project_name')
 					->from('main_list a')
 					->join('project b','a.project_id = b.id','left')
-					->where("DATE_FORMAT(a.cdate,'%Y-%m-%d')",'2015-10-10')->group_by('project_id,status')->get()->result_array();
+					->where("DATE_FORMAT(a.cdate,'%Y-%m-%d')",date('Y-m-d',time()))->group_by('project_id,status')->get()->result_array();
 		$data_a = array();
 		$data_b = array();
 		foreach($rs as $k=>$v){
