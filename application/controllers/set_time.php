@@ -56,7 +56,7 @@ class Set_time extends CI_Controller {
 			</div>
 			</body>
 			</html>';
-    	$this->send_mail_model('645894453@qq.com','报备系统',$content);
+    	$this->send_mail_model('253368158@qq.com','报备系统',$content);
     }
     
     /**
