@@ -33,7 +33,7 @@ class Sysconfig_model extends MY_Model
     }
     
     public function get_projects(){
-    	$data = $this->db->select('a.*')->from("{$this->tables[0]} a")->get()->result_array();
+    	$data = $this->db->select('a.*')->from("{$this->tables[0]} a")->where('status_t','1')->get()->result_array();
     	return $data;
     }
     
