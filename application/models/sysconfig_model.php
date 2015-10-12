@@ -433,6 +433,43 @@ class Sysconfig_model extends MY_Model
 		 
 	}
 	
+	public function get_total_data(){
+		$rs = $this->db->select('count(a.id) num,project_id,a.status,b.project project_name')
+					->from('main_list a')
+					->join('project b','a.project_id = b.id','left')
+					->where("DATE_FORMAT(a.cdate,'%Y-%m-%d')",'2015-10-10')->group_by('project_id,status')->get()->result_array();
+		$data_a = array();
+		$data_b = array();
+		foreach($rs as $k=>$v){
+			$data_a[$v['project_name']][$v['status']] = $v['num'];
+		}
+		foreach($data_a as $k=>$v){
+			if(!isset($v[1])){
+				$data_b[$k][1] = 0;
+			}else{
+				$data_b[$k][1] = $v[1];
+			}
+			if(isset($v[2])){
+				$data_b[$k][1] = $data_b[$k][1] + $v[2];
+			}
+			if(!isset($v[3])){
+				$data_b[$k][3] = 0;
+			}else{
+				$data_b[$k][3] = $v[3];
+			}
+			if(isset($v[4])){
+				$data_b[$k][3] = $data_b[$k][3] + $v[4];
+			}
+			
+			if(!isset($v[5])){
+				$data_b[$k][5] = 0;
+			}else{
+				$data_b[$k][5] = $v[5];
+			}
+		}
+		return $data_b;
+	}
+	
 }
 
 /* End of file sysconfig_model.php */
