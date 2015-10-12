@@ -30,6 +30,7 @@ class Kf_manager extends MY_Controller {
         	
         	
 		$this->cismarty->assign('rel_name',$this->session->userdata('rel_name'));
+		$this->cismarty->assign('is_exe',$this->session->userdata('is_exe'));
 		$this->cismarty->assign('flag','d');
 		
     }

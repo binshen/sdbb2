@@ -74,13 +74,16 @@ class Admin_model extends MY_Model
     public function save_kfjl(){
 		$this->db->trans_start();
 		$project_id = $this->input->post('project_id');
-		
+		$is_exe = $this->input->post('is_exe')?$this->input->post('is_exe'):1;
 		if($this->input->post('id')){
 			$this->db->where('manager_id',$this->input->post('id'));
 			$this->db->delete($this->tables[3]);
 			foreach($project_id as $v){
 				$this->db->insert($this->tables[3],array('manager_id'=>$this->input->post('id'),'project_id'=>$v));
 			}
+			$this->db->where('id',$this->input->post('id'));
+			$this->db->update($this->tables[2],array('rel_name'=>$this->input->post('rel_name'),'is_exe'=>$this->input->post('is_exe')));
+			
 		}else{//新增
 	    	$rsb = $this->db->select('count(username) username')->from($this->tables[2])->where('username',$this->input->post('username'))->get()->row();
 			if($rsb->username)
@@ -90,6 +93,7 @@ class Admin_model extends MY_Model
 				'passwd'=>sha1('888888'),
 				'rel_name'=>$this->input->post('rel_name'),
 				'admin_group'=>'2',
+				'is_exe'=>$is_exe,
 				'phone'=>$this->input->post('username'),
 				'manager_id'=>'0',
 				'cdate'=>date('Y-m-d H:i:s',time())

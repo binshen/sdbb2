@@ -54,9 +54,11 @@
 				{{if $row.status == '5'}}<span class="con-cus-state con-cus-yqy"></span>{{/if}}
                 <p class="p-state"><span>已报备</span><span>即将到期</span><span>已带看</span><span>即将到期</span><span>已签约</span></p>
              </div>
+         {{if $is_exe == '1'}}
              {{if $row.status == '1' or $row.status == '2'}}<a href="javascript:confirm_dk('{{$row.id}}');" class="am-btn am-btn-secondary" ><i class="am-icon-slideshare"></i>确认带看</a>{{/if}}
              {{if $row.status == '3' or $row.status == '4'}}<a href="javascript:confirm_qy('{{$row.id}}');" type="button" class="am-btn am-btn-secondary"><i class="am-icon-check-circle"></i>确认签约</a>{{/if}}
              {{if $row.status == '3' or $row.status == '4' or $row.status == '5'}}<a href="javascript:reset_status({{$row.id}})" class="am-btn am-btn-secondary am-btn-cancel"><i class="am-icon-refresh"></i>撤销状态</a>{{/if}}
+         {{/if}}
           </div>
         </dd>
       </dl>

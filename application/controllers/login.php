@@ -43,6 +43,7 @@ class Login extends MY_Controller {
 			$member_info['admin_group'] = $data['admin_group'];
 			$member_info['manager_id'] = $data['manager_id'];
 			$member_info['yqm'] = $data['yqm'];
+			$member_info['is_exe'] = $data['is_exe'];
 			$this->session->set_userdata($member_info); //记录session
 			
 			if($data['admin_group'] === '1')
