@@ -33,8 +33,8 @@ class Wl_manager extends MY_Controller {
     //默认首页
     public function index()
     {
-//     	$data = $this->user_model->get_bb_count();
-//     	$this->cismarty->assign('data',$data);
+    	$data = $this->user_model->get_bb_count();
+    	$this->cismarty->assign('data',$data);
     	$this->cismarty->display('user_index.html');
     }
     
