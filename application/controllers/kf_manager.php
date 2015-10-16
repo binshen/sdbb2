@@ -30,6 +30,7 @@ class Kf_manager extends MY_Controller {
         	
         	
 		$this->cismarty->assign('rel_name',$this->session->userdata('rel_name'));
+		$this->cismarty->assign('is_exe',$this->session->userdata('is_exe'));
 		$this->cismarty->assign('flag','d');
 		
     }
@@ -66,6 +67,14 @@ class Kf_manager extends MY_Controller {
     		$this->show_message('权限不足','','1');
     	}
         $rs = $this->user_model->confirm_qy($id);
+    	echo $rs;
+    }
+    
+    public function reset_status($id){
+    	if($this->session->userdata('admin_group') != '2'){
+    		$this->show_message('权限不足','','1');
+    	}
+    	$rs = $this->user_model->reset_status($id);
     	echo $rs;
     }
 

@@ -58,8 +58,17 @@
               </div>
               <div class="am-form-group">
                 <label for="doc-vld-name">手机号码：</label>
-                <input type="text" id="doc-vld-name" name="username" placeholder="输入手机号码" value="{{$row.username}}" pattern="^1\d{10}$" class="am-form-field" required/>
+                <input type="text" id="doc-vld-name" name="username" readonly placeholder="输入手机号码" value="{{$row.username}}" pattern="^1\d{10}$" class="am-form-field" required/>
               </div>
+              <div class="am-form-group">
+							  <h3>审核权限</h3>
+							  <label class="am-radio-inline">
+							    <input type="radio" name="is_exe" value="1" data-am-ucheck {{if $row.is_exe == '1'}}checked{{/if}}> 可审核
+							  </label>
+							  <label class="am-radio-inline">
+							    <input type="radio" name="is_exe" value="-1" data-am-ucheck {{if $row.is_exe == '-1'}}checked{{/if}}> 不可审核
+							  </label>
+							</div>
               <div class="am-form-group">
                 <label for="doc-vld-name">所属项目：</label>
                 	{{foreach from=$projects item=item}}
@@ -101,6 +110,15 @@
                 <label for="doc-vld-name">手机号码：</label>
                 <input type="text" id="doc-vld-name" name="username" placeholder="输入手机号码" pattern="^1\d{10}$" class="am-form-field" required/>
               </div>
+              <div class="am-form-group">
+							  <h3>审核权限</h3>
+							  <label class="am-radio-inline">
+							    <input type="radio" name="is_exe" value="1" data-am-ucheck checked> 可审核
+							  </label>
+							  <label class="am-radio-inline">
+							    <input type="radio" name="is_exe" value="-1" data-am-ucheck> 不可审核
+							  </label>
+							</div>
               <div class="am-form-group">
                 <label for="doc-vld-name">所属项目：</label>
                 	{{foreach from=$projects item=row}}
