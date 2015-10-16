@@ -21,7 +21,7 @@ class Api extends MY_Controller {
 		$project = $this->sysconfig_model->chenck_pro($id);
 		echo $project;
 	}
-    
+	
 	public function index() {
 		
 		$echoStr = $_GET["echostr"];
@@ -35,9 +35,10 @@ class Api extends MY_Controller {
 			if (!empty($postStr)){
 				$postObj = simplexml_load_string($postStr, 'SimpleXMLElement', LIBXML_NOCDATA);
 				$RX_TYPE = trim($postObj->MsgType);
+				$result = "";
 				switch ($RX_TYPE) {
 					case "text":
-						$result = $this->receiveText($postObj);
+						//$result = $this->receiveText($postObj);
 						break;
 					case "event":
 						$result = $this->receiveEvent($postObj);
@@ -56,9 +57,6 @@ class Api extends MY_Controller {
 				exit;
 			}
 		}
-		
-		//$funmallDB = $this->load->database("funmall", True);
-		//var_dump($funmallDB);
 	}
 	
 	private function receiveText($object) {
@@ -72,15 +70,7 @@ class Api extends MY_Controller {
 				$content = "关注";
 				if (!empty($object->EventKey)){
 					$broker_id = str_replace("qrscene_", "", $object->EventKey);
-					
-					
-// 					$house = $this->api_model->get_house_by_id($h_id);
-// 					if(empty($house)) {
-// 						$content = "该楼盘不存在，可输入关键字查找楼盘。可选的关键字有：" . $this->api_model->get_all_keywords();
-// 					} else {
-// 						$content = $this->get_message($house);
-// 						return $this->transmitNews($object, $content);
-// 					}
+					$this->funmall_model->bindBroker($object->FromUserName, $broker_id);
 				}
 				break;
 			case "unsubscribe":
@@ -89,16 +79,8 @@ class Api extends MY_Controller {
 			case "SCAN":
 				$content = "扫描";
 				$broker_id = $object->EventKey;
-				
-				
-// 				$house = $this->api_model->get_house_by_id($object->EventKey);
-// 				if(empty($house)) {
-// 					$content = "该楼盘不存在，可输入关键字查找楼盘。可选的关键字有：" . $this->api_model->get_all_keywords();
-// 				} else {
-// 					$content = $this->get_message($house);
-// 					return $this->transmitNews($object, $content);
-// 				}
-// 				break;
+				$this->funmall_model->bindBroker($object->FromUserName, $broker_id);
+ 				break;
 			case "CLICK":
 				$content = "点击菜单拉取消息： " . $object->EventKey;
 				break;
