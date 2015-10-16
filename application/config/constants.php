@@ -36,6 +36,10 @@ define('FOPEN_READ_WRITE_CREATE',				'a+b');
 define('FOPEN_WRITE_CREATE_STRICT',				'xb');
 define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
 
+define('APP_ID', 'wx84455ea5b029beb2');
+define('APP_SECRET', 'c9df7b05ce5aec516f9893079d246dd4');
+define('TOKEN', '8654b302d5100247d2acc6211664c6f3');
+define('DOMAIN', 'bb2.ksls.com.cn');
 
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */

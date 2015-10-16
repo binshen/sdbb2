@@ -64,6 +64,22 @@ $db['default']['swap_pre'] = '';
 $db['default']['autoinit'] = TRUE;
 $db['default']['stricton'] = FALSE;
 
+$db['funmall']['hostname'] = '121.40.97.183';
+$db['funmall']['username'] = 'root';
+$db['funmall']['password'] = 'soukecsk';
+$db['funmall']['database'] = 'funmall';
+$db['funmall']['dbdriver'] = 'mysql';
+$db['funmall']['dbprefix'] = '';
+$db['funmall']['pconnect'] = TRUE;
+$db['funmall']['db_debug'] = TRUE;
+$db['funmall']['cache_on'] = FALSE;
+$db['funmall']['cachedir'] = '';
+$db['funmall']['char_set'] = 'utf8';
+$db['funmall']['dbcollat'] = 'utf8_general_ci';
+$db['funmall']['swap_pre'] = '';
+$db['funmall']['autoinit'] = TRUE;
+$db['funmall']['stricton'] = FALSE;
+
 
 /* End of file database.php */
 /* Location: ./application/config/database.php */

@@ -21,4 +21,35 @@ class Api extends MY_Controller {
 		echo $project;
 	}
     
+	public function index() {
+		
+		$echoStr = $_GET["echostr"];
+		if(isset($echoStr)) {
+			if($this->checkSignature()){
+				echo $echoStr;
+				exit;
+			}
+		} else {
+			
+		}
+		
+		//$funmallDB = $this->load->database("funmall", True);
+		//var_dump($funmallDB);
+	}
+	
+	private function checkSignature() {
+		$signature = $_GET["signature"];
+		$timestamp = $_GET["timestamp"];
+		$nonce = $_GET["nonce"];
+		$token = TOKEN;
+		$tmpArr = array($token, $timestamp, $nonce);
+		sort($tmpArr);
+		$tmpStr = implode( $tmpArr );
+		$tmpStr = sha1( $tmpStr );
+		if($tmpStr == $signature){
+			return true;
+		} else {
+			return false;
+		}
+	}
 }
