@@ -79,8 +79,12 @@ class Api extends MY_Controller {
 			case "SCAN":
 				$content = "扫描";
 				$broker_id = $object->EventKey;
-				//$this->funmall_model->bindBroker($object->FromUserName, $broker_id);
-				$content = $content . $broker_id;
+				try {
+					$this->funmall_model->bindBroker($object->FromUserName, $broker_id);
+				} catch (Exception $e) {
+					$content = $content . $e->getMessage();
+				}
+				
  				break;
 			case "CLICK":
 				$content = "点击菜单拉取消息： " . $object->EventKey;
