@@ -14,9 +14,9 @@ class Funmall_model extends MY_Model {
 	
 	public function bindBroker($open_id, $broker_id) {
  		$funmallDB = $this->load->database("funmall", True);
-// 		$funmallDB->from('wx_user');
-// 		$funmallDB->where('open_id', $open_id);
-// 		$wxUser = $funmallDB->get()->row_array();
+		$funmallDB->from('wx_user');
+		$funmallDB->where('open_id', $open_id);
+		$wxUser = $funmallDB->get()->row_array();
 // 		if(empty($wxUser)) {
 // 			$wxUser = array(
 // 				'open_id' => $open_id,
