@@ -22,6 +22,10 @@ class Api extends MY_Controller {
 		echo $project;
 	}
 	
+// 	public function test() {
+// 		$this->funmall_model->bindBroker('11211', 23);
+// 	}
+	
 	public function index() {
 		
 		$echoStr = $_GET["echostr"];

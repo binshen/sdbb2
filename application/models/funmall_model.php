@@ -13,21 +13,32 @@ class Funmall_model extends MY_Model {
 	}
 	
 	public function bindBroker($open_id, $broker_id) {
-		$funmallDB = $this->load->database("funmall", True);
-		$funmallDB->from('wx_user');
-		$funmallDB->where('open_id', $open_id);
-		$wxUser = $funmallDB->get()->row_array();
-		if(empty($wxUser)) {
-			$wxUser = array(
-				'open_id' => $open_id,
-				'broker_id' => $broker_id,
-				'created' => date('Y-m-d H:i:s')
-			);
-			$this->db->insert('wx_user', $wxUser);
+// 		$funmallDB = $this->load->database("funmall", True);
+// 		$funmallDB->from('wx_user');
+// 		$funmallDB->where('open_id', $open_id);
+// 		$wxUser = $funmallDB->get()->row_array();
+// 		if(empty($wxUser)) {
+// 			$wxUser = array(
+// 				'open_id' => $open_id,
+// 				'broker_id' => $broker_id,
+// 				'created' => date('Y-m-d H:i:s')
+// 			);
+// 			$this->db->insert('wx_user', $wxUser);
+// 		} else {
+// 			$wxUser['broker_id'] = $broker_id;
+// 			$this->db->where('id', $wxUser['id']);
+// 			$this->db->update('wx_user', $wxUser);
+// 		}
+		$conn = mysql_connect('121.40.97.183', 'root', 'soukecsk');
+		$sql = "SELECT count(1) FROM `wx_user` where open_id = " . $open_id;
+		$result = mysql_db_query('funmall', $sql, $conn); 
+		$row = mysql_fetch_row($result);
+		if($row[0] > 0) {
+			$sql = "UPDATE `wx_user` SET broker_id = " . $broker_id . " WHERE open_id = " . $open_id;
 		} else {
-			$wxUser['broker_id'] = $broker_id;
-			$this->db->where('id', $wxUser['id']);
-			$this->db->update('wx_user', $wxUser);
+			$sql = "INSERT INTO `wx_user` (open_id,broker_id,created) VALUES ('".$open_id."', '".$broker_id."','".date('Y-m-d H:i:s')."')";
 		}
+		mysql_query($sql, $conn);
+		mysql_close($conn);
 	}
 }
