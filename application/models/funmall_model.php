@@ -30,8 +30,4 @@ class Funmall_model extends MY_Model {
 			$this->db->update('wx_user', $wxUser);
 		}
 	}
-	
-	public function getTest() {
-		return 111;
-	}
 }
