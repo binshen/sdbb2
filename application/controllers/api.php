@@ -35,9 +35,10 @@ class Api extends MY_Controller {
 			} else {
 				$url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid='.APP_ID.'&secret='.APP_SECRET.'&code='.$code.'&grant_type=authorization_code';
 				$result = file_get_contents($url);
-				$jsonInfo = json_decode($result, true);
-				$open_id = $jsonInfo['open_id'];
-				echo $open_id;
+				//$jsonInfo = json_decode($result, true);
+				//$open_id = $jsonInfo['open_id'];
+				//echo $open_id;
+				var_dump($result);
 				die;
 			}
 		}
