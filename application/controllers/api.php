@@ -27,38 +27,35 @@ class Api extends MY_Controller {
 // 	}
 	
 	public function authorize() {
-		if (strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') !== false) {
-			$code = $_GET['code'];
-			if(empty($code)){
-				$url = 'http://'.$_SERVER['SERVER_NAME'].$_SERVER["REQUEST_URI"];
-				redirect("https://open.weixin.qq.com/connect/oauth2/authorize?appid=".APP_ID."&redirect_uri=".urlencode($url)."&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect");
-			} else {
-				
-				
-				
-				$open_id = $this->session->userdata('openid');
-				var_dump($open_id);
-				
-				echo "<hr>";
-				
-				$url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid='.APP_ID.'&secret='.APP_SECRET.'&code='.$code.'&grant_type=authorization_code';
-				$result = file_get_contents($url);
-				$jsonInfo = json_decode($result, true);
-				
-				var_dump($jsonInfo);
-				
-				echo "<hr>";
-				
-				$open_id = $jsonInfo['open_id'];
-				var_dump($open_id);
-				
-				echo "<hr>";
-				
-				
-				
-				die;
+		$open_id = $this->session->userdata('openid');
+		if(empty($open_id)) {
+			if (strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') !== false) {
+				$code = $_GET['code'];
+				if(empty($code)){
+					$url = 'http://'.$_SERVER['SERVER_NAME'].$_SERVER["REQUEST_URI"];
+					redirect("https://open.weixin.qq.com/connect/oauth2/authorize?appid=".APP_ID."&redirect_uri=".urlencode($url)."&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect");
+				} else {
+					$url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid='.APP_ID.'&secret='.APP_SECRET.'&code='.$code.'&grant_type=authorization_code';
+					$result = file_get_contents($url);
+					$jsonInfo = json_decode($result, true);
+					$open_id = $jsonInfo['openid'];
+					if(!empty($open_id)) {
+						$this->session->set_userdata('openid', $open_id);
+					}
+				}
 			}
 		}
+		$uri = "http://www.funmall.com.cn/b_house/view_list/1/";
+		if(!empty($open_id)) {
+			$funmallDB = $this->load->database("funmall", True);
+			$funmallDB->from('wx_user');
+			$funmallDB->where('open_id', $open_id);
+			$wxUser = $funmallDB->get()->row_array();
+			if(empty($wxUser)) {
+				$uri .= $wxUser['broker_id'];
+			}
+		}
+		redirect($uri);
 	}
 	
 	public function index() {
