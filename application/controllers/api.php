@@ -114,7 +114,7 @@ class Api extends MY_Controller {
 				$content = "取消关注";
 				break;
 			case "SCAN":
-				$content = "扫描";
+				$content = "您已扫描二维码成功绑定经纪人";
 				$broker_id = $object->EventKey;
 				$this->funmall_model->bindBroker($object->FromUserName, $broker_id);
  				break;
