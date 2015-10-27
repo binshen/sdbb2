@@ -34,7 +34,7 @@ class Funmall_model extends MY_Model {
 		$result = mysql_db_query('funmall', $sql, $conn); 
 		$row = mysql_fetch_row($result);
 		if($row[0] > 0) {
-			$sql = "UPDATE `wx_user` SET broker_id = " . $broker_id . " WHERE open_id = " . $open_id;
+			$sql = "UPDATE `wx_user` SET broker_id = " . $broker_id . " WHERE open_id = '" . $open_id . "'";
 		} else {
 			$sql = "INSERT INTO `wx_user` (open_id,broker_id,created) VALUES ('".$open_id."', '".$broker_id."','".date('Y-m-d H:i:s')."')";
 		}
