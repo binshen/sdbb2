@@ -30,7 +30,7 @@ class Funmall_model extends MY_Model {
 // 			$this->db->update('wx_user', $wxUser);
 // 		}
 		$conn = mysql_connect('121.40.97.183', 'root', 'soukecsk');
-		$sql = "SELECT count(1) FROM `wx_user` where open_id = " . $open_id;
+		$sql = "SELECT count(1) FROM `wx_user` where open_id = '" . $open_id . "'";
 		$result = mysql_db_query('funmall', $sql, $conn); 
 		$row = mysql_fetch_row($result);
 		if($row[0] > 0) {
