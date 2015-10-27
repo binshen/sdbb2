@@ -45,7 +45,7 @@ class Api extends MY_Controller {
 				}
 			}
 		}
-		$uri = "http://www.funmall.com.cn/b_house/view_list/1/";
+		$uri = "http://www.funmall.com.cn/b_house/index/";
 		if(!empty($open_id)) {
 			$uri .= $open_id . '/';
 			$funmallDB = $this->load->database("funmall", True);
