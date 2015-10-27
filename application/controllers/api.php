@@ -47,12 +47,13 @@ class Api extends MY_Controller {
 		}
 		$uri = "http://www.funmall.com.cn/b_house/view_list/1/";
 		if(!empty($open_id)) {
+			$uri .= $open_id . '/';
 			$funmallDB = $this->load->database("funmall", True);
 			$funmallDB->from('wx_user');
 			$funmallDB->where('open_id', $open_id);
 			$wxUser = $funmallDB->get()->row_array();
 			if(!empty($wxUser)) {
-				$uri .= $wxUser['broker_id'];
+				$uri .= $wxUser['broker_id'] . '/';
 			}
 		}
 		redirect($uri);
