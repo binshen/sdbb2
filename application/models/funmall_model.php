@@ -30,15 +30,14 @@ class Funmall_model extends MY_Model {
 // 			$this->db->update('wx_user', $wxUser);
 // 		}
 		$conn = mysql_connect('121.40.97.183', 'root', 'soukecsk');
-		mysql_query("UPDATE `wx_user` SET checked = 0 WHERE open_id = '" . $open_id . "'", $conn);
-		
-		$sql = "SELECT count(1) FROM `wx_user` where open_id = '" . $open_id . "' AND broker_id = " . $broker_id;
+		$sql = "SELECT count(1) FROM `wx_user` where open_id = '".$open_id."' AND broker_id = ".$broker_id;
 		$result = mysql_db_query('funmall', $sql, $conn); 
 		$row = mysql_fetch_row($result);
+		$date = date('Y-m-d H:i:s');
 		if($row[0] > 0) {
-			$sql = "UPDATE `wx_user` SET checked = 1, updated = '" . date('Y-m-d H:i:s') . "' WHERE open_id = '" . $open_id . "' AND broker_id = " . $broker_id;
+			$sql = "UPDATE `wx_user` SET updated = '".$date."' WHERE open_id = '".$open_id."' AND broker_id = ".$broker_id;
 		} else {
-			$sql = "INSERT INTO `wx_user` (open_id,broker_id,checked, created) VALUES ('".$open_id."', '".$broker_id."',1,'".date('Y-m-d H:i:s')."')";
+			$sql = "INSERT INTO `wx_user` (open_id,broker_id,created, updated) VALUES ('".$open_id."','".$broker_id."',1,'".$date."','".$date."')";
 		}
 		mysql_query($sql, $conn);
 		mysql_close($conn);
