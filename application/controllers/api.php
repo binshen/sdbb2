@@ -51,7 +51,7 @@ class Api extends MY_Controller {
 			$funmallDB = $this->load->database("funmall", True);
 			$funmallDB->from('wx_user');
 			$funmallDB->where('open_id', $open_id);
-			$funmallDB->where('checked', 1);
+			$funmallDB->order_by('a.updated DESC');
 			$wxUser = $funmallDB->get()->row_array();
 			if(!empty($wxUser)) {
 				$uri .= $wxUser['broker_id'] . '/';
