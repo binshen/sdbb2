@@ -44,9 +44,10 @@ class Funmall_model extends MY_Model {
 	}
 	
 	public function getBrokerNameById($broker_id) {
+		$conn = mysql_connect('121.40.97.183', 'root', 'soukecsk');
 		$sql = "SELECT rel_name FROM `admin` where id = ".$broker_id;
 		$result = mysql_db_query('funmall', $sql, $conn);
-		$row = mysql_fetch_row($result);
+		$row = mysql_fetch_row($result);var_dump($row);
 		return empty($row) ? NULL : $row[0];
 	}
 }
