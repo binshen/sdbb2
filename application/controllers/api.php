@@ -108,6 +108,10 @@ class Api extends MY_Controller {
 				$content = "关注";
 				if (!empty($object->EventKey)){
 					$broker_id = str_replace("qrscene_", "", $object->EventKey);
+					$broker_name = $this->funmall_model->getBrokerNameById($broker_id);
+					if(!empty($broker_name)) {
+						$content = "您已成功绑定经纪人: " + $broker_name;
+					}
 					$this->funmall_model->bindBroker($object->FromUserName, $broker_id);
 				}
 				break;
@@ -117,6 +121,10 @@ class Api extends MY_Controller {
 			case "SCAN":
 				$content = "您扫描二维码成功绑定经纪人";
 				$broker_id = $object->EventKey;
+				$broker_name = $this->funmall_model->getBrokerNameById($broker_id);
+				if(!empty($broker_name)) {
+					$content = "您已成功绑定经纪人: " + $broker_name;
+				}
 				$this->funmall_model->bindBroker($object->FromUserName, $broker_id);
  				break;
 			case "CLICK":
