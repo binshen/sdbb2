@@ -110,7 +110,7 @@ class Api extends MY_Controller {
 					$broker_id = str_replace("qrscene_", "", $object->EventKey);
 					$broker_name = $this->funmall_model->getBrokerNameById($broker_id);
 					if(!empty($broker_name)) {
-						$content = "您已成功绑定经纪人: " + $broker_name;
+						$content = "您已成功绑定经纪人: " . $broker_name;
 					}
 					$this->funmall_model->bindBroker($object->FromUserName, $broker_id);
 				}
@@ -123,7 +123,7 @@ class Api extends MY_Controller {
 				$broker_id = $object->EventKey;
 				$broker_name = $this->funmall_model->getBrokerNameById($broker_id);
 				if(!empty($broker_name)) {
-					$content = "您已成功绑定经纪人: " + $broker_name;
+					$content = "您已成功绑定经纪人: " . $broker_name;
 				}
 				$this->funmall_model->bindBroker($object->FromUserName, $broker_id);
  				break;
