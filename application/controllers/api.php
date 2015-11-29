@@ -47,8 +47,7 @@ class Api extends MY_Controller {
 		}
 		$uri = "http://www.funmall.com.cn/b_house/index/";
 		if(!empty($open_id)) {
-			file_get_contents('http://www.funmall.com.cn/api/update_weixin_user/' . $open_id);
-			
+			//file_get_contents('http://www.funmall.com.cn/api/update_weixin_user/' . $open_id);
 			$uri .= $open_id . '/';
 			$funmallDB = $this->load->database("funmall", True);
 			$funmallDB->from('wx_user');
