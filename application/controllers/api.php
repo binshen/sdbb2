@@ -72,9 +72,8 @@ class Api extends MY_Controller {
 				$result = file_get_contents($url);
 				$jsonInfo = json_decode($result, true);
 				$open_id = $jsonInfo['openid'];
-				
-				var_dump($open_id);
-				var_dump($broker_id);
+				$uri = "http://www.funmall.com.cn/api/view_art/" . $open_id . "/" . $broker_id;
+				redirect($uri);
 			}
 		}
 	}
