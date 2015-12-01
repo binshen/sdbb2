@@ -61,6 +61,24 @@ class Api extends MY_Controller {
 		redirect($uri);
 	}
 	
+	public function view_art($broker_id) {
+		if (strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') !== false) {
+			$code = $_GET['code'];
+			if(empty($code)){
+				$url = 'http://'.$_SERVER['SERVER_NAME'].$_SERVER["REQUEST_URI"];
+				redirect("https://open.weixin.qq.com/connect/oauth2/authorize?appid=".APP_ID."&redirect_uri=".urlencode($url)."&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect");
+			} else {
+				$url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid='.APP_ID.'&secret='.APP_SECRET.'&code='.$code.'&grant_type=authorization_code';
+				$result = file_get_contents($url);
+				$jsonInfo = json_decode($result, true);
+				$open_id = $jsonInfo['openid'];
+				
+				var_dump($open_id);
+				var_dump($broker_id);
+			}
+		}
+	}
+	
 	public function index() {
 		
 		$echoStr = $_GET["echostr"];
