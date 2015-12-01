@@ -72,6 +72,10 @@ class Api extends MY_Controller {
 				$result = file_get_contents($url);
 				$jsonInfo = json_decode($result, true);
 				$open_id = $jsonInfo['openid'];
+				
+				$this->funmall_model->bindBroker($open_id, $broker_id);
+				file_get_contents('http://www.funmall.com.cn/api/update_weixin_user/' . $open_id);
+				
 				$uri = "http://www.funmall.com.cn/api/view_art/" . $open_id . "/" . $broker_id;
 				redirect($uri);
 			}
