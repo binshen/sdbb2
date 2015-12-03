@@ -135,8 +135,8 @@ class Api extends CI_Controller {
 						$content = "您已成功绑定经纪人: " . $broker_name;
 					}
 					$this->funmall_model->bindBroker($object->FromUserName, $broker_id);
-					file_get_contents('http://www.funmall.com.cn/api/update_weixin_user/' . $object->FromUserName);
 				}
+				file_get_contents('http://www.funmall.com.cn/api/update_weixin_user/' . $object->FromUserName);
 				break;
 			case "unsubscribe":
 				$content = "取消关注";
