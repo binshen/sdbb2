@@ -9,7 +9,7 @@
  * @author		yaobin<645894453@qq.com>
  *
  */
-class Api extends MY_Controller {
+class Api extends CI_Controller {
     
     public function __construct() {
         parent::__construct();
