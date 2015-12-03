@@ -127,12 +127,12 @@ class Api extends CI_Controller {
 		$content = "";
 		switch ($object->Event) {
 			case "subscribe":
-				$content = "关注";
+				$content = "欢迎关注房猫微店公众账号。";
 				if (!empty($object->EventKey)){
 					$broker_id = str_replace("qrscene_", "", $object->EventKey);
 					$broker_name = $this->funmall_model->getBrokerNameById($broker_id);
 					if(!empty($broker_name)) {
-						$content = "您已成功绑定经纪人: " . $broker_name;
+						$content .= "您已成功绑定经纪人: " . $broker_name;
 					}
 					$this->funmall_model->bindBroker($object->FromUserName, $broker_id);
 				}
