@@ -120,7 +120,7 @@ class Api extends CI_Controller {
 	}
 	
 	private function receiveText($object) {
-		return $this->transmitText($object, $object->FromUserName);
+		return $this->transmitText($object, '请点击公众号底部菜单进入系统');
 	}
 	
 	private function receiveEvent($object) {
@@ -140,6 +140,7 @@ class Api extends CI_Controller {
 				break;
 			case "unsubscribe":
 				$content = "取消关注";
+				file_get_contents('http://www.funmall.com.cn/api/unsubscribe_weixin_user/' . $object->FromUserName);
 				break;
 			case "SCAN":
 				$content = "您扫描二维码成功绑定经纪人";
