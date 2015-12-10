@@ -202,6 +202,9 @@ class Api extends CI_Controller {
 		curl_setopt($ch, CURLOPT_URL, $url);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, 'input=' . $post_data);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_HEADER, 0);
+		curl_setopt($ch,CURLOPT_TIMEOUT, 60);
+		curl_setopt($ch, CURLOPT_POST, true);
 		$data = curl_exec($ch);
 		curl_close($ch);
 		return $data;
