@@ -120,7 +120,10 @@ class Api extends CI_Controller {
 	}
 	
 	private function receiveText($object) {
-		return $this->transmitText($object, '请点击公众号底部菜单进入系统');
+		$keyword = trim($object->Content);
+		$result = $this->post('http://www.funmall.com.cn/api/search_house', $keyword);
+		
+		return $this->transmitText($object, '请点击公众号底部菜单进入系统 - ' . $result);
 	}
 	
 	private function receiveEvent($object) {
@@ -193,5 +196,18 @@ class Api extends CI_Controller {
 		} else {
 			return false;
 		}
+	}
+	
+	private function post($url, $post_data, $timeout = 300){
+		$options = array(
+			'http' => array(
+				'method' => 'POST',
+				'header' => 'Content-type:application/json;encoding=utf-8',
+				'content' => $post_data, //urldecode(json_encode($post_data)),
+				'timeout' => $timeout
+			)
+		);
+		$context = stream_context_create($options);
+		return file_get_contents($url, false, $context);
 	}
 }
