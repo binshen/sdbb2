@@ -121,7 +121,7 @@ class Api extends CI_Controller {
 	
 	private function receiveText($object) {
 		$keyword = trim($object->Content);
-		$content = json_decode($this->post('http://www.funmall.com.cn/api/search_house', $keyword));
+		$content = json_decode($this->post('http://www.funmall.com.cn/api/search_house', $keyword), true);
 		if(!empty($content)) {
 			return $this->transmitNews($object, $content);
 		}
@@ -188,8 +188,6 @@ class Api extends CI_Controller {
 		if(!is_array($arr_item))
 			return;
 	
-		return $this->transmitText($object, json_encode($arr_item));
-		
 		$itemTpl = "
 			<item>
 		        <Title><![CDATA[%s]]></Title>
