@@ -184,6 +184,36 @@ class Api extends CI_Controller {
 		return sprintf($textTpl, $object->FromUserName, $object->ToUserName, time(), $content);
 	}
 	
+	private function transmitNews($object, $arr_item) {
+		if(!is_array($arr_item))
+			return;
+	
+		$itemTpl = "
+			<item>
+		        <Title><![CDATA[%s]]></Title>
+		        <Description><![CDATA[%s]]></Description>
+		        <PicUrl><![CDATA[%s]]></PicUrl>
+		        <Url><![CDATA[%s]]></Url>
+    		</item>
+		";
+		$item_str = "";
+		foreach ($arr_item as $item)
+			$item_str .= sprintf($itemTpl, $item['Title'], $item['Description'], $item['PicUrl'], $item['Url']);
+	
+		$newsTpl = "
+		<xml>
+		<ToUserName><![CDATA[%s]]></ToUserName>
+		<FromUserName><![CDATA[%s]]></FromUserName>
+		<CreateTime>%s</CreateTime>
+		<MsgType><![CDATA[news]]></MsgType>
+		<Content><![CDATA[]]></Content>
+		<ArticleCount>%s</ArticleCount>
+		<Articles>$item_str</Articles>
+		</xml>
+		";
+		return sprintf($newsTpl, $object->FromUserName, $object->ToUserName, time(), count($arr_item));
+	}
+	
 	private function checkSignature() {
 		$signature = $_GET["signature"];
 		$timestamp = $_GET["timestamp"];
