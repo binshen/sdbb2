@@ -123,7 +123,9 @@ class Api extends CI_Controller {
 		$keyword = trim($object->Content);
 		$content = json_decode($this->post('http://www.funmall.com.cn/api/search_house', $keyword));
 		if(!empty($content)) {
-			return $this->transmitNews($object, $content);
+			return $this->transmitText($object, $content);
+			
+			//return $this->transmitNews($object, $content);
 		}
 		return $this->transmitText($object, '请输入楼盘名称查询楼盘信息，或点击底部菜单进入微店浏览更多楼盘');
 	}
