@@ -200,6 +200,8 @@ class Api extends CI_Controller {
 		foreach ($arr_item as $item)
 			$item_str .= sprintf($itemTpl, $item['Title'], $item['Description'], $item['PicUrl'], $item['Url']);
 	
+		return $this->transmitText($object, $item_str);
+		
 		$newsTpl = "
 		<xml>
 		<ToUserName><![CDATA[%s]]></ToUserName>
