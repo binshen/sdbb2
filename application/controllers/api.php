@@ -123,9 +123,7 @@ class Api extends CI_Controller {
 		$keyword = trim($object->Content);
 		$content = json_decode($this->post('http://www.funmall.com.cn/api/search_house', $keyword));
 		if(!empty($content)) {
-			return $this->transmitText($object, $content);
-			
-			//return $this->transmitNews($object, $content);
+			return $this->transmitNews($object, $content);
 		}
 		return $this->transmitText($object, '请输入楼盘名称查询楼盘信息，或点击底部菜单进入微店浏览更多楼盘');
 	}
@@ -190,6 +188,8 @@ class Api extends CI_Controller {
 		if(!is_array($arr_item))
 			return;
 	
+		return $this->transmitText($object, json_encode($arr_item));
+		
 		$itemTpl = "
 			<item>
 		        <Title><![CDATA[%s]]></Title>
@@ -202,8 +202,6 @@ class Api extends CI_Controller {
 		foreach ($arr_item as $item)
 			$item_str .= sprintf($itemTpl, $item['Title'], $item['Description'], $item['PicUrl'], $item['Url']);
 	
-		return $this->transmitText($object, $item_str);
-		
 		$newsTpl = "
 		<xml>
 		<ToUserName><![CDATA[%s]]></ToUserName>
