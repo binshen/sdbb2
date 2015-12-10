@@ -121,8 +121,15 @@ class Api extends CI_Controller {
 	
 	private function receiveText($object) {
 		$keyword = trim($object->Content);
-		$result = $this->post('http://www.funmall.com.cn/api/search_house', $keyword);
-		return $this->transmitText($object,  $result);
+		$data = json_decode($this->post('http://www.funmall.com.cn/api/search_house', $keyword));
+		$result = $data['result'];
+		if($result) {
+			$content = $data['content'];
+			if(!empty($content)) {
+				return $this->transmitNews($object, $content);
+			}
+		}
+		return $this->transmitText($object, '请输入楼盘名称查询楼盘信息，或点击底部菜单进入微店浏览更多楼盘');
 	}
 	
 	private function receiveEvent($object) {
@@ -200,7 +207,7 @@ class Api extends CI_Controller {
 	private function post($url, $post_data, $timeout = 300){
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $url);
-		curl_setopt($ch, CURLOPT_POSTFIELDS, 'input=' . $post_data);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, 'keyword=' . $post_data);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($ch, CURLOPT_HEADER, 0);
 		curl_setopt($ch,CURLOPT_TIMEOUT, $timeout);
