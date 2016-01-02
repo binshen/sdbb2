@@ -233,7 +233,7 @@ class Api extends CI_Controller {
 	private function post($url, $keyword, $open_id, $timeout = 300){
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $url);
-		curl_setopt($ch, CURLOPT_POSTFIELDS, 'keyword=' . $keyword . '&open_id' . $open_id);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, 'keyword=' . $keyword . '&open_id=' . $open_id);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($ch, CURLOPT_HEADER, 0);
 		curl_setopt($ch,CURLOPT_TIMEOUT, $timeout);
