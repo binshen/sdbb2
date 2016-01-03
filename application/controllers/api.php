@@ -141,7 +141,7 @@ class Api extends CI_Controller {
 					}
 					$this->funmall_model->bindBroker($object->FromUserName, $broker_id);
 				}
-				file_get_contents('http://www.funmall.com.cn/api/update_weixin_user/' . $object->FromUserName);
+				file_get_contents('http://www.funmall.com.cn/api/update_weixin_user/' . $object->FromUserName . '/' . $broker_id);
 				break;
 			case "unsubscribe":
 				$content = "取消关注";
@@ -155,7 +155,7 @@ class Api extends CI_Controller {
 					$content = "您已成功绑定经纪人: " . $broker_name;
 				}
 				$this->funmall_model->bindBroker($object->FromUserName, $broker_id);
-				file_get_contents('http://www.funmall.com.cn/api/update_weixin_user/' . $object->FromUserName);
+				file_get_contents('http://www.funmall.com.cn/api/update_weixin_user/' . $object->FromUserName . '/' . $broker_id);
  				break;
 			case "CLICK":
 				$content = "点击菜单拉取消息： " . $object->EventKey;
