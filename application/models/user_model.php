@@ -780,7 +780,7 @@ class User_model extends MY_Model
     }
     
     public function admin_bb_list(){
-    	$per_page=10;//每页显示多少调数据
+    	$per_page=20;//每页显示多少调数据
     	$this->db->select('count(1) num');
     	$this->db->from("{$this->tables[0]} a");
     	if($this->session->userdata('admin_group') == 1){
