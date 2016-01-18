@@ -13,7 +13,7 @@ class Funmall_model extends MY_Model {
 	}
 	
 	public function bindBroker($open_id, $broker_id) {
-// 		$funmallDB = $this->load->database("funmall", True);
+ 		$funmallDB = $this->load->database("funmall", True);
 // 		$funmallDB->from('wx_user');
 // 		$funmallDB->where('open_id', $open_id);
 // 		$wxUser = $funmallDB->get()->row_array();
@@ -29,7 +29,7 @@ class Funmall_model extends MY_Model {
 // 			$this->db->where('id', $wxUser['id']);
 // 			$this->db->update('wx_user', $wxUser);
 // 		}
-		$conn = mysql_connect('121.40.97.183', 'root', 'soukecsk');
+		$conn = mysql_connect($funmallDB->hostname, $funmallDB->username, $funmallDB->password);
 		$sql = "SELECT count(1) FROM `wx_user` where open_id = '".$open_id."' AND broker_id = ".$broker_id;
 		$result = mysql_db_query('funmall', $sql, $conn); 
 		$row = mysql_fetch_row($result);
@@ -44,7 +44,8 @@ class Funmall_model extends MY_Model {
 	}
 	
 	public function getBrokerNameById($broker_id) {
-		$conn = mysql_connect('121.40.97.183', 'root', 'soukecsk');
+		$funmallDB = $this->load->database("funmall", True);
+		$conn = mysql_connect($funmallDB->hostname, $funmallDB->username, $funmallDB->password);
 		$sql = "SELECT rel_name FROM `admin` where id = ".$broker_id;
 		$result = mysql_db_query('funmall', $sql, $conn);
 		$row = mysql_fetch_row($result);var_dump($row);
