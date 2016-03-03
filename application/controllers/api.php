@@ -137,7 +137,7 @@ class Api extends CI_Controller {
 					$broker_id = str_replace("qrscene_", "", $object->EventKey);
 					$broker_name = $this->funmall_model->getBrokerNameById($broker_id);
 					if(!empty($broker_name)) {
-						$content .= "您已成功绑定经纪人: " . $broker_name;
+						$content .= "您已关注了经纪人: " . $broker_name;
 					}
 					$this->funmall_model->bindBroker($object->FromUserName, $broker_id);
 				}
@@ -148,11 +148,11 @@ class Api extends CI_Controller {
 				file_get_contents('http://www.funmall.com.cn/api/unsubscribe_weixin_user/' . $object->FromUserName);
 				break;
 			case "SCAN":
-				$content = "您扫描二维码成功绑定经纪人";
+				$content = "您扫描二维码关注经纪人";
 				$broker_id = $object->EventKey;
 				$broker_name = $this->funmall_model->getBrokerNameById($broker_id);
 				if(!empty($broker_name)) {
-					$content = "您已成功绑定经纪人: " . $broker_name;
+					$content = "您已关注了经纪人: " . $broker_name;
 				}
 				$this->funmall_model->bindBroker($object->FromUserName, $broker_id);
 				file_get_contents('http://www.funmall.com.cn/api/update_weixin_user/' . $object->FromUserName . '/' . $broker_id);
